@@ -1,0 +1,210 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- edited with XMLSPY v2004 rel. 2 U (http://www.xmlspy.com) by Ed Beach (Firaxis Games) -->
+<GameData>
+	<!-- Table definition -->
+	<!-- Tables to define special InfoTypes -->
+	<Table name="CivilianAttackPriorities">
+		<Column name="ID" type="integer" primarykey="true" autoincrement="true"/>
+		<Column name="Type" type="text" notnull="true" unique="true"/>
+	</Table>
+	<Table name="Units">
+		<!-- Basic info -->
+		<Column name="ID" type="integer" primarykey="true" autoincrement="true"/>
+		<Column name="Type" type="text" unique="true" notnull="true"/>
+		<Column name="Description" type="text" reference="Language_en_US(Tag)"/>
+		<Column name="Civilopedia" type="text" reference="Language_en_US(Tag)"/>
+		<Column name="Strategy" type="text" reference="Language_en_US(Tag)"/>
+		<Column name="Help" type="text" reference="Language_en_US(Tag)"/>
+		<Column name="Requirements" type="text"/>
+		<Column name="Combat" type="integer" default="0"/>
+		<Column name="RangedCombat" type="integer" default="0"/>
+		<Column name="Cost" type="integer" default="0"/>
+		<Column name="FaithCost" type="integer" default="0"/>
+		<Column name="RequiresFaithPurchaseEnabled" type="boolean" default="false"/>
+		<Column name="PurchaseOnly" type="boolean" default="false"/>
+		<Column name="MoveAfterPurchase" type="boolean" default="false"/>
+		<Column name="Moves" type="integer" default="0"/>
+		<Column name="Immobile" type="boolean" default="false"/>
+		<Column name="Range" type="integer" default="0"/>
+		<Column name="BaseSightRange" type="integer" default="2"/>
+		<Column name="Class" type="text" reference="UnitClasses(Type)" default="NULL"/>
+		<Column name="Special" type="text" reference="SpecialUnits(Type)" default="NULL"/>
+		<Column name="Capture" type="text" reference="UnitClasses(Type)" default="NULL"/>
+		<Column name="CombatClass" type="text" reference="UnitCombatInfos(Type)" default="NULL"/>
+		<Column name="Domain" type="text" reference="Domains(Type)" default="NULL"/>
+		<Column name="CivilianAttackPriority" type="text" default="NULL"/>
+		<Column name="DefaultUnitAI" type="text" reference="UnitAIInfos(Type)" default="NULL"/>
+		<Column name="Food" type="boolean" default="false"/>
+		<Column name="NoBadGoodies" type="boolean" default="false"/>
+		<Column name="RivalTerritory" type="boolean" default="false"/>
+		<Column name="MilitarySupport" type="boolean" default="false"/>
+		<Column name="MilitaryProduction" type="boolean" default="false"/>
+		<Column name="Pillage" type="boolean" default="false"/>
+		<Column name="PillagePrereqTech" type="text" reference="Technologies(Type)" default="NULL"/>
+		<Column name="Found" type="boolean" default="false"/>
+		<Column name="FoundAbroad" type="boolean" default="false"/>
+		<Column name="CultureBombRadius" type="integer" default="0"/>
+		<Column name="GoldenAgeTurns" type="integer" default="0"/>
+		<Column name="FreePolicies" type="integer" default="0"/>
+		<Column name="OneShotTourism" type="integer" default="0"/>
+		<Column name="OneShotTourismPercentOthers" type="integer" default="0"/>
+		<Column name="IgnoreBuildingDefense" type="boolean" default="false"/>
+		<Column name="PrereqResources" type="boolean" default="false"/>
+		<Column name="Mechanized" type="boolean" default="false"/>
+		<Column name="Suicide" type="boolean" default="false"/>
+		<Column name="CaptureWhileEmbarked" type="boolean" default="false"/>
+		<Column name="PrereqTech" type="text" reference="Technologies(Type)" default="NULL"/>
+		<Column name="ObsoleteTech" type="text" reference="Technologies(Type)" default="NULL"/>
+		<Column name="GoodyHutUpgradeUnitClass" type="text" reference="UnitClasses(Type)" default="NULL"/>
+		<Column name="HurryCostModifier" type="integer" default="0"/>
+		<Column name="AdvancedStartCost" type="integer" default="0"/>
+		<Column name="MinAreaSize" type="integer" default="-1"/>
+		<Column name="AirInterceptRange" type="integer" default="0"/>
+		<Column name="AirUnitCap" type="integer" default="0"/>
+		<Column name="NukeDamageLevel" type="integer" default="-1"/>
+		<Column name="WorkRate" type="integer" default="0"/>
+		<Column name="NumFreeTechs" type="integer" default="0"/>
+		<Column name="BaseBeakersTurnsToCount" type="integer" default="0"/>
+		<Column name="BaseCultureTurnsToCount" type="integer" default="0"/>
+		<Column name="RushBuilding" type="boolean" default="false"/>
+		<Column name="BaseHurry" type="integer" default="0"/>
+		<Column name="HurryMultiplier" type="integer" default="0"/>
+		<Column name="BaseGold" type="integer" default="0"/>
+		<Column name="NumGoldPerEra" type="integer" default="0"/>
+		<Column name="SpreadReligion" type="boolean" default="false"/>
+		<Column name="RemoveHeresy" type="boolean" default="false"/>
+		<Column name="ReligionSpreads" type="integer" default="0"/>
+		<Column name="ReligiousStrength" type="integer" default="0"/>
+		<Column name="FoundReligion" type="boolean" default="false"/>
+		<Column name="RequiresEnhancedReligion" type="boolean" default="false"/>
+		<Column name="ProhibitsSpread" type="boolean" default="false"/>
+		<Column name="CanBuyCityState" type="boolean" default="false"/>
+		<Column name="CombatLimit" type="integer" default="100"/>
+		<Column name="RangeAttackOnlyInDomain" type="boolean" default="false"/>
+		<Column name="RangeAttackIgnoreLOS" type="boolean" default="false"/>
+		<Column name="Trade" type="boolean" default="false"/>
+		<Column name="NumExoticGoods" type="integer" default="0"/>
+		<Column name="PolicyType" type="text" reference="Policies(Type)" default="NULL"/>
+		<Column name="RangedCombatLimit" type="integer" default="0"/>
+		<Column name="XPValueAttack" type="integer" default="0"/>
+		<Column name="XPValueDefense" type="integer" default="0"/>
+		<Column name="SpecialCargo" type="text" reference="SpecialUnits(Type)" default="NULL"/>
+		<Column name="DomainCargo" type="text" reference="Domains(Type)" default="NULL"/>
+		<Column name="Conscription" type="integer" default="0"/>
+		<Column name="ExtraMaintenanceCost" type="integer" default="0"/>
+		<Column name="NoMaintenance" type="boolean" default="0"/>
+		<Column name="Unhappiness" type="integer" default="0"/>
+		<Column name="UnitArtInfo" type="text" default="NULL"/>
+		<Column name="UnitArtInfoCulturalVariation" type="boolean" default="false"/>
+		<Column name="UnitArtInfoEraVariation" type="boolean" default="false"/>
+		<Column name="ProjectPrereq" type="text" reference="Projects(Type)" default="NULL"/>
+		<Column name="SpaceshipProject" type="text" reference="Projects(Type)" default="NULL"/>
+		<Column name="LeaderPromotion" type="text" reference="UnitPromotions(Type)" default="NULL"/>
+		<Column name="LeaderExperience" type="integer" default="0"/>
+		<Column name="DontShowYields" type="boolean" default="false"/>
+		<Column name="ShowInPedia" type="boolean" default="true"/>
+		<Column name="MoveRate" type="text" reference="MovementRates(Type)" default="BIPED"/>
+		<Column name="UnitFlagIconOffset" type="integer" default="0"/>
+		<Column name="PortraitIndex" type="integer" default="-1"/>
+		<Column name="IconAtlas" type="text" default="NULL" reference="IconTextureAtlases(Atlas)"/>
+		<Column name="UnitFlagAtlas" type="text" default="UNIT_FLAG_ATLAS" reference="IconTextureAtlases(Atlas)"/>
+		<!-- VMC -->
+		<Column name="CannotEmbark" type="integer" default="0"/>
+		<Column name="CanRepairFleet" type="integer" default="0"/>
+		<Column name="CanChangePort" type="integer" default="0"/>
+		<Column name="MaxHitPoints" type="integer" default="100"/>
+		<Column name="MoveAfterUpgrade" type="integer" default="0"/>
+		<Column name="NoMinorGifts" type="integer" default="0"/>
+		<Column name="NoSupply" type="integer" default="0"/>
+		<Column name="PromotionClass" type="text" default="NULL" reference="UnitCombatInfos(Type)"/>
+		<Column name="SendCanMoveIntoEvent" type="integer" default="0"/>
+	</Table>
+	<Table name="Unit_AITypes">
+		<Column name="UnitType" type="text" reference="Units(Type)"/>
+		<Column name="UnitAIType" type="text" reference="UnitAIInfos(Type)"/>
+	</Table>
+	<Table name="Unit_Buildings">
+		<Column name="UnitType" type="text" reference="Units(Type)"/>
+		<Column name="BuildingType" type="text" reference="Buildings(Type)"/>
+	</Table>
+	<Table name="Unit_BuildingClassRequireds">
+		<Column name="UnitType" type="text" reference="Units(Type)"/>
+		<Column name="BuildingClassType" type="text" reference="BuildingClasses(Type)"/>
+	</Table>
+	<Table name="Unit_ProductionModifierBuildings">
+		<Column name="UnitType" type="text" reference="Units(Type)"/>
+		<Column name="BuildingType" type="text" reference="Buildings(Type)"/>
+		<Column name="ProductionModifier" type="integer"/>
+	</Table>
+	<!-- This Table has been Defined in Civ5EngineDatabaseSchema.sql!
+	<Table name="Unit_Builds">
+		<Column name="UnitType" type="text" reference="Units(Type)"/>
+		<Column name="BuildType" type="text" reference="Builds(Type)"/>
+	</Table>-->
+	<Table name="Unit_ClassUpgrades">
+		<Column name="UnitType" type="text" reference="Units(Type)"/>
+		<Column name="UnitClassType" type="text" reference="UnitClasses(Type)"/>
+	</Table>
+	<!-- This Table has been Defined in Civ5EngineDatabaseSchema.sql!
+	<Table name="Unit_FreePromotions">
+		<Column name="UnitType" type="text" reference="Units(Type)"/>
+		<Column name="PromotionType" type="text" reference="UnitPromotions(Type)"/>
+	</Table>-->
+	<Table name="Unit_Flavors">
+		<Column name="UnitType" type="text" reference="Units(Type)"/>
+		<Column name="FlavorType" type="text" reference="Flavors(Type)"/>
+		<Column name="Flavor" type="integer" notnull="true"/>
+	</Table>
+	<Table name="Unit_GreatPersons">
+		<Column name="UnitType" type="text" reference="Units(Type)"/>
+		<Column name="GreatPersonType" type="text" reference="Specialists(Type)"/>
+	</Table>
+	<Table name="Unit_ResourceQuantityRequirements">
+		<Column name="UnitType" type="text" reference="Units(Type)"/>
+		<Column name="ResourceType" type="text" reference="Resources(Type)"/>
+		<Column name="Cost" type="integer" default="1"/>
+	</Table>
+	<Table name="Unit_UniqueNames">
+		<Column name="UnitType" type="text" reference="Units(Type)"/>
+		<Column name="UniqueName" type="text" notnull="true" reference="Language_en_US(Tag)"/>
+		<Column name="GreatWorkType" type="text" reference="GreatWorks(type)"/>
+	</Table>
+	<Table name="Unit_YieldFromKills">
+		<Column name="UnitType" type="text" reference="Units(Type)"/>
+		<Column name="YieldType" type="text" reference="Yields(Type)"/>
+		<Column name="Yield" type="integer"/>
+	</Table>
+	<!-- Potentially unused tables -->
+	<Table name="Unit_NotAITypes">
+		<Column name="UnitType" type="text" reference="Units(Type)"/>
+		<Column name="UnitAIType" type="text" reference="UnitAIInfos(Type)"/>
+	</Table>
+	<Table name="Unit_ProductionTraits">
+		<Column name="UnitType" type="text" reference="Units(Type)"/>
+		<Column name="TraitType" type="text" reference="Traits(Type)"/>
+		<Column name="Trait" type="integer"/>
+	</Table>
+	<Table name="Unit_TechTypes">
+		<Column name="UnitType" type="text" reference="Units(Type)"/>
+		<Column name="TechType" type="text" reference="Technologies(Type)"/>
+	</Table>
+	<!-- Table data -->
+	<CivilianAttackPriorities>
+		<Row>
+			<ID>-1</ID>
+			<Type>NO_CIVILIAN_ATTACK_PRIORITY</Type>
+		</Row>
+		<Row>
+			<ID>0</ID>
+			<Type>CIVILIAN_ATTACK_PRIORITY_HIGH</Type>
+		</Row>
+		<Row>
+			<ID>1</ID>
+			<Type>CIVILIAN_ATTACK_PRIORITY_HIGH_EARLY_GAME_ONLY</Type>
+		</Row>
+		<Row>
+			<ID>2</ID>
+			<Type>CIVILIAN_ATTACK_PRIORITY_LOW</Type>
+		</Row>
+	</CivilianAttackPriorities>
+</GameData>

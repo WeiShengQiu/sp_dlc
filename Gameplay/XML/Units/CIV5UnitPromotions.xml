@@ -1,0 +1,242 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- edited with XMLSPY v2004 rel. 2 U (http://www.xmlspy.com) by Ed Beach (Firaxis Games) -->
+<GameData>
+	<!-- Table definition -->
+	<Table name="UnitPromotions">
+		<!-- Basic info -->
+		<Column name="ID" type="integer" primarykey="true" autoincrement="true"/>
+		<Column name="Type" type="text" notnull="true" unique="true"/>
+		<Column name="Description" type="text" reference="Language_en_US(Tag)"/>
+		<Column name="Help" type="text" default="" reference="Language_en_US(Tag)"/>
+		<Column name="DisabledHelp" type="text" default=""/>
+		<Column name="Button" type="text"/>
+		<Column name="PortraitIndex" type="integer" default="9"/>
+		<Column name="IconAtlas" type="text" default="ABILITY_ATLAS" reference="IconTextureAtlases(Atlas)"/>
+		<!-- Hotkey info -->
+		<Column name="HotKey" type="text"/>
+		<Column name="HotKeyAlt" type="text"/>
+		<Column name="HotKeyPriority" type="integer" default="0"/>
+		<Column name="HotKeyPriorityAlt" type="integer" default="0"/>
+		<Column name="OrderPriority" type="integer" default="0"/>
+		<Column name="AltDown" type="boolean" default="false"/>
+		<Column name="AltDownAlt" type="boolean" default="false"/>
+		<Column name="ShiftDown" type="boolean" default="false"/>
+		<Column name="ShiftDownAlt" type="boolean" default="false"/>
+		<Column name="CtrlDown" type="boolean" default="false"/>
+		<Column name="CtrlDownAlt" type="boolean" default="false"/>
+		<!-- UnitPromotions info -->
+		<Column name="Sound" type="text"/>
+		<Column name="CannotBeChosen" type="boolean" default="false"/>
+		<Column name="LostWithUpgrade" type="boolean" default="false"/>
+		<Column name="NotWithUpgrade" type="boolean" default="false"/>
+		<Column name="InstaHeal" type="boolean" default="false"/>
+		<Column name="Leader" type="boolean" default="false"/>
+		<Column name="Blitz" type="boolean" default="false"/>
+		<Column name="Amphib" type="boolean" default="false"/>
+		<Column name="River" type="boolean" default="false"/>
+		<Column name="EnemyRoute" type="boolean" default="false"/>
+		<Column name="RivalTerritory" type="boolean" default="false"/>
+		<Column name="MustSetUpToRangedAttack" type="boolean" default="false"/>
+		<Column name="RangedSupportFire" type="boolean" default="false"/>
+		<Column name="CanMoveAfterAttacking" type="boolean" default="false"/>
+		<Column name="AlwaysHeal" type="boolean" default="false"/>
+		<Column name="HealOutsideFriendly" type="boolean" default="false"/>
+		<Column name="HillsDoubleMove" type="boolean" default="false"/>
+		<Column name="RoughTerrainEndsTurn" type="boolean" default="false"/>
+		<Column name="IgnoreTerrainCost" type="boolean" default="false"/>
+		<Column name="HoveringUnit" type="boolean" default="false"/>
+		<Column name="FlatMovementCost" type="boolean" default="false"/>
+		<Column name="CanMoveImpassable" type="boolean" default="false"/>
+		<Column name="NoCapture" type="boolean" default="false"/>
+		<Column name="OnlyDefensive" type="boolean" default="false"/>
+		<Column name="NoDefensiveBonus" type="boolean" default="false"/>
+		<Column name="NukeImmune" type="boolean" default="false"/>
+		<Column name="HiddenNationality" type="boolean" default="false"/>
+		<Column name="AlwaysHostile" type="boolean" default="false"/>
+		<Column name="NoRevealMap" type="boolean" default="false"/>
+		<Column name="Recon" type="boolean" default="false"/>
+		<Column name="CanMoveAllTerrain" type="boolean" default="false"/>
+		<Column name="FreePillageMoves" type="boolean" default="false"/>
+		<Column name="AirSweepCapable" type="boolean" default="false"/>
+		<Column name="AllowsEmbarkation" type="boolean" default="false"/>
+		<Column name="EmbarkedAllWater" type="boolean" default="false"/>
+		<Column name="HealIfDestroyExcludesBarbarians" type="boolean" default="false"/>
+		<Column name="RangeAttackIgnoreLOS" type="boolean" default="false"/>
+		<Column name="CityAttackOnly" type="boolean" default="false"/>
+		<Column name="CaptureDefeatedEnemy" type="boolean" default="false"/>
+		<Column name="HealOnPillage" type="boolean" default="false"/>
+		<Column name="IgnoreGreatGeneralBenefit" type="boolean" default="false"/>
+		<Column name="IgnoreZOC" type="boolean" default="false"/>
+		<Column name="HasPostCombatPromotions" type="boolean" default="false"/>
+		<Column name="PostCombatPromotionsExclusive" type="boolean" default="false"/>
+		<Column name="RangedAttackModifier" type="integer" default="0"/>
+		<Column name="InterceptionCombatModifier" type="integer" default="0"/>
+		<Column name="InterceptionDefenseDamageModifier" type="integer" default="0"/>
+		<Column name="AirSweepCombatModifier" type="integer" default="0"/>
+		<Column name="ExtraAttacks" type="integer" default="0"/>
+		<Column name="ExtraNavalMovement" type="integer" default="0"/>
+		<Column name="VisibilityChange" type="integer" default="0"/>
+		<Column name="MovesChange" type="integer" default="0"/>
+		<Column name="MoveDiscountChange" type="integer" default="0"/>
+		<Column name="RangeChange" type="integer" default="0"/>
+		<Column name="InterceptChanceChange" type="integer" default="0"/>
+		<Column name="NumInterceptionChange" type="integer" default="0"/>
+		<Column name="EvasionChange" type="integer" default="0"/>
+		<Column name="CargoChange" type="integer" default="0"/>
+		<Column name="EnemyHealChange" type="integer" default="0"/>
+		<Column name="NeutralHealChange" type="integer" default="0"/>
+		<Column name="FriendlyHealChange" type="integer" default="0"/>
+		<Column name="SameTileHealChange" type="integer" default="0"/>
+		<Column name="AdjacentTileHealChange" type="integer" default="0"/>
+		<Column name="EnemyDamageChance" type="integer" default="0"/>
+		<Column name="NeutralDamageChance" type="integer" default="0"/>
+		<Column name="EnemyDamage" type="integer" default="0"/>
+		<Column name="NeutralDamage" type="integer" default="0"/>
+		<Column name="CombatPercent" type="integer" default="0"/>
+		<Column name="CityAttack" type="integer" default="0"/>
+		<Column name="CityDefense" type="integer" default="0"/>
+		<Column name="RangedDefenseMod" type="integer" default="0"/>
+		<Column name="HillsAttack" type="integer" default="0"/>
+		<Column name="HillsDefense" type="integer" default="0"/>
+		<Column name="OpenAttack" type="integer" default="0"/>
+		<Column name="OpenRangedAttackMod" type="integer" default="0"/>
+		<Column name="OpenDefense" type="integer" default="0"/>
+		<Column name="RoughAttack" type="integer" default="0"/>
+		<Column name="RoughRangedAttackMod" type="integer" default="0"/>
+		<Column name="RoughDefense" type="integer" default="0"/>
+		<Column name="AttackFortifiedMod" type="integer" default="0"/>
+		<Column name="AttackWoundedMod" type="integer" default="0"/>
+		<Column name="FlankAttackModifier" type="integer" default="0"/>
+		<Column name="NearbyEnemyCombatMod" type="integer" default="0"/>
+		<Column name="NearbyEnemyCombatRange" type="integer" default="0"/>
+		<Column name="UpgradeDiscount" type="integer" default="0"/>
+		<Column name="ExperiencePercent" type="integer" default="0"/>
+		<Column name="AdjacentMod" type="integer" default="0"/>
+		<Column name="AttackMod" type="integer" default="0"/>
+		<Column name="DefenseMod" type="integer" default="0"/>
+		<Column name="DropRange" type="integer" default="0"/>
+		<Column name="GreatGeneral" type="boolean" default="0"/>
+		<Column name="GreatAdmiral" type="boolean" default="0"/>
+		<Column name="GreatGeneralModifier" type="integer" default="0"/>
+		<Column name="GreatGeneralReceivesMovement" type="boolean" default="0"/>
+		<Column name="GreatGeneralCombatModifier" type="integer" default="0"/>
+		<Column name="FriendlyLandsModifier" type="integer" default="0"/>
+		<Column name="FriendlyLandsAttackModifier" type="integer" default="0"/>
+		<Column name="OutsideFriendlyLandsModifier" type="integer" default="0"/>
+		<Column name="HPHealedIfDestroyEnemy" type="integer" default="0"/>
+		<Column name="ExtraWithdrawal" type="integer" default="0"/>
+		<Column name="EmbarkExtraVisibility" type="integer" default="0"/>
+		<Column name="EmbarkDefenseModifier" type="integer" default="0"/>
+		<Column name="CapitalDefenseModifier" type="integer" default="0"/>
+		<Column name="CapitalDefenseFalloff" type="integer" default="0"/>
+		<Column name="CityAttackPlunderModifier" type="integer" default="0"/>
+		<Column name="ReligiousStrengthLossRivalTerritory" type="integer" default="0"/>
+		<Column name="TradeMissionInfluenceModifier" type="integer" default="0"/>
+		<Column name="TradeMissionGoldModifier" type="integer" default="0"/>
+		<Column name="GoldenAgeValueFromKills" type="integer" default="0"/>
+		<Column name="Sapper" type="boolean" default="false"/>
+		<Column name="HeavyCharge" type="boolean" default="false"/>
+		<Column name="LayerAnimationPath" type="text" default="NULL"/>
+		<Column name="TechPrereq" type="text" reference="Technologies(Type)" default="NULL"/>
+		<Column name="Invisible" type="text" reference="InvisibleInfos(Type)" default="NULL"/>
+		<Column name="SeeInvisible" type="text" reference="InvisibleInfos(Type)" default="NULL"/>
+		<Column name="PromotionPrereq" type="text" reference="UnitPromotions(Type)" default="NULL"/>
+		<Column name="PromotionPrereqOr1" type="text" reference="UnitPromotions(Type)" default="NULL"/>
+		<Column name="PromotionPrereqOr2" type="text" reference="UnitPromotions(Type)" default="NULL"/>
+		<Column name="PromotionPrereqOr3" type="text" reference="UnitPromotions(Type)" default="NULL"/>
+		<Column name="PromotionPrereqOr4" type="text" reference="UnitPromotions(Type)" default="NULL"/>
+		<Column name="PromotionPrereqOr5" type="text" reference="UnitPromotions(Type)" default="NULL"/>
+		<Column name="PromotionPrereqOr6" type="text" reference="UnitPromotions(Type)" default="NULL"/>
+		<Column name="PromotionPrereqOr7" type="text" reference="UnitPromotions(Type)" default="NULL"/>
+		<Column name="PromotionPrereqOr8" type="text" reference="UnitPromotions(Type)" default="NULL"/>
+		<Column name="PromotionPrereqOr9" type="text" reference="UnitPromotions(Type)" default="NULL"/>
+		<!-- Pedia specific info -->
+		<Column name="PediaType" type="text"/>
+		<Column name="PediaEntry" type="text" reference="Language_en_US(Tag)"/>
+		<!-- VMC -->
+		<Column name="IgnoreTerrainDamage" type="integer" default="0"/>
+		<Column name="IgnoreFeatureDamage" type="integer" default="0"/>
+		<Column name="ExtraTerrainDamage" type="integer" default="0"/>
+		<Column name="ExtraFeatureDamage" type="integer" default="0"/>
+		<Column name="CanCrossIce" type="integer" default="0"/>
+		<Column name="CanCrossMountains" type="integer" default="0"/>
+		<Column name="CanCrossOceans" type="integer" default="0"/>
+		<Column name="EmbarkedDeepWater" type="integer" default="0"/>
+		<Column name="NearbyImprovementCombatBonus" type="integer" default="0"/>
+		<Column name="NearbyImprovementBonusRange" type="integer" default="0"/>
+		<Column name="CombatBonusImprovement" type="integer" default="-1"/>
+		<Column name="ReconChange" type="integer" default="0"/>
+		<Column name="MaxHitPointsChange" type="integer" default="0"/>
+		<Column name="MaxHitPointsModifier" type="integer" default="0"/>
+		<Column name="NoSupply" type="integer" default="0"/>
+		<Column name="AuraRangeChange" type="integer" default="0"/>
+		<Column name="AuraEffectChange" type="integer" default="0"/>
+		<Column name="GGFromBarbarians" type="integer" default="0"/>
+		<!-- TNL -->
+		<Column name="IconString" type="text" default="[ICON_PROMOTION_ATTRIBUTES]"/>
+	</Table>
+	<Table name="UnitPromotions_Terrains">
+		<Column name="PromotionType" type="text" reference="UnitPromotions(Type)"/>
+		<Column name="TerrainType" type="text" reference="Terrains(Type)"/>
+		<Column name="Attack" type="integer" default="0"/>
+		<Column name="Defense" type="integer" default="0"/>
+		<Column name="DoubleMove" type="boolean" default="false"/>
+		<Column name="Impassable" type="boolean" default="false"/>
+		<Column name="PassableTech" type="text" reference="Technologies(Type)"/>
+		<Column name="PediaType" type="text"/>
+		<!-- VMC -->
+		<Column name="HalfMove" type="integer" default="0"/>
+	</Table>
+	<Table name="UnitPromotions_Features">
+		<Column name="PromotionType" type="text" reference="UnitPromotions(Type)"/>
+		<Column name="FeatureType" type="text" reference="Features(Type)"/>
+		<Column name="Attack" type="integer" default="0"/>
+		<Column name="Defense" type="integer" default="0"/>
+		<Column name="DoubleMove" type="boolean" default="false"/>
+		<Column name="Impassable" type="boolean" default="false"/>
+		<Column name="PassableTech" type="text" reference="Technologies(Type)"/>
+		<Column name="PediaType" type="text"/>
+		<!-- VMC -->
+		<Column name="HalfMove" type="integer" default="0"/>
+	</Table>
+	<Table name="UnitPromotions_UnitClasses">
+		<Column name="PromotionType" type="text" reference="UnitPromotions(Type)"/>
+		<Column name="UnitClassType" type="text" reference="UnitClasses(Type)"/>
+		<Column name="Modifier" type="integer"/>
+		<Column name="Attack" type="integer"/>
+		<Column name="Defense" type="integer"/>
+		<Column name="PediaType" type="text"/>
+	</Table>
+	<Table name="UnitPromotions_Domains">
+		<Column name="PromotionType" type="text" reference="UnitPromotions(Type)"/>
+		<Column name="DomainType" type="text" reference="Domains(Type)"/>
+		<Column name="Modifier" type="integer"/>
+		<Column name="PediaType" type="text"/>
+	</Table>
+	<Table name="UnitPromotions_UnitCombatMods">
+		<Column name="PromotionType" type="text" reference="UnitPromotions(Type)"/>
+		<Column name="UnitCombatType" type="text" reference="UnitCombatInfos(Type)"/>
+		<Column name="Modifier" type="integer"/>
+		<Column name="PediaType" type="text"/>
+	</Table>
+	<Table name="UnitPromotions_UnitCombats">
+		<Column name="PromotionType" type="text" reference="UnitPromotions(Type)"/>
+		<Column name="UnitCombatType" type="text" reference="UnitCombatInfos(Type)"/>
+		<Column name="PediaType" type="text"/>
+	</Table>
+	<!-- This Table has been Defined in Civ5EngineDatabaseSchema.sql!
+	<Table name="UnitPromotions_CivilianUnitType">
+		<Column name="PromotionType" type="text" reference="UnitPromotions(Type)"/>
+		<Column name="UnitType" type="text" reference="Units(Type)"/>
+	</Table>-->
+	<Table name="UnitPromotions_PostCombatRandomPromotion">
+		<Column name="PromotionType" type="text" reference="UnitPromotions(Type)"/>
+		<Column name="NewPromotion" type="text" reference="UnitPromotions(Type)"/>
+	</Table>
+	<!-- VMC - PROMOTIONS_UNIT_NAMING -->
+	<Table name="UnitPromotions_UnitName">
+		<Column name="PromotionType" type="text" reference="UnitPromotions(Type)"/>
+		<Column name="UnitType" type="text" reference="Units(Type)"/>
+		<Column name="Name" type="text" reference="Language_en_US(Tag)"/>
+	</Table>
+</GameData>

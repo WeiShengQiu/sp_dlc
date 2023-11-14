@@ -1,0 +1,1418 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- edited with XMLSPY v2004 rel. 2 U (http://www.xmlspy.com) by MBeach (Firaxis Games) -->
+<GameData>
+	<!-- Table definition -->
+	<Table name="Traits">
+		<Column name="ID" type="integer" primarykey="true" autoincrement="true"/>
+		<Column name="Type" type="text" notnull="true" unique="true"/>
+		<Column name="Description" type="text" reference="Language_en_US(Tag)"/>
+		<Column name="ShortDescription" type="text" reference="Language_en_US(Tag)"/>
+		<Column name="LevelExperienceModifier" type="integer" default="0"/>
+		<Column name="GreatPeopleRateModifier" type="integer" default="0"/>
+		<Column name="GreatScientistRateModifier" type="integer" default="0"/>
+		<Column name="GreatGeneralRateModifier" type="integer" default="0"/>
+		<Column name="GreatGeneralExtraBonus" type="integer" default="0"/>
+		<Column name="GreatPersonGiftInfluence" type="integer" default="0"/>
+		<Column name="MaxGlobalBuildingProductionModifier" type="integer" default="0"/>
+		<Column name="MaxTeamBuildingProductionModifier" type="integer" default="0"/>
+		<Column name="MaxPlayerBuildingProductionModifier" type="integer" default="0"/>
+		<Column name="CityUnhappinessModifier" type="integer" default="0"/>
+		<Column name="PopulationUnhappinessModifier" type="integer" default="0"/>
+		<Column name="CityStateBonusModifier" type="integer" default="0"/>
+		<Column name="CityStateFriendshipModifier" type="integer" default="0"/>
+		<Column name="CityStateCombatModifier" type="integer" default="0"/>
+		<Column name="LandBarbarianConversionPercent" type="integer" default="0"/>
+		<Column name="LandBarbarianConversionExtraUnits" type="integer" default="0"/>
+		<Column name="SeaBarbarianConversionPercent" type="integer" default="0"/>
+		<Column name="LandUnitMaintenanceModifier" type="integer" default="0"/>
+		<Column name="NavalUnitMaintenanceModifier" type="integer" default="0"/>
+		<Column name="CapitalBuildingModifier" type="integer" default="0"/>
+		<Column name="PlotBuyCostModifier" type="integer" default="0"/>
+		<Column name="PlotCultureCostModifier" type="integer" default="0"/>
+		<Column name="CultureFromKills" type="integer" default="0"/>
+		<Column name="FaithFromKills" type="integer" default="0"/>
+		<Column name="CityCultureBonus" type="integer" default="0"/>
+		<Column name="CapitalThemingBonusModifier" type="integer" default="0"/>
+		<Column name="PolicyCostModifier" type="integer" default="0"/>
+		<Column name="CityConnectionTradeRouteChange" type="integer" default="0"/>
+		<Column name="WonderProductionModifier" type="integer" default="0"/>
+		<Column name="PlunderModifier" type="integer" default="0"/>
+		<Column name="ImprovementMaintenanceModifier" type="integer" default="0"/>
+		<Column name="GoldenAgeDurationModifier" type="integer" default="0"/>
+		<Column name="GoldenAgeMoveChange" type="integer" default="0"/>
+		<Column name="GoldenAgeCombatModifier" type="integer" default="0"/>
+		<Column name="GoldenAgeTourismModifier" type="integer" default="0"/>
+		<Column name="GoldenAgeGreatArtistRateModifier" type="integer" default="0"/>
+		<Column name="GoldenAgeGreatMusicianRateModifier" type="integer" default="0"/>
+		<Column name="GoldenAgeGreatWriterRateModifier" type="integer" default="0"/>
+		<Column name="ExtraEmbarkMoves" type="integer" default="0"/>
+		<Column name="NaturalWonderFirstFinderGold" type="integer" default="0"/>
+		<Column name="NaturalWonderSubsequentFinderGold" type="integer" default="0"/>
+		<Column name="NaturalWonderYieldModifier" type="integer" default="0"/>
+		<Column name="NaturalWonderHappinessModifier" type="integer" default="0"/>
+		<Column name="NearbyImprovementCombatBonus" type="integer" default="0"/>
+		<Column name="NearbyImprovementBonusRange" type="integer" default="0"/>
+		<Column name="CultureBuildingYieldChange" type="integer" default="0"/>
+		<Column name="CombatBonusVsHigherTech" type="integer" default="0"/>
+		<Column name="CombatBonusVsLargerCiv" type="integer" default="0"/>
+		<Column name="RazeSpeedModifier" type="integer" default="0"/>
+		<Column name="DOFGreatPersonModifier" type="integer" default="0"/>
+		<Column name="LuxuryHappinessRetention" type="integer" default="0"/>
+		<Column name="ExtraSpies" type="integer" default="0"/>
+		<Column name="UnresearchedTechBonusFromKills" type="integer" default="0"/>
+		<Column name="ExtraFoundedCityTerritoryClaimRange" type="integer" default="0"/>
+		<Column name="FreeSocialPoliciesPerEra" type="integer" default="0"/>
+		<Column name="NumTradeRoutesModifier" type="integer" default="0"/>
+		<Column name="TradeRouteResourceModifier" type="integer" default="0"/>
+		<Column name="UniqueLuxuryCities" type="integer" default="0"/>
+		<Column name="UniqueLuxuryQuantity" type="integer" default="0"/>
+		<Column name="WorkerSpeedModifier" type="integer" default="0"/>
+		<Column name="AfraidMinorPerTurnInfluence" type="integer" default="0"/>
+		<Column name="LandTradeRouteRangeBonus" type="integer" default="0"/>
+		<Column name="TradeReligionModifier" type="integer" default="0"/>
+		<Column name="TradeBuildingModifier" type="integer" default="0"/>
+		<Column name="FightWellDamaged" type="boolean" default="false"/>
+		<Column name="MoveFriendlyWoodsAsRoad" type="boolean" default="false"/>
+		<Column name="FasterAlongRiver" type="boolean" default="false"/>
+		<Column name="FasterInHills" type="boolean" default="false"/>
+		<Column name="EmbarkedAllWater" type="boolean" default="false"/>
+		<Column name="EmbarkedToLandFlatCost" type="boolean" default="false"/>
+		<Column name="NoHillsImprovementMaintenance" type="boolean" default="false"/>
+		<Column name="TechBoostFromCapitalScienceBuildings" type="boolean" default="false"/>
+		<Column name="StaysAliveZeroCities" type="boolean" default="false"/>
+		<Column name="FaithFromUnimprovedForest" type="boolean" default="false"/>
+		<Column name="BonusReligiousBelief" type="boolean" default="false"/>
+		<Column name="AbleToAnnexCityStates" type="boolean" default="false"/>
+		<Column name="CrossesMountainsAfterGreatGeneral" type="boolean" default="false"/>
+		<Column name="MayaCalendarBonuses" type="boolean" default="false"/>
+		<Column name="NoAnnexing" type="boolean" default="false"/>
+		<Column name="TechFromCityConquer" type="boolean" default="false"/>
+		<Column name="UniqueLuxuryRequiresNewArea" type="boolean" default="false"/>
+		<Column name="RiverTradeRoad" type="boolean" default="false"/>
+		<Column name="AngerFreeIntrusionOfCityStates" type="boolean" default="false"/>
+		<Column name="FreeUnit" type="text" reference="UnitClasses(Type)" default="NULL"/>
+		<Column name="FreeUnitPrereqTech" type="text" reference="Technologies(Type)" default="NULL"/>
+		<Column name="CombatBonusImprovement" type="text" reference="Improvements(Type)" default="NULL"/>
+		<Column name="FreeBuilding" type="text" reference="Buildings(Type)" default="NULL"/>
+		<Column name="FreeBuildingOnConquest" type="text" reference="Buildings(Type)" default="NULL"/>
+		<Column name="ObsoleteTech" type="text" reference="Technologies(Type)" default="NULL"/>
+		<Column name="PrereqTech" type="text" reference="Technologies(Type)" default="NULL"/>
+		<!-- VMC -->
+		<Column name="AnyBelief" type="integer" default="0"/>
+		<Column name="CityAutomatonWorkersChange" type="integer" default="0"/>
+		<Column name="CityWorkingChange" type="integer" default="0"/>
+		<Column name="CrossesIce" type="integer" default="0"/>
+		<Column name="SeaTradeRouteRangeBonus" type="integer" default="0"/>
+		<Column name="ExtraSupply" type="integer" default="0"/>
+		<Column name="ExtraSupplyPerCity" type="integer" default="0"/>
+		<Column name="ExtraSupplyPerPopulation" type="integer" default="0"/>
+		<Column name="GGFromBarbarians" type="integer" default="0"/>
+		<Column name="ObsoleteBelief" type="text" reference="Beliefs(Type)"/>
+		<Column name="PrereqBelief" type="text" reference="Beliefs(Type)"/>
+		<Column name="ObsoletePolicy" type="text" reference="Policies(Type)"/>
+		<Column name="PrereqPolicy" type="text" reference="Policies(Type)"/>
+	</Table>
+	<Table name="Trait_ExtraYieldThresholds">
+		<Column name="TraitType" type="text" reference="Traits(Type)"/>
+		<Column name="YieldType" type="text" reference="Yields(Type)"/>
+		<Column name="Yield" type="integer"/>
+	</Table>
+	<Table name="Trait_YieldChanges">
+		<Column name="TraitType" type="text" reference="Traits(Type)"/>
+		<Column name="YieldType" type="text" reference="Yields(Type)"/>
+		<Column name="Yield" type="integer"/>
+	</Table>
+	<Table name="Trait_YieldChangesStrategicResources">
+		<Column name="TraitType" type="text" reference="Traits(Type)"/>
+		<Column name="YieldType" type="text" reference="Yields(Type)"/>
+		<Column name="Yield" type="integer"/>
+	</Table>
+	<Table name="Trait_YieldChangesNaturalWonder">
+		<Column name="TraitType" type="text" reference="Traits(Type)"/>
+		<Column name="YieldType" type="text" reference="Yields(Type)"/>
+		<Column name="Yield" type="integer"/>
+	</Table>
+	<Table name="Trait_YieldChangesPerTradePartner">
+		<Column name="TraitType" type="text" reference="Traits(Type)"/>
+		<Column name="YieldType" type="text" reference="Yields(Type)"/>
+		<Column name="Yield" type="integer"/>
+	</Table>
+	<Table name="Trait_YieldChangesIncomingTradeRoute">
+		<Column name="TraitType" type="text" reference="Traits(Type)"/>
+		<Column name="YieldType" type="text" reference="Yields(Type)"/>
+		<Column name="Yield" type="integer"/>
+	</Table>
+	<Table name="Trait_YieldModifiers">
+		<Column name="TraitType" type="text" reference="Traits(Type)"/>
+		<Column name="YieldType" type="text" reference="Yields(Type)"/>
+		<Column name="Yield" type="integer"/>
+	</Table>
+	<Table name="Trait_FreePromotions">
+		<Column name="TraitType" type="text" reference="Traits(Type)"/>
+		<Column name="PromotionType" type="text" reference="UnitPromotions(Type)"/>
+	</Table>
+	<Table name="Trait_FreePromotionUnitCombats">
+		<Column name="TraitType" type="text" reference="Traits(Type)"/>
+		<Column name="UnitCombatType" type="text" reference="UnitCombatInfos(Type)"/>
+		<Column name="PromotionType" type="text" reference="UnitPromotions(Type)"/>
+	</Table>
+	<Table name="Trait_MovesChangeUnitCombats">
+		<Column name="TraitType" type="text" reference="Traits(Type)"/>
+		<Column name="UnitCombatType" type="text" reference="UnitCombatInfos(Type)"/>
+		<Column name="MovesChange" type="int"/>
+	</Table>
+	<Table name="Trait_MaintenanceModifierUnitCombats">
+		<Column name="TraitType" type="text" reference="Traits(Type)"/>
+		<Column name="UnitCombatType" type="text" reference="UnitCombatInfos(Type)"/>
+		<Column name="MaintenanceModifier" type="int"/>
+	</Table>
+	<Table name="Trait_Terrains">
+		<Column name="TraitType" type="text" reference="Traits(Type)"/>
+		<Column name="TerrainType" type="text"/>
+		<Column name="StrategicResourceQuantityModifier" type="integer" default="0"/>
+	</Table>
+	<Table name="Trait_ResourceQuantityModifiers">
+		<Column name="TraitType" type="text" reference="Traits(Type)"/>
+		<Column name="ResourceType" type="text" reference="Resources(Type)"/>
+		<Column name="ResourceQuantityModifier" type="integer" default="0"/>
+	</Table>
+	<Table name="Trait_FreeResourceFirstXCities">
+		<Column name="TraitType" type="text" reference="Traits(Type)"/>
+		<Column name="ResourceType" type="text" reference="Resources(Type)"/>
+		<Column name="ResourceQuantity" type="integer"/>
+		<Column name="NumCities" type="integer"/>
+	</Table>
+	<Table name="Trait_ImprovementYieldChanges">
+		<Column name="TraitType" type="text" reference="Traits(Type)"/>
+		<Column name="ImprovementType" type="text" reference="Improvements(Type)"/>
+		<Column name="YieldType" type="text" reference="Yields(Type)"/>
+		<Column name="Yield" type="integer"/>
+	</Table>
+	<Table name="Trait_SpecialistYieldChanges">
+		<Column name="TraitType" type="text" reference="Traits(Type)"/>
+		<Column name="SpecialistType" type="text" reference="Specialists(Type)"/>
+		<Column name="YieldType" type="text" reference="Yields(Type)"/>
+		<Column name="Yield" type="integer"/>
+	</Table>
+	<Table name="Trait_UnimprovedFeatureYieldChanges">
+		<Column name="TraitType" type="text" reference="Traits(Type)"/>
+		<Column name="FeatureType" type="text" reference="Features(Type)"/>
+		<Column name="YieldType" type="text" reference="Yields(Type)"/>
+		<Column name="Yield" type="integer"/>
+	</Table>
+	<Table name="Trait_NoTrain">
+		<Column name="TraitType" type="text" reference="Traits(Type)"/>
+		<Column name="UnitClassType" type="text" notnull="true" reference="UnitClasses(Type)"/>
+	</Table>
+	<!-- Table data -->
+	<Traits>
+		<Row>
+			<ID>0</ID>
+			<Type>TRAIT_PHILOSOPHICAL</Type>
+			<Description/>
+			<ShortDescription/>
+			<GreatPeopleRateModifier>100</GreatPeopleRateModifier>
+		</Row>
+		<Row>
+			<Type>TRAIT_INDUSTRIOUS</Type>
+			<Description/>
+			<ShortDescription/>
+			<MaxGlobalBuildingProductionModifier>50</MaxGlobalBuildingProductionModifier>
+			<MaxTeamBuildingProductionModifier>50</MaxTeamBuildingProductionModifier>
+			<MaxPlayerBuildingProductionModifier>50</MaxPlayerBuildingProductionModifier>
+		</Row>
+		<Row>
+			<Type>TRAIT_CREATIVE</Type>
+			<Description/>
+			<ShortDescription/>
+		</Row>
+		<Row>
+			<Type>TRAIT_FINANCIAL</Type>
+			<Description/>
+			<ShortDescription/>
+		</Row>
+		<Row>
+			<Type>TRAIT_CHARISMATIC</Type>
+			<Description/>
+			<ShortDescription/>
+			<LevelExperienceModifier>-25</LevelExperienceModifier>
+		</Row>
+		
+	<!--***********Super Power***********-->
+		<Row>
+			<Type>TRAIT_ART_OF_WAR</Type>
+			<Description>TXT_KEY_TRAIT_ART_OF_WAR</Description>
+			<ShortDescription>TXT_KEY_TRAIT_ART_OF_WAR_SHORT</ShortDescription>
+			<!--<GreatGeneralRateModifier>50</GreatGeneralRateModifier>-->
+		</Row>
+		
+		<Row>
+			<Type>TRAIT_RIVER_EXPANSION</Type>
+			<Description>TXT_KEY_TRAIT_RIVER_EXPANSION</Description>
+			<ShortDescription>TXT_KEY_TRAIT_RIVER_EXPANSION_SHORT</ShortDescription>
+		</Row>
+		<Row>
+			<Type>TRAIT_STRATEGIC_RICHES</Type>
+			<Description>TXT_KEY_TRAIT_STRATEGIC_RICHES</Description>
+			<ShortDescription>TXT_KEY_TRAIT_STRATEGIC_RICHES_SHORT</ShortDescription>
+			<FreeBuilding>BUILDING_TB_STRATEGIC_RICHES</FreeBuilding>
+		</Row>
+		<Row>
+			<Type>TRAIT_OCEAN_MOVEMENT</Type>
+			<Description>TXT_KEY_TRAIT_OCEAN_MOVEMENT</Description>
+			<ShortDescription>TXT_KEY_TRAIT_OCEAN_MOVEMENT_SHORT</ShortDescription>
+			<!--<ExtraSpies>1</ExtraSpies>-->
+		</Row>
+		<Row>
+			<Type>TRAIT_ENHANCED_CULTURE</Type>
+			<Description>TXT_KEY_TRAIT_ENHANCED_CULTURE</Description>
+			<ShortDescription>TXT_KEY_TRAIT_ENHANCED_CULTURE_SHORT</ShortDescription>
+			<CityCultureBonus>3</CityCultureBonus>
+			<FreeBuilding>BUILDING_TB_ENHANCED_CULTURE</FreeBuilding>
+		</Row>
+		<Row>
+			<Type>TRAIT_CONVERTS_LAND_BARBARIANS</Type>
+			<Description>TXT_KEY_TRAIT_CONVERTS_LAND_BARBARIANS</Description>
+			<ShortDescription>TXT_KEY_TRAIT_CONVERTS_LAND_BARBARIANS_SHORT</ShortDescription>
+			<!--<FreeSocialPoliciesPerEra>1</FreeSocialPoliciesPerEra>-->
+			<!--<PrereqTech>TECH_EDUCATION</PrereqTech>-->
+		</Row>
+		<Row>
+			<Type>TRAIT_CAPITAL_BUILDINGS_CHEAPER</Type>
+			<Description>TXT_KEY_TRAIT_CAPITAL_BUILDINGS_CHEAPER</Description>
+			<ShortDescription>TXT_KEY_TRAIT_CAPITAL_BUILDINGS_CHEAPER_SHORT</ShortDescription>
+			<FreeBuilding>BUILDING_TB_CAPITAL_BUILDINGS_CHEAPER</FreeBuilding>
+		</Row>
+		<Row>
+			<Type>TRAIT_ENHANCED_GOLDEN_AGES</Type>
+			<Description>TXT_KEY_TRAIT_ENHANCED_GOLDEN_AGES</Description>
+			<ShortDescription>TXT_KEY_TRAIT_ENHANCED_GOLDEN_AGES_SHORT</ShortDescription>
+			<GoldenAgeDurationModifier>50</GoldenAgeDurationModifier>
+			<GoldenAgeMoveChange>1</GoldenAgeMoveChange>
+			<GoldenAgeCombatModifier>15</GoldenAgeCombatModifier>
+		</Row>
+		<Row>
+			<Type>TRAIT_WONDER_BUILDER</Type>
+			<Description>TXT_KEY_TRAIT_WONDER_BUILDER</Description>
+			<ShortDescription>TXT_KEY_TRAIT_WONDER_BUILDER_SHORT</ShortDescription>
+			<WonderProductionModifier>25</WonderProductionModifier>
+			<FreeBuilding>BUILDING_TB_WONDER_BUILDER</FreeBuilding>
+		</Row>
+		
+	<!--***********Militaristic***********-->
+		<Row>
+			<Type>TRAIT_TERROR</Type>
+			<Description>TXT_KEY_TRAIT_TERROR</Description>
+			<ShortDescription>TXT_KEY_TRAIT_TERROR_SHORT</ShortDescription>
+			<GreatGeneralExtraBonus>15</GreatGeneralExtraBonus>
+		</Row>
+		<Row>
+			<Type>TRAIT_FIGHT_WELL_DAMAGED</Type>
+			<Description>TXT_KEY_TRAIT_FIGHT_WELL_DAMAGED</Description>
+			<ShortDescription>TXT_KEY_TRAIT_FIGHT_WELL_DAMAGED_SHORT</ShortDescription>
+			<FightWellDamaged>true</FightWellDamaged>
+		</Row>
+		<Row>
+			<Type>TRAIT_BUFFALO_HORNS</Type>
+			<Description>TXT_KEY_TRAIT_BUFFALO_HORNS</Description>
+			<ShortDescription>TXT_KEY_TRAIT_BUFFALO_HORNS_SHORT</ShortDescription>
+			<LevelExperienceModifier>-50</LevelExperienceModifier>
+			<LandUnitMaintenanceModifier>-15</LandUnitMaintenanceModifier>
+			<FreeBuilding>BUILDING_TB_BUFFALO_HORNS</FreeBuilding>
+		</Row>
+		
+		
+		<Row>
+			<Type>TRAIT_CONVERTS_SEA_BARBARIANS</Type>
+			<Description>TXT_KEY_TRAIT_CONVERTS_SEA_BARBARIANS</Description>
+			<ShortDescription>TXT_KEY_TRAIT_CONVERTS_SEA_BARBARIANS_SHORT</ShortDescription>
+			<!--<NavalUnitMaintenanceModifier>-66</NavalUnitMaintenanceModifier>-->
+			<WorkerSpeedModifier>25</WorkerSpeedModifier>
+		</Row>
+		<Row>
+			<Type>TRAIT_RAZE_AND_HORSES</Type>
+			<Description>TXT_KEY_TRAIT_RAZE_AND_HORSES</Description>
+			<ShortDescription>TXT_KEY_TRAIT_RAZE_AND_HORSES_SHORT</ShortDescription>
+			<!--<RazeSpeedModifier>100</RazeSpeedModifier>-->
+			<LandBarbarianConversionPercent>100</LandBarbarianConversionPercent>
+			
+		</Row>
+
+		<Row>
+			<Type>TRAIT_VIKING_FURY</Type>
+			<Description>TXT_KEY_TRAIT_VIKING_FURY</Description>
+			<ShortDescription>TXT_KEY_TRAIT_VIKING_FURY_SHORT</ShortDescription>
+			<!--<ExtraEmbarkMoves>1</ExtraEmbarkMoves>-->
+			<PlunderModifier>200</PlunderModifier>
+			<EmbarkedToLandFlatCost>true</EmbarkedToLandFlatCost>
+		</Row>
+		<Row>
+			<Type>TRAIT_CULTURE_FROM_KILLS</Type>
+			<Description>TXT_KEY_TRAIT_CULTURE_FROM_KILLS</Description>
+			<ShortDescription>TXT_KEY_TRAIT_CULTURE_FROM_KILLS_SHORT</ShortDescription>
+			<CultureFromKills>50</CultureFromKills>
+			<PolicyCostModifier>-10</PolicyCostModifier>
+		</Row>
+		<Row>
+			<Type>TRAIT_CITY_STATE_FRIENDSHIP</Type>
+			<Description>TXT_KEY_TRAIT_CITY_STATE_FRIENDSHIP</Description>
+			<ShortDescription>TXT_KEY_TRAIT_CITY_STATE_FRIENDSHIP_SHORT</ShortDescription>
+			<CityStateFriendshipModifier>100</CityStateFriendshipModifier>
+			<AfraidMinorPerTurnInfluence>500</AfraidMinorPerTurnInfluence>
+			<AngerFreeIntrusionOfCityStates>true</AngerFreeIntrusionOfCityStates>
+		</Row>
+		<Row>
+			<Type>TRAIT_SLAYER_OF_TIAMAT</Type>
+			<Description>TXT_KEY_TRAIT_SLAYER_OF_TIAMAT</Description>
+			<ShortDescription>TXT_KEY_TRAIT_SLAYER_OF_TIAMAT_SHORT</ShortDescription>
+			<TechFromCityConquer>true</TechFromCityConquer>
+		</Row>
+		<Row>
+			<Type>TRAIT_SOLIDARITY</Type>
+			<Description>TXT_KEY_TRAIT_SOLIDARITY</Description>
+			<ShortDescription>TXT_KEY_TRAIT_SOLIDARITY_SHORT</ShortDescription>
+			<FreeSocialPoliciesPerEra>1</FreeSocialPoliciesPerEra>
+		</Row>
+		
+	<!--***********Religious and Cultual***********-->
+		<Row>
+			<Type>TRAIT_POPULATION_GROWTH</Type>
+			<Description>TXT_KEY_TRAIT_POPULATION_GROWTH</Description>
+			<ShortDescription>TXT_KEY_TRAIT_POPULATION_GROWTH_SHORT</ShortDescription>
+			<!--<CityUnhappinessModifier>100</CityUnhappinessModifier>-->
+			<PopulationUnhappinessModifier>-20</PopulationUnhappinessModifier>
+		</Row>
+		<Row>
+			<Type>TRAIT_CITY_STATE_BONUSES</Type>
+			<Description>TXT_KEY_TRAIT_CITY_STATE_BONUSES</Description>
+			<ShortDescription>TXT_KEY_TRAIT_CITY_STATE_BONUSES_SHORT</ShortDescription>
+			<CityStateBonusModifier>50</CityStateBonusModifier>
+			<GreatPersonGiftInfluence>150</GreatPersonGiftInfluence>
+		</Row>
+		<Row>
+			<Type>TRAIT_SPICE</Type>
+			<Description>TXT_KEY_TRAIT_SPICE</Description>
+			<ShortDescription>TXT_KEY_TRAIT_SPICE_SHORT</ShortDescription>
+			<UniqueLuxuryCities>3</UniqueLuxuryCities>
+			<UniqueLuxuryQuantity>2</UniqueLuxuryQuantity>
+			<UniqueLuxuryRequiresNewArea>true</UniqueLuxuryRequiresNewArea>
+		</Row>
+		<Row>
+			<Type>TRAIT_FAITH_FROM_NATURE</Type>
+			<Description>TXT_KEY_TRAIT_FAITH_FROM_NATURE</Description>
+			<ShortDescription>TXT_KEY_TRAIT_FAITH_FROM_NATURE_SHORT</ShortDescription>
+			<FaithFromUnimprovedForest>true</FaithFromUnimprovedForest>
+		</Row>
+		<Row>
+			<Type>TRAIT_LAND_TRADE_GOLD</Type>
+			<Description>TXT_KEY_TRAIT_LAND_TRADE_GOLD2</Description>
+			<ShortDescription>TXT_KEY_TRAIT_LAND_TRADE_GOLD2_SHORT</ShortDescription>
+			<LandTradeRouteRangeBonus>5</LandTradeRouteRangeBonus>
+			<TradeReligionModifier>200</TradeReligionModifier>
+		</Row>
+		<Row>
+			<Type>TRAIT_EXTRA_BELIEF</Type>
+			<Description>TXT_KEY_TRAIT_EXTRA_BELIEF</Description>
+			<ShortDescription>TXT_KEY_TRAIT_EXTRA_BELIEF_SHORT</ShortDescription>
+			<BonusReligiousBelief>true</BonusReligiousBelief>
+			<FreeUnit>UNITCLASS_PROPHET</FreeUnit>
+			<FreeUnitPrereqTech>TECH_WRITING</FreeUnitPrereqTech>
+		</Row>
+		<Row>
+			<Type>TRAIT_BONUS_AGAINST_TECH</Type>
+			<Description>TXT_KEY_TRAIT_BONUS_AGAINST_TECH</Description>
+			<ShortDescription>TXT_KEY_TRAIT_BONUS_AGAINST_TECH_SHORT</ShortDescription>
+			<CombatBonusVsLargerCiv>25</CombatBonusVsLargerCiv>
+		</Row>
+		<Row>
+			<Type>TRAIT_ANNEX_CITY_STATE</Type>
+			<Description>TXT_KEY_TRAIT_ANNEX_CITY_STATE</Description>
+			<ShortDescription>TXT_KEY_TRAIT_ANNEX_CITY_STATE_SHORT</ShortDescription>
+			<AbleToAnnexCityStates>true</AbleToAnnexCityStates>
+			<!--
+			<FreeUnit>UNITCLASS_MUSICIAN</FreeUnit>
+			<FreeUnitPrereqTech>TECH_ACOUSTICS</FreeUnitPrereqTech>
+			-->
+		</Row>
+		<Row>
+			<Type>TRAIT_CARNIVAL</Type>
+			<Description>TXT_KEY_TRAIT_CARNIVAL</Description>
+			<ShortDescription>TXT_KEY_TRAIT_CARNIVAL_SHORT</ShortDescription>
+			<GoldenAgeTourismModifier>100</GoldenAgeTourismModifier>
+			<GoldenAgeGreatArtistRateModifier>50</GoldenAgeGreatArtistRateModifier>
+			<GoldenAgeGreatMusicianRateModifier>50</GoldenAgeGreatMusicianRateModifier>
+			<GoldenAgeGreatWriterRateModifier>50</GoldenAgeGreatWriterRateModifier>
+		</Row>
+		
+	<!--***********Gold and Trading***********-->
+		<Row>
+			<Type>TRAIT_LUXURY_RETENTION</Type>
+			<Description>TXT_KEY_TRAIT_LUXURY_RETENTION</Description>
+			<ShortDescription>TXT_KEY_TRAIT_LUXURY_RETENTION_SHORT</ShortDescription>
+			<LuxuryHappinessRetention>50</LuxuryHappinessRetention>
+			<FreeBuilding>BUILDING_MARKET</FreeBuilding>
+		</Row>
+		<Row>
+			<Type>TRAIT_EXTRA_TRADE</Type>
+			<Description>TXT_KEY_TRAIT_EXTRA_TRADE</Description>
+			<ShortDescription>TXT_KEY_TRAIT_EXTRA_TRADE_SHORT</ShortDescription>
+			<TradeRouteResourceModifier>100</TradeRouteResourceModifier>
+			<FreeBuilding>BUILDING_HARBOR</FreeBuilding>
+		</Row>
+		<Row>
+			<Type>TRAIT_GATEWAY_AFRICA</Type>
+			<Description>TXT_KEY_TRAIT_GATEWAY_AFRICA</Description>
+			<ShortDescription>TXT_KEY_TRAIT_GATEWAY_AFRICA_SHORT</ShortDescription>
+		</Row>
+		<Row>
+			<Type>TRAIT_AMPHIB_WARLORD</Type>
+			<Description>TXT_KEY_TRAIT_AMPHIB_WARLORD</Description>
+			<ShortDescription>TXT_KEY_TRAIT_AMPHIB_WARLORD_SHORT</ShortDescription>
+			<RiverTradeRoad>true</RiverTradeRoad>
+			<FasterAlongRiver>true</FasterAlongRiver>
+		</Row>
+		<Row>
+			<Type>TRAIT_PHOENICIAN_HERITAGE</Type>
+			<Description>TXT_KEY_TRAIT_PHOENICIAN_HERITAGE</Description>
+			<ShortDescription>TXT_KEY_TRAIT_PHOENICIAN_HERITAGE_SHORT</ShortDescription>
+			<!--<CrossesMountainsAfterGreatGeneral>true</CrossesMountainsAfterGreatGeneral>-->
+			<FreeBuilding>BUILDING_TB_PHOENICIAN_HERITAGE</FreeBuilding>
+		</Row>
+		<Row>
+			<Type>TRAIT_SUPER_CITY_STATE</Type>
+			<Description>TXT_KEY_TRAIT_SUPER_CITY_STATE</Description>
+			<ShortDescription>TXT_KEY_TRAIT_SUPER_CITY_STATE_SHORT</ShortDescription>
+			<NoAnnexing>true</NoAnnexing>
+			<FreeUnit>UNITCLASS_MERCHANT</FreeUnit>
+			<FreeUnitPrereqTech>TECH_OPTICS</FreeUnitPrereqTech>
+			<NumTradeRoutesModifier>100</NumTradeRoutesModifier>
+			<CapitalThemingBonusModifier>100</CapitalThemingBonusModifier>
+		</Row>
+		
+	<!--***********Science and Production***********-->
+		<Row>
+			<Type>TRAIT_SCHOLARS_JADE_HALL</Type>
+			<Description>TXT_KEY_TRAIT_SCHOLARS_JADE_HALL</Description>
+			<ShortDescription>TXT_KEY_TRAIT_SCHOLARS_JADE_HALL_SHORT</ShortDescription>
+		</Row>
+		<Row>
+			<Type>TRAIT_LONG_COUNT</Type>
+			<Description>TXT_KEY_TRAIT_LONG_COUNT</Description>
+			<ShortDescription>TXT_KEY_TRAIT_LONG_COUNT_SHORT</ShortDescription>
+			<MayaCalendarBonuses>true</MayaCalendarBonuses>
+			<PrereqTech>TECH_THEOLOGY</PrereqTech>
+			<TechBoostFromCapitalScienceBuildings>true</TechBoostFromCapitalScienceBuildings>
+		</Row>
+		<Row>
+			<Type>TRAIT_DIPLOMACY_GREAT_PEOPLE</Type>
+			<Description>TXT_KEY_TRAIT_DIPLOMACY_GREAT_PEOPLE</Description>
+			<ShortDescription>TXT_KEY_TRAIT_DIPLOMACY_GREAT_PEOPLE_SHORT</ShortDescription>
+			<DOFGreatPersonModifier>10</DOFGreatPersonModifier>
+		</Row>
+		<Row>
+			<Type>TRAIT_INGENIOUS</Type>
+			<Description>TXT_KEY_TRAIT_INGENIOUS</Description>
+			<ShortDescription>TXT_KEY_TRAIT_INGENIOUS_SHORT</ShortDescription>
+			<GreatScientistRateModifier>50</GreatScientistRateModifier>
+			<FreeUnit>UNITCLASS_SCIENTIST</FreeUnit>
+			<FreeUnitPrereqTech>TECH_WRITING</FreeUnitPrereqTech>
+		</Row>
+		
+	<!--***********Terrain Special***********-->
+		<Row>
+			<Type>TRAIT_SEVEN_CITIES</Type>
+			<Description>TXT_KEY_TRAIT_SEVEN_CITIES</Description>
+			<ShortDescription>TXT_KEY_TRAIT_SEVEN_CITIES_SHORT</ShortDescription>
+			<NaturalWonderFirstFinderGold>600</NaturalWonderFirstFinderGold>
+			<NaturalWonderSubsequentFinderGold>300</NaturalWonderSubsequentFinderGold>
+			<NaturalWonderYieldModifier>100</NaturalWonderYieldModifier>
+			<NaturalWonderHappinessModifier>100</NaturalWonderHappinessModifier>
+		</Row>
+		<Row>
+			<Type>TRAIT_GREAT_ANDEAN_ROAD</Type>
+			<Description>TXT_KEY_TRAIT_GREAT_ANDEAN_ROAD</Description>
+			<ShortDescription>TXT_KEY_TRAIT_GREAT_ANDEAN_ROAD_SHORT</ShortDescription>
+			<FasterInHills>true</FasterInHills>
+			<ImprovementMaintenanceModifier>-50</ImprovementMaintenanceModifier>
+			<NoHillsImprovementMaintenance>true</NoHillsImprovementMaintenance>
+		</Row>
+		<Row>
+			<Type>TRAIT_IGNORE_TERRAIN_IN_FOREST</Type>
+			<Description>TXT_KEY_TRAIT_IGNORE_TERRAIN_IN_FOREST</Description>
+			<ShortDescription>TXT_KEY_TRAIT_IGNORE_TERRAIN_IN_FOREST_SHORT</ShortDescription>
+			<MoveFriendlyWoodsAsRoad>true</MoveFriendlyWoodsAsRoad>
+		</Row>
+		<Row>
+			<Type>TRAIT_WAYFINDING</Type>
+			<Description>TXT_KEY_TRAIT_WAYFINDING</Description>
+			<ShortDescription>TXT_KEY_TRAIT_WAYFINDING_SHORT</ShortDescription>
+			<EmbarkedAllWater>true</EmbarkedAllWater>
+			<NearbyImprovementCombatBonus>10</NearbyImprovementCombatBonus>
+			<NearbyImprovementBonusRange>2</NearbyImprovementBonusRange>
+			<CombatBonusImprovement>IMPROVEMENT_MOAI</CombatBonusImprovement>
+			<FreeBuilding>BUILDING_TB_WAYFINDING</FreeBuilding>
+		</Row>
+		<Row>
+			<Type>TRAIT_GREAT_EXPANSE</Type>
+			<Description>TXT_KEY_TRAIT_GREAT_EXPANSE</Description>
+			<ShortDescription>TXT_KEY_TRAIT_GREAT_EXPANSE_SHORT</ShortDescription>
+			<ExtraFoundedCityTerritoryClaimRange>6</ExtraFoundedCityTerritoryClaimRange>
+			<FreeBuilding>BUILDING_GRANARY</FreeBuilding>
+		</Row>
+	</Traits>
+	<Trait_YieldChangesStrategicResources>
+		<!--<Row>
+			<TraitType>TRAIT_STRATEGIC_RICHES</TraitType>
+			<YieldType>YIELD_CULTURE</YieldType>
+			<Yield>1</Yield>
+		</Row>
+		<Row>
+			<TraitType>TRAIT_STRATEGIC_RICHES</TraitType>
+			<YieldType>YIELD_GOLD</YieldType>
+			<Yield>1</Yield>
+		</Row>-->
+		<Row>
+			<TraitType>TRAIT_CONVERTS_SEA_BARBARIANS</TraitType>
+			<YieldType>YIELD_PRODUCTION</YieldType>
+			<Yield>2</Yield>
+		</Row>
+	</Trait_YieldChangesStrategicResources>
+	<Trait_YieldChangesPerTradePartner>
+		<Row>
+			<TraitType>TRAIT_GATEWAY_AFRICA</TraitType>
+			<YieldType>YIELD_GOLD</YieldType>
+			<Yield>2</Yield>
+		</Row>
+		<Row>
+			<TraitType>TRAIT_GATEWAY_AFRICA</TraitType>
+			<YieldType>YIELD_CULTURE</YieldType>
+			<Yield>2</Yield>
+		</Row>
+		<Row>
+			<TraitType>TRAIT_GATEWAY_AFRICA</TraitType>
+			<YieldType>YIELD_FAITH</YieldType>
+			<Yield>2</Yield>
+		</Row>
+		<Row>
+			<TraitType>TRAIT_GATEWAY_AFRICA</TraitType>
+			<YieldType>YIELD_SCIENCE</YieldType>
+			<Yield>2</Yield>
+		</Row>
+	</Trait_YieldChangesPerTradePartner>
+	<Trait_YieldChangesIncomingTradeRoute>
+		<Row>
+			<TraitType>TRAIT_GATEWAY_AFRICA</TraitType>
+			<YieldType>YIELD_GOLD</YieldType>
+			<Yield>4</Yield>
+		</Row>
+	</Trait_YieldChangesIncomingTradeRoute>
+	<Trait_FreePromotionUnitCombats>
+		<Row>
+			<TraitType>TRAIT_VIKING_FURY</TraitType>
+			<UnitCombatType>UNITCOMBAT_MELEE</UnitCombatType>
+			<PromotionType>PROMOTION_CITY_PILLAGE_FREE</PromotionType>
+		</Row>
+		<Row>
+			<TraitType>TRAIT_VIKING_FURY</TraitType>
+			<UnitCombatType>UNITCOMBAT_MOUNTED</UnitCombatType>
+			<PromotionType>PROMOTION_CITY_PILLAGE_FREE</PromotionType>
+		</Row>
+		<Row>
+			<TraitType>TRAIT_VIKING_FURY</TraitType>
+			<UnitCombatType>UNITCOMBAT_ARMOR</UnitCombatType>
+			<PromotionType>PROMOTION_CITY_PILLAGE_FREE</PromotionType>
+		</Row>
+		<Row>
+			<TraitType>TRAIT_VIKING_FURY</TraitType>
+			<UnitCombatType>UNITCOMBAT_NAVALMELEE</UnitCombatType>
+			<PromotionType>PROMOTION_CITY_PILLAGE_FREE</PromotionType>
+		</Row>
+		<Row>
+			<TraitType>TRAIT_VIKING_FURY</TraitType>
+			<UnitCombatType>UNITCOMBAT_RECON</UnitCombatType>
+			<PromotionType>PROMOTION_CITY_PILLAGE_FREE</PromotionType>
+		</Row>
+		<Row>
+			<TraitType>TRAIT_VIKING_FURY</TraitType>
+			<UnitCombatType>UNITCOMBAT_GUN</UnitCombatType>
+			<PromotionType>PROMOTION_CITY_PILLAGE_FREE</PromotionType>
+		</Row>
+		<Row>
+			<TraitType>TRAIT_ART_OF_WAR</TraitType>
+			<UnitCombatType>UNITCOMBAT_MELEE</UnitCombatType>
+			<PromotionType>PROMOTION_GOLDEN_AGE_POINTS</PromotionType>
+		</Row>
+		<Row>
+			<TraitType>TRAIT_ART_OF_WAR</TraitType>
+			<UnitCombatType>UNITCOMBAT_RECON</UnitCombatType>
+			<PromotionType>PROMOTION_GOLDEN_AGE_POINTS</PromotionType>
+		</Row>
+		<Row>
+			<TraitType>TRAIT_ART_OF_WAR</TraitType>
+			<UnitCombatType>UNITCOMBAT_MOUNTED</UnitCombatType>
+			<PromotionType>PROMOTION_GOLDEN_AGE_POINTS</PromotionType>
+		</Row>
+		<Row>
+			<TraitType>TRAIT_ART_OF_WAR</TraitType>
+			<UnitCombatType>UNITCOMBAT_GUN</UnitCombatType>
+			<PromotionType>PROMOTION_GOLDEN_AGE_POINTS</PromotionType>
+		</Row>
+		<Row>
+			<TraitType>TRAIT_ART_OF_WAR</TraitType>
+			<UnitCombatType>UNITCOMBAT_ARMOR</UnitCombatType>
+			<PromotionType>PROMOTION_GOLDEN_AGE_POINTS</PromotionType>
+		</Row>
+		<Row>
+			<TraitType>TRAIT_ART_OF_WAR</TraitType>
+			<UnitCombatType>UNITCOMBAT_HELICOPTER</UnitCombatType>
+			<PromotionType>PROMOTION_GOLDEN_AGE_POINTS</PromotionType>
+		</Row>
+		<Row>
+			<TraitType>TRAIT_ART_OF_WAR</TraitType>
+			<UnitCombatType>UNITCOMBAT_SIEGE</UnitCombatType>
+			<PromotionType>PROMOTION_GOLDEN_AGE_POINTS</PromotionType>
+		</Row>
+		<Row>
+			<TraitType>TRAIT_ART_OF_WAR</TraitType>
+			<UnitCombatType>UNITCOMBAT_BOMBER</UnitCombatType>
+			<PromotionType>PROMOTION_GOLDEN_AGE_POINTS</PromotionType>
+		</Row>
+		<Row>
+			<TraitType>TRAIT_STRATEGIC_RICHES</TraitType>
+			<UnitCombatType>UNITCOMBAT_MELEE</UnitCombatType>
+			<PromotionType>PROMOTION_HOMELAND_GUARDIAN_BOOGALOO</PromotionType>
+		</Row>	
+		<Row>
+			<TraitType>TRAIT_STRATEGIC_RICHES</TraitType>
+			<UnitCombatType>UNITCOMBAT_RECON</UnitCombatType>
+			<PromotionType>PROMOTION_HOMELAND_GUARDIAN_BOOGALOO</PromotionType>
+		</Row>
+		<Row>
+			<TraitType>TRAIT_STRATEGIC_RICHES</TraitType>
+			<UnitCombatType>UNITCOMBAT_MOUNTED</UnitCombatType>
+			<PromotionType>PROMOTION_HOMELAND_GUARDIAN_BOOGALOO</PromotionType>
+		</Row>
+		<Row>
+			<TraitType>TRAIT_STRATEGIC_RICHES</TraitType>
+			<UnitCombatType>UNITCOMBAT_GUN</UnitCombatType>
+			<PromotionType>PROMOTION_HOMELAND_GUARDIAN_BOOGALOO</PromotionType>
+		</Row>
+		<Row>
+			<TraitType>TRAIT_STRATEGIC_RICHES</TraitType>
+			<UnitCombatType>UNITCOMBAT_ARMOR</UnitCombatType>
+			<PromotionType>PROMOTION_HOMELAND_GUARDIAN_BOOGALOO</PromotionType>
+		</Row>
+		<Row>
+			<TraitType>TRAIT_STRATEGIC_RICHES</TraitType>
+			<UnitCombatType>UNITCOMBAT_HELICOPTER</UnitCombatType>
+			<PromotionType>PROMOTION_HOMELAND_GUARDIAN_BOOGALOO</PromotionType>
+		</Row>
+		<Row>
+			<TraitType>TRAIT_STRATEGIC_RICHES</TraitType>
+			<UnitCombatType>UNITCOMBAT_SIEGE</UnitCombatType>
+			<PromotionType>PROMOTION_HOMELAND_GUARDIAN_BOOGALOO</PromotionType>
+		</Row>	
+		<Row>
+			<TraitType>TRAIT_STRATEGIC_RICHES</TraitType>
+			<UnitCombatType>UNITCOMBAT_NAVALRANGED</UnitCombatType>
+			<PromotionType>PROMOTION_HOMELAND_GUARDIAN_BOOGALOO</PromotionType>
+		</Row>
+		<Row>
+			<TraitType>TRAIT_STRATEGIC_RICHES</TraitType>
+			<UnitCombatType>UNITCOMBAT_NAVALMELEE</UnitCombatType>
+			<PromotionType>PROMOTION_HOMELAND_GUARDIAN_BOOGALOO</PromotionType>
+		</Row>
+		<Row>
+			<TraitType>TRAIT_STRATEGIC_RICHES</TraitType>
+			<UnitCombatType>UNITCOMBAT_CARRIER</UnitCombatType>
+			<PromotionType>PROMOTION_HOMELAND_GUARDIAN_BOOGALOO</PromotionType>
+		</Row>
+		<Row>
+			<TraitType>TRAIT_STRATEGIC_RICHES</TraitType>
+			<UnitCombatType>UNITCOMBAT_SUBMARINE</UnitCombatType>
+			<PromotionType>PROMOTION_HOMELAND_GUARDIAN_BOOGALOO</PromotionType>
+		</Row>
+		<Row>
+			<TraitType>TRAIT_STRATEGIC_RICHES</TraitType>
+			<UnitCombatType>UNITCOMBAT_BOMBER</UnitCombatType>
+			<PromotionType>PROMOTION_HOMELAND_GUARDIAN_BOOGALOO</PromotionType>
+		</Row>
+		<Row>
+			<TraitType>TRAIT_STRATEGIC_RICHES</TraitType>
+			<UnitCombatType>UNITCOMBAT_ARCHER</UnitCombatType>
+			<PromotionType>PROMOTION_HOMELAND_GUARDIAN_BOOGALOO</PromotionType>
+		</Row>
+		<Row>
+			<TraitType>TRAIT_STRATEGIC_RICHES</TraitType>
+			<UnitCombatType>UNITCOMBAT_FIGHTER</UnitCombatType>
+			<PromotionType>PROMOTION_HOMELAND_GUARDIAN_BOOGALOO</PromotionType>
+		</Row>
+		<Row>
+			<TraitType>TRAIT_OCEAN_MOVEMENT</TraitType>
+			<UnitCombatType>UNITCOMBAT_MELEE</UnitCombatType>
+			<PromotionType>PROMOTION_FOREIGN_LANDS_SMALL</PromotionType>
+		</Row>
+		<Row>
+			<TraitType>TRAIT_OCEAN_MOVEMENT</TraitType>
+			<UnitCombatType>UNITCOMBAT_RECON</UnitCombatType>
+			<PromotionType>PROMOTION_FOREIGN_LANDS_SMALL</PromotionType>
+		</Row>
+		<Row>
+			<TraitType>TRAIT_OCEAN_MOVEMENT</TraitType>
+			<UnitCombatType>UNITCOMBAT_MOUNTED</UnitCombatType>
+			<PromotionType>PROMOTION_FOREIGN_LANDS_SMALL</PromotionType>
+		</Row>
+		<Row>
+			<TraitType>TRAIT_OCEAN_MOVEMENT</TraitType>
+			<UnitCombatType>UNITCOMBAT_GUN</UnitCombatType>
+			<PromotionType>PROMOTION_FOREIGN_LANDS_SMALL</PromotionType>
+		</Row>
+		<Row>
+			<TraitType>TRAIT_OCEAN_MOVEMENT</TraitType>
+			<UnitCombatType>UNITCOMBAT_ARMOR</UnitCombatType>
+			<PromotionType>PROMOTION_FOREIGN_LANDS_SMALL</PromotionType>
+		</Row>
+		<Row>
+			<TraitType>TRAIT_OCEAN_MOVEMENT</TraitType>
+			<UnitCombatType>UNITCOMBAT_HELICOPTER</UnitCombatType>
+			<PromotionType>PROMOTION_FOREIGN_LANDS_SMALL</PromotionType>
+		</Row>
+		<Row>
+			<TraitType>TRAIT_OCEAN_MOVEMENT</TraitType>
+			<UnitCombatType>UNITCOMBAT_SIEGE</UnitCombatType>
+			<PromotionType>PROMOTION_FOREIGN_LANDS_SMALL</PromotionType>
+		</Row>
+		<Row>
+			<TraitType>TRAIT_OCEAN_MOVEMENT</TraitType>
+			<UnitCombatType>UNITCOMBAT_NAVALRANGED</UnitCombatType>
+			<PromotionType>PROMOTION_FOREIGN_LANDS_SMALL</PromotionType>
+		</Row>
+		<Row>
+			<TraitType>TRAIT_OCEAN_MOVEMENT</TraitType>
+			<UnitCombatType>UNITCOMBAT_NAVALMELEE</UnitCombatType>
+			<PromotionType>PROMOTION_FOREIGN_LANDS_SMALL</PromotionType>
+		</Row>
+		<Row>
+			<TraitType>TRAIT_OCEAN_MOVEMENT</TraitType>
+			<UnitCombatType>UNITCOMBAT_CARRIER</UnitCombatType>
+			<PromotionType>PROMOTION_FOREIGN_LANDS_SMALL</PromotionType>
+		</Row>
+		<Row>
+			<TraitType>TRAIT_OCEAN_MOVEMENT</TraitType>
+			<UnitCombatType>UNITCOMBAT_SUBMARINE</UnitCombatType>
+			<PromotionType>PROMOTION_FOREIGN_LANDS_SMALL</PromotionType>
+		</Row>
+		<Row>
+			<TraitType>TRAIT_OCEAN_MOVEMENT</TraitType>
+			<UnitCombatType>UNITCOMBAT_BOMBER</UnitCombatType>
+			<PromotionType>PROMOTION_FOREIGN_LANDS_SMALL</PromotionType>
+		</Row>
+		<Row>
+			<TraitType>TRAIT_OCEAN_MOVEMENT</TraitType>
+			<UnitCombatType>UNITCOMBAT_ARCHER</UnitCombatType>
+			<PromotionType>PROMOTION_FOREIGN_LANDS_SMALL</PromotionType>
+		</Row>
+		<Row>
+			<TraitType>TRAIT_OCEAN_MOVEMENT</TraitType>
+			<UnitCombatType>UNITCOMBAT_FIGHTER</UnitCombatType>
+			<PromotionType>PROMOTION_FOREIGN_LANDS_SMALL</PromotionType>
+		</Row>
+		
+		<!--<Row>
+			<TraitType>TRAIT_SEVEN_CITIES</TraitType>
+			<UnitCombatType>UNITCOMBAT_RECON</UnitCombatType>
+			<PromotionType>PROMOTION_EXTRA_SIGHT_II</PromotionType>
+		</Row>
+		<Row>
+			<TraitType>TRAIT_WAYFINDING</TraitType>
+			<UnitCombatType>UNITCOMBAT_NAVALRANGED</UnitCombatType>
+			<PromotionType>PROMOTION_OCEAN_MOVEMENT</PromotionType>
+		</Row>
+		<Row>
+			<TraitType>TRAIT_WAYFINDING</TraitType>
+			<UnitCombatType>UNITCOMBAT_NAVALMELEE</UnitCombatType>
+			<PromotionType>PROMOTION_OCEAN_MOVEMENT</PromotionType>
+		</Row>
+		<Row>
+			<TraitType>TRAIT_ART_OF_WAR</TraitType>
+			<UnitCombatType>UNITCOMBAT_LAND_RANGED_WEAPON</UnitCombatType>
+			<PromotionType>PROMOTION_HEAVY_PAYLOAD</PromotionType>
+		</Row>
+		<Row>
+			<TraitType>TRAIT_ART_OF_WAR</TraitType>
+			<UnitCombatType>UNITCOMBAT_LAND_AOE_WEAPON</UnitCombatType>
+			<PromotionType>PROMOTION_HEAVY_PAYLOAD</PromotionType>
+		</Row>
+		<Row>
+			<TraitType>TRAIT_OCEAN_MOVEMENT</TraitType>
+			<UnitCombatType>UNITCOMBAT_NAVALRANGED</UnitCombatType>
+			<PromotionType>PROMOTION_HEAVY_PAYLOAD</PromotionType>
+		</Row>
+		<Row>
+			<TraitType>TRAIT_OCEAN_MOVEMENT</TraitType>
+			<UnitCombatType>UNITCOMBAT_NAVALMELEE</UnitCombatType>
+			<PromotionType>PROMOTION_HEAVY_PAYLOAD</PromotionType>
+		</Row>
+		<Row>
+			<TraitType>TRAIT_OCEAN_MOVEMENT</TraitType>
+			<UnitCombatType>UNITCOMBAT_NAVAL_HIT_AND_RUN</UnitCombatType>
+			<PromotionType>PROMOTION_HEAVY_PAYLOAD</PromotionType>
+		</Row>
+		<Row>
+			<TraitType>TRAIT_OCEAN_MOVEMENT</TraitType>
+			<UnitCombatType>UNITCOMBAT_SUBMARINE</UnitCombatType>
+			<PromotionType>PROMOTION_HEAVY_PAYLOAD</PromotionType>
+		</Row>
+		<Row>
+			<TraitType>TRAIT_OCEAN_MOVEMENT</TraitType>
+			<UnitCombatType>UNITCOMBAT_CARRIER</UnitCombatType>
+			<PromotionType>PROMOTION_HEAVY_PAYLOAD</PromotionType>
+		</Row>
+		<Row>
+			<TraitType>TRAIT_CAPITAL_BUILDINGS_CHEAPER</TraitType>
+			<UnitCombatType>UNITCOMBAT_MELEE</UnitCombatType>
+			<PromotionType>PROMOTION_HEAVY_PAYLOAD</PromotionType>
+		</Row>
+		<Row>
+			<TraitType>TRAIT_CAPITAL_BUILDINGS_CHEAPER</TraitType>
+			<UnitCombatType>UNITCOMBAT_COUNTER</UnitCombatType>
+			<PromotionType>PROMOTION_HEAVY_PAYLOAD</PromotionType>
+		</Row>
+		<Row>
+			<TraitType>TRAIT_ENHANCED_CULTURE</TraitType>
+			<UnitCombatType>UNITCOMBAT_SIEGE</UnitCombatType>
+			<PromotionType>PROMOTION_HEAVY_PAYLOAD</PromotionType>
+		</Row>
+		<Row>
+			<TraitType>TRAIT_ENHANCED_CULTURE</TraitType>
+			<UnitCombatType>UNITCOMBAT_GUN</UnitCombatType>
+			<PromotionType>PROMOTION_HEAVY_PAYLOAD</PromotionType>
+		</Row>
+		<Row>
+			<TraitType>TRAIT_RIVER_EXPANSION</TraitType>
+			<UnitCombatType>UNITCOMBAT_BOMBER</UnitCombatType>
+			<PromotionType>PROMOTION_HEAVY_PAYLOAD</PromotionType>
+		</Row>
+		<Row>
+			<TraitType>TRAIT_RIVER_EXPANSION</TraitType>
+			<UnitCombatType>UNITCOMBAT_ATTACK_AIRCRAFT</UnitCombatType>
+			<PromotionType>PROMOTION_HEAVY_PAYLOAD</PromotionType>
+		</Row>
+		<Row>
+			<TraitType>TRAIT_RIVER_EXPANSION</TraitType>
+			<UnitCombatType>UNITCOMBAT_FIGHTER</UnitCombatType>
+			<PromotionType>PROMOTION_HEAVY_PAYLOAD</PromotionType>
+		</Row>
+		<Row>
+			<TraitType>TRAIT_RIVER_EXPANSION</TraitType>
+			<UnitCombatType>UNITCOMBAT_HELICOPTER</UnitCombatType>
+			<PromotionType>PROMOTION_HEAVY_PAYLOAD</PromotionType>
+		</Row>
+		<Row>
+			<TraitType>TRAIT_CONVERTS_LAND_BARBARIANS</TraitType>
+			<UnitCombatType>UNITCOMBAT_SUBMARINE</UnitCombatType>
+			<PromotionType>PROMOTION_HEAVY_PAYLOAD</PromotionType>
+		</Row>
+		<Row>
+			<TraitType>TRAIT_CONVERTS_LAND_BARBARIANS</TraitType>
+			<UnitCombatType>UNITCOMBAT_ARMOR</UnitCombatType>
+			<PromotionType>PROMOTION_HEAVY_PAYLOAD</PromotionType>
+		</Row>
+		<Row>
+			<TraitType>TRAIT_WONDER_BUILDER</TraitType>
+			<UnitCombatType>UNITCOMBAT_MOUNTED</UnitCombatType>
+			<PromotionType>PROMOTION_HEAVY_PAYLOAD</PromotionType>
+		</Row>
+		<Row>
+			<TraitType>TRAIT_WONDER_BUILDER</TraitType>
+			<UnitCombatType>UNITCOMBAT_LAND_HIT_AND_RUN</UnitCombatType>
+			<PromotionType>PROMOTION_HEAVY_PAYLOAD</PromotionType>
+		</Row>
+		<Row>
+			<TraitType>TRAIT_TERROR</TraitType>
+			<UnitCombatType>UNITCOMBAT_MELEE</UnitCombatType>
+			<PromotionType>PROMOTION_FOREIGN_LANDS_SMALL</PromotionType>
+		</Row>
+		<Row>
+			<TraitType>TRAIT_TERROR</TraitType>
+			<UnitCombatType>UNITCOMBAT_COUNTER</UnitCombatType>
+			<PromotionType>PROMOTION_FOREIGN_LANDS_SMALL</PromotionType>
+		</Row>
+		<Row>
+			<TraitType>TRAIT_TERROR</TraitType>
+			<UnitCombatType>UNITCOMBAT_LAND_RANGED_WEAPON</UnitCombatType>
+			<PromotionType>PROMOTION_FOREIGN_LANDS_SMALL</PromotionType>
+		</Row>
+		<Row>
+			<TraitType>TRAIT_TERROR</TraitType>
+			<UnitCombatType>UNITCOMBAT_RECON</UnitCombatType>
+			<PromotionType>PROMOTION_FOREIGN_LANDS_SMALL</PromotionType>
+		</Row>
+		<Row>
+			<TraitType>TRAIT_TERROR</TraitType>
+			<UnitCombatType>UNITCOMBAT_MOUNTED</UnitCombatType>
+			<PromotionType>PROMOTION_FOREIGN_LANDS_SMALL</PromotionType>
+		</Row>
+		<Row>
+			<TraitType>TRAIT_TERROR</TraitType>
+			<UnitCombatType>UNITCOMBAT_LAND_HIT_AND_RUN</UnitCombatType>
+			<PromotionType>PROMOTION_FOREIGN_LANDS_SMALL</PromotionType>
+		</Row>
+		<Row>
+			<TraitType>TRAIT_TERROR</TraitType>
+			<UnitCombatType>UNITCOMBAT_GUN</UnitCombatType>
+			<PromotionType>PROMOTION_FOREIGN_LANDS_SMALL</PromotionType>
+		</Row>
+		<Row>
+			<TraitType>TRAIT_TERROR</TraitType>
+			<UnitCombatType>UNITCOMBAT_ARMOR</UnitCombatType>
+			<PromotionType>PROMOTION_FOREIGN_LANDS_SMALL</PromotionType>
+		</Row>
+		<Row>
+			<TraitType>TRAIT_TERROR</TraitType>
+			<UnitCombatType>UNITCOMBAT_HELICOPTER</UnitCombatType>
+			<PromotionType>PROMOTION_FOREIGN_LANDS_SMALL</PromotionType>
+		</Row>
+		<Row>
+			<TraitType>TRAIT_TERROR</TraitType>
+			<UnitCombatType>UNITCOMBAT_SIEGE</UnitCombatType>
+			<PromotionType>PROMOTION_FOREIGN_LANDS_SMALL</PromotionType>
+		</Row>
+		<Row>
+			<TraitType>TRAIT_TERROR</TraitType>
+			<UnitCombatType>UNITCOMBAT_LAND_AOE_WEAPON</UnitCombatType>
+			<PromotionType>PROMOTION_FOREIGN_LANDS_SMALL</PromotionType>
+		</Row>-->
+		
+		<Row>
+			<TraitType>TRAIT_IGNORE_TERRAIN_IN_FOREST</TraitType>
+			<UnitCombatType>UNITCOMBAT_MELEE</UnitCombatType>
+			<PromotionType>PROMOTION_MOHAWK</PromotionType>
+		</Row>
+		<Row>
+			<TraitType>TRAIT_IGNORE_TERRAIN_IN_FOREST</TraitType>
+			<UnitCombatType>UNITCOMBAT_RECON</UnitCombatType>
+			<PromotionType>PROMOTION_MOHAWK</PromotionType>
+		</Row>
+		<Row>
+			<TraitType>TRAIT_IGNORE_TERRAIN_IN_FOREST</TraitType>
+			<UnitCombatType>UNITCOMBAT_MOUNTED</UnitCombatType>
+			<PromotionType>PROMOTION_MOHAWK</PromotionType>
+		</Row>
+		<Row>
+			<TraitType>TRAIT_IGNORE_TERRAIN_IN_FOREST</TraitType>
+			<UnitCombatType>UNITCOMBAT_SIEGE</UnitCombatType>
+			<PromotionType>PROMOTION_MOHAWK</PromotionType>
+		</Row>
+		<Row>
+			<TraitType>TRAIT_IGNORE_TERRAIN_IN_FOREST</TraitType>
+			<UnitCombatType>UNITCOMBAT_GUN</UnitCombatType>
+			<PromotionType>PROMOTION_MOHAWK</PromotionType>
+		</Row>
+		<Row>
+			<TraitType>TRAIT_IGNORE_TERRAIN_IN_FOREST</TraitType>
+			<UnitCombatType>UNITCOMBAT_ARMOR</UnitCombatType>
+			<PromotionType>PROMOTION_MOHAWK</PromotionType>
+		</Row>
+		<Row>
+			<TraitType>TRAIT_IGNORE_TERRAIN_IN_FOREST</TraitType>
+			<UnitCombatType>UNITCOMBAT_HELICOPTER</UnitCombatType>
+			<PromotionType>PROMOTION_MOHAWK</PromotionType>
+		</Row>
+		<Row>
+			<TraitType>TRAIT_GATEWAY_AFRICA</TraitType>
+			<UnitCombatType>UNITCOMBAT_MELEE</UnitCombatType>
+			<PromotionType>PROMOTION_DESERT_WARRIOR</PromotionType>
+		</Row>
+		<Row>
+			<TraitType>TRAIT_GATEWAY_AFRICA</TraitType>
+			<UnitCombatType>UNITCOMBAT_RECON</UnitCombatType>
+			<PromotionType>PROMOTION_DESERT_WARRIOR</PromotionType>
+		</Row>
+		<Row>
+			<TraitType>TRAIT_GATEWAY_AFRICA</TraitType>
+			<UnitCombatType>UNITCOMBAT_MOUNTED</UnitCombatType>
+			<PromotionType>PROMOTION_DESERT_WARRIOR</PromotionType>
+		</Row>
+		<Row>
+			<TraitType>TRAIT_GATEWAY_AFRICA</TraitType>
+			<UnitCombatType>UNITCOMBAT_SIEGE</UnitCombatType>
+			<PromotionType>PROMOTION_DESERT_WARRIOR</PromotionType>
+		</Row>
+		<Row>
+			<TraitType>TRAIT_GATEWAY_AFRICA</TraitType>
+			<UnitCombatType>UNITCOMBAT_GUN</UnitCombatType>
+			<PromotionType>PROMOTION_DESERT_WARRIOR</PromotionType>
+		</Row>
+		<Row>
+			<TraitType>TRAIT_GATEWAY_AFRICA</TraitType>
+			<UnitCombatType>UNITCOMBAT_ARMOR</UnitCombatType>
+			<PromotionType>PROMOTION_DESERT_WARRIOR</PromotionType>
+		</Row>
+		<Row>
+			<TraitType>TRAIT_GATEWAY_AFRICA</TraitType>
+			<UnitCombatType>UNITCOMBAT_HELICOPTER</UnitCombatType>
+			<PromotionType>PROMOTION_DESERT_WARRIOR</PromotionType>
+		</Row>
+		<!--<Row>
+			<TraitType>TRAIT_CONVERTS_SEA_BARBARIANS</TraitType>
+			<UnitCombatType>UNITCOMBAT_NAVALRANGED</UnitCombatType>
+			<PromotionType>PROMOTION_SUNDER_1</PromotionType>
+		</Row>-->
+	</Trait_FreePromotionUnitCombats>
+	<Trait_ResourceQuantityModifiers>
+	</Trait_ResourceQuantityModifiers>
+	<Trait_ImprovementYieldChanges>
+		<Row>
+			<TraitType>TRAIT_SCHOLARS_JADE_HALL</TraitType>
+			<ImprovementType>IMPROVEMENT_ACADEMY</ImprovementType>
+			<YieldType>YIELD_SCIENCE</YieldType>
+			<Yield>2</Yield>
+		</Row>
+		<Row>
+			<TraitType>TRAIT_SCHOLARS_JADE_HALL</TraitType>
+			<ImprovementType>IMPROVEMENT_CUSTOMS_HOUSE</ImprovementType>
+			<YieldType>YIELD_SCIENCE</YieldType>
+			<Yield>2</Yield>
+		</Row>
+		<Row>
+			<TraitType>TRAIT_SCHOLARS_JADE_HALL</TraitType>
+			<ImprovementType>IMPROVEMENT_MANUFACTORY</ImprovementType>
+			<YieldType>YIELD_SCIENCE</YieldType>
+			<Yield>2</Yield>
+		</Row>
+		<Row>
+			<TraitType>TRAIT_SCHOLARS_JADE_HALL</TraitType>
+			<ImprovementType>IMPROVEMENT_CITADEL</ImprovementType>
+			<YieldType>YIELD_SCIENCE</YieldType>
+			<Yield>2</Yield>
+		</Row>
+		<Row>
+			<TraitType>TRAIT_SCHOLARS_JADE_HALL</TraitType>
+			<ImprovementType>IMPROVEMENT_LANDMARK</ImprovementType>
+			<YieldType>YIELD_SCIENCE</YieldType>
+			<Yield>2</Yield>
+		</Row>
+		<!--<Delete TraitType="TRAIT_SCHOLARS_JADE_HALL"/>-->
+		<!--<Row>
+			<TraitType>TRAIT_SCHOLARS_JADE_HALL</TraitType>
+			<ImprovementType>IMPROVEMENT_ACADEMY</ImprovementType>
+			<YieldType>YIELD_CULTURE</YieldType>
+			<Yield>2</Yield>
+		</Row>
+		<Row>
+			<TraitType>TRAIT_SCHOLARS_JADE_HALL</TraitType>
+			<ImprovementType>IMPROVEMENT_CUSTOMS_HOUSE</ImprovementType>
+			<YieldType>YIELD_CULTURE</YieldType>
+			<Yield>2</Yield>
+		</Row>
+		<Row>
+			<TraitType>TRAIT_SCHOLARS_JADE_HALL</TraitType>
+			<ImprovementType>IMPROVEMENT_MANUFACTORY</ImprovementType>
+			<YieldType>YIELD_CULTURE</YieldType>
+			<Yield>2</Yield>
+		</Row>
+		<Row>
+			<TraitType>TRAIT_SCHOLARS_JADE_HALL</TraitType>
+			<ImprovementType>IMPROVEMENT_CITADEL</ImprovementType>
+			<YieldType>YIELD_CULTURE</YieldType>
+			<Yield>2</Yield>
+		</Row>
+		<Row>
+			<TraitType>TRAIT_SCHOLARS_JADE_HALL</TraitType>
+			<ImprovementType>IMPROVEMENT_LANDMARK</ImprovementType>
+			<YieldType>YIELD_CULTURE</YieldType>
+			<Yield>2</Yield>
+		</Row>
+		<Row>
+			<TraitType>TRAIT_SCHOLARS_JADE_HALL</TraitType>
+			<ImprovementType>IMPROVEMENT_HOLY_SITE</ImprovementType>
+			<YieldType>YIELD_CULTURE</YieldType>
+			<Yield>2</Yield>
+		</Row>-->
+		<Row>
+			<TraitType>TRAIT_TERROR</TraitType>
+			<ImprovementType>IMPROVEMENT_PASTURE</ImprovementType>
+			<YieldType>YIELD_PRODUCTION</YieldType>
+			<Yield>1</Yield>
+		</Row>
+		<Row>
+			<TraitType>TRAIT_FAITH_FROM_NATURE</TraitType>
+			<ImprovementType>IMPROVEMENT_CAMP</ImprovementType>
+			<YieldType>YIELD_FAITH</YieldType>
+			<Yield>1</Yield>
+		</Row>
+		<Row>
+			<TraitType>TRAIT_FAITH_FROM_NATURE</TraitType>
+			<ImprovementType>IMPROVEMENT_CAMP</ImprovementType>
+			<YieldType>YIELD_PRODUCTION</YieldType>
+			<Yield>1</Yield>
+		</Row>
+		<Row>
+			<TraitType>TRAIT_AMPHIB_WARLORD</TraitType>
+			<ImprovementType>IMPROVEMENT_TRADING_POST</ImprovementType>
+			<YieldType>YIELD_GOLD</YieldType>
+			<Yield>1</Yield>
+		</Row>
+		<Row>
+			<TraitType>TRAIT_CONVERTS_SEA_BARBARIANS</TraitType>
+			<ImprovementType>IMPROVEMENT_QUARRY</ImprovementType>
+			<YieldType>YIELD_PRODUCTION</YieldType>
+			<Yield>1</Yield>
+		</Row>
+		<Row>
+			<TraitType>TRAIT_CONVERTS_SEA_BARBARIANS</TraitType>
+			<ImprovementType>IMPROVEMENT_FISHFARM_MOD</ImprovementType>
+			<YieldType>YIELD_PRODUCTION</YieldType>
+			<Yield>1</Yield>
+		</Row>
+		<Row>
+			<TraitType>TRAIT_VIKING_FURY</TraitType>
+			<ImprovementType>IMPROVEMENT_FISHING_BOATS</ImprovementType>
+			<YieldType>YIELD_CULTURE</YieldType>
+			<Yield>1</Yield>
+		</Row>
+		<Row>
+			<TraitType>TRAIT_VIKING_FURY</TraitType>
+			<ImprovementType>IMPROVEMENT_FISHFARM_MOD</ImprovementType>
+			<YieldType>YIELD_CULTURE</YieldType>
+			<Yield>1</Yield>
+		</Row>
+		<Row>
+			<TraitType>TRAIT_VIKING_FURY</TraitType>
+			<ImprovementType>IMPROVEMENT_OFFSHORE_PLATFORM</ImprovementType>
+			<YieldType>YIELD_CULTURE</YieldType>
+			<Yield>1</Yield>
+		</Row>
+	</Trait_ImprovementYieldChanges>
+	<Trait_UnimprovedFeatureYieldChanges>
+		<!--<Row>
+			<TraitType>TRAIT_SPICE</TraitType>
+			<FeatureType>FEATURE_ATOLL</FeatureType>
+			<YieldType>YIELD_CULTURE</YieldType>
+			<Yield>2</Yield>
+		</Row>
+		<Row>
+			<TraitType>TRAIT_SPICE</TraitType>
+			<FeatureType>FEATURE_ATOLL</FeatureType>
+			<YieldType>YIELD_FAITH</YieldType>
+			<Yield>2</Yield>
+		</Row>-->
+		<Row>
+			<TraitType>TRAIT_LAND_TRADE_GOLD</TraitType>
+			<FeatureType>FEATURE_OASIS</FeatureType>
+			<YieldType>YIELD_CULTURE</YieldType>
+			<Yield>2</Yield>
+		</Row>
+		<Row>
+			<TraitType>TRAIT_LAND_TRADE_GOLD</TraitType>
+			<FeatureType>FEATURE_OASIS</FeatureType>
+			<YieldType>YIELD_FAITH</YieldType>
+			<Yield>2</Yield>
+		</Row>
+	</Trait_UnimprovedFeatureYieldChanges>
+	<Trait_SpecialistYieldChanges>
+		<Row>
+			<TraitType>TRAIT_SCHOLARS_JADE_HALL</TraitType>
+			<SpecialistType>SPECIALIST_ARTIST</SpecialistType>
+			<YieldType>YIELD_SCIENCE</YieldType>
+			<Yield>2</Yield>
+		</Row>
+		<Row>
+			<TraitType>TRAIT_SCHOLARS_JADE_HALL</TraitType>
+			<SpecialistType>SPECIALIST_SCIENTIST</SpecialistType>
+			<YieldType>YIELD_SCIENCE</YieldType>
+			<Yield>2</Yield>
+		</Row>
+		<Row>
+			<TraitType>TRAIT_SCHOLARS_JADE_HALL</TraitType>
+			<SpecialistType>SPECIALIST_MERCHANT</SpecialistType>
+			<YieldType>YIELD_SCIENCE</YieldType>
+			<Yield>2</Yield>
+		</Row>
+		<Row>
+			<TraitType>TRAIT_SCHOLARS_JADE_HALL</TraitType>
+			<SpecialistType>SPECIALIST_ENGINEER</SpecialistType>
+			<YieldType>YIELD_SCIENCE</YieldType>
+			<Yield>2</Yield>
+		</Row>
+		<Row>
+			<TraitType>TRAIT_RIVER_EXPANSION</TraitType>
+			<SpecialistType>SPECIALIST_ENGINEER</SpecialistType>
+			<YieldType>YIELD_PRODUCTION</YieldType>
+			<Yield>1</Yield>
+		</Row>
+		<Row>
+			<TraitType>TRAIT_RIVER_EXPANSION</TraitType>
+			<SpecialistType>SPECIALIST_SCIENTIST</SpecialistType>
+			<YieldType>YIELD_SCIENCE</YieldType>
+			<Yield>2</Yield>
+		</Row>
+		<Row>
+			<TraitType>TRAIT_RIVER_EXPANSION</TraitType>
+			<SpecialistType>SPECIALIST_MERCHANT</SpecialistType>
+			<YieldType>YIELD_GOLD</YieldType>
+			<Yield>2</Yield>
+		</Row>
+		<Row>
+			<TraitType>TRAIT_RIVER_EXPANSION</TraitType>
+			<SpecialistType>SPECIALIST_WRITER</SpecialistType>
+			<YieldType>YIELD_CULTURE</YieldType>
+			<Yield>1</Yield>
+		</Row>
+		<Row>
+			<TraitType>TRAIT_RIVER_EXPANSION</TraitType>
+			<SpecialistType>SPECIALIST_ARTIST</SpecialistType>
+			<YieldType>YIELD_CULTURE</YieldType>
+			<Yield>1</Yield>
+		</Row>
+		<Row>
+			<TraitType>TRAIT_RIVER_EXPANSION</TraitType>
+			<SpecialistType>SPECIALIST_MUSICIAN</SpecialistType>
+			<YieldType>YIELD_CULTURE</YieldType>
+			<Yield>1</Yield>
+		</Row>
+		<Row>
+			<TraitType>TRAIT_PHOENICIAN_HERITAGE</TraitType>
+			<SpecialistType>SPECIALIST_ENGINEER</SpecialistType>
+			<YieldType>YIELD_PRODUCTION</YieldType>
+			<Yield>1</Yield>
+		</Row>
+		<Row>
+			<TraitType>TRAIT_PHOENICIAN_HERITAGE</TraitType>
+			<SpecialistType>SPECIALIST_SCIENTIST</SpecialistType>
+			<YieldType>YIELD_PRODUCTION</YieldType>
+			<Yield>1</Yield>
+		</Row>
+		<Row>
+			<TraitType>TRAIT_PHOENICIAN_HERITAGE</TraitType>
+			<SpecialistType>SPECIALIST_MERCHANT</SpecialistType>
+			<YieldType>YIELD_PRODUCTION</YieldType>
+			<Yield>1</Yield>
+		</Row>
+		<Row>
+			<TraitType>TRAIT_PHOENICIAN_HERITAGE</TraitType>
+			<SpecialistType>SPECIALIST_WRITER</SpecialistType>
+			<YieldType>YIELD_PRODUCTION</YieldType>
+			<Yield>1</Yield>
+		</Row>
+		<Row>
+			<TraitType>TRAIT_PHOENICIAN_HERITAGE</TraitType>
+			<SpecialistType>SPECIALIST_ARTIST</SpecialistType>
+			<YieldType>YIELD_PRODUCTION</YieldType>
+			<Yield>1</Yield>
+		</Row>
+		<Row>
+			<TraitType>TRAIT_PHOENICIAN_HERITAGE</TraitType>
+			<SpecialistType>SPECIALIST_MUSICIAN</SpecialistType>
+			<YieldType>YIELD_PRODUCTION</YieldType>
+			<Yield>1</Yield>
+		</Row>
+		<Row>
+			<TraitType>TRAIT_BONUS_AGAINST_TECH</TraitType>
+			<SpecialistType>SPECIALIST_ARTIST</SpecialistType>
+			<YieldType>YIELD_CULTURE</YieldType>
+			<Yield>1</Yield>
+		</Row>
+		<Row>
+			<TraitType>TRAIT_BONUS_AGAINST_TECH</TraitType>
+			<SpecialistType>SPECIALIST_SCIENTIST</SpecialistType>
+			<YieldType>YIELD_CULTURE</YieldType>
+			<Yield>1</Yield>
+		</Row>
+		<Row>
+			<TraitType>TRAIT_BONUS_AGAINST_TECH</TraitType>
+			<SpecialistType>SPECIALIST_MERCHANT</SpecialistType>
+			<YieldType>YIELD_CULTURE</YieldType>
+			<Yield>1</Yield>
+		</Row>
+		<Row>
+			<TraitType>TRAIT_BONUS_AGAINST_TECH</TraitType>
+			<SpecialistType>SPECIALIST_ENGINEER</SpecialistType>
+			<YieldType>YIELD_CULTURE</YieldType>
+			<Yield>1</Yield>
+		</Row>
+		<Row>
+			<TraitType>TRAIT_BONUS_AGAINST_TECH</TraitType>
+			<SpecialistType>SPECIALIST_WRITER</SpecialistType>
+			<YieldType>YIELD_CULTURE</YieldType>
+			<Yield>1</Yield>
+		</Row>
+		<Row>
+			<TraitType>TRAIT_BONUS_AGAINST_TECH</TraitType>
+			<SpecialistType>SPECIALIST_MUSICIAN</SpecialistType>
+			<YieldType>YIELD_CULTURE</YieldType>
+			<Yield>1</Yield>
+		</Row>
+		<!--<Row>
+			<TraitType>TRAIT_CITY_STATE_BONUSES</TraitType>
+			<SpecialistType>SPECIALIST_ARTIST</SpecialistType>
+			<YieldType>YIELD_GOLD</YieldType>
+			<Yield>2</Yield>
+		</Row>
+		<Row>
+			<TraitType>TRAIT_CITY_STATE_BONUSES</TraitType>
+			<SpecialistType>SPECIALIST_SCIENTIST</SpecialistType>
+			<YieldType>YIELD_GOLD</YieldType>
+			<Yield>2</Yield>
+		</Row>
+		<Row>
+			<TraitType>TRAIT_CITY_STATE_BONUSES</TraitType>
+			<SpecialistType>SPECIALIST_MERCHANT</SpecialistType>
+			<YieldType>YIELD_GOLD</YieldType>
+			<Yield>2</Yield>
+		</Row>
+		<Row>
+			<TraitType>TRAIT_CITY_STATE_BONUSES</TraitType>
+			<SpecialistType>SPECIALIST_ENGINEER</SpecialistType>
+			<YieldType>YIELD_GOLD</YieldType>
+			<Yield>2</Yield>
+		</Row>
+		<Row>
+			<TraitType>TRAIT_CITY_STATE_BONUSES</TraitType>
+			<SpecialistType>SPECIALIST_WRITER</SpecialistType>
+			<YieldType>YIELD_GOLD</YieldType>
+			<Yield>2</Yield>
+		</Row>
+		<Row>
+			<TraitType>TRAIT_CITY_STATE_BONUSES</TraitType>
+			<SpecialistType>SPECIALIST_MUSICIAN</SpecialistType>
+			<YieldType>YIELD_GOLD</YieldType>
+			<Yield>2</Yield>
+		</Row>-->
+	</Trait_SpecialistYieldChanges>
+	<Trait_NoTrain>
+		<Row>
+			<TraitType>TRAIT_SUPER_CITY_STATE</TraitType>
+			<UnitClassType>UNITCLASS_SETTLER</UnitClassType>
+		</Row>
+		<Row>
+			<TraitType>TRAIT_RIVER_EXPANSION</TraitType>
+			<UnitClassType>UNITCLASS_SUPER_CARRIER</UnitClassType>
+		</Row>
+	</Trait_NoTrain>
+	<Trait_MovesChangeUnitCombats>
+		<Row>
+			<TraitType>TRAIT_TERROR</TraitType>
+			<UnitCombatType>UNITCOMBAT_MOUNTED</UnitCombatType>
+			<MovesChange>1</MovesChange>
+		</Row>
+		<Row>
+			<TraitType>TRAIT_TERROR</TraitType>
+			<UnitCombatType>UNITCOMBAT_ARMOR</UnitCombatType>
+			<MovesChange>1</MovesChange>
+		</Row>
+		<Row>
+			<TraitType>TRAIT_TERROR</TraitType>
+			<UnitCombatType>UNITCOMBAT_HELICOPTER</UnitCombatType>
+			<MovesChange>1</MovesChange>
+		</Row>
+	</Trait_MovesChangeUnitCombats>
+	<Trait_MaintenanceModifierUnitCombats>
+		<Row>
+			<TraitType>TRAIT_BUFFALO_HORNS</TraitType>
+			<UnitCombatType>UNITCOMBAT_MELEE</UnitCombatType>
+			<MaintenanceModifier> -50 </MaintenanceModifier>
+		</Row>
+	</Trait_MaintenanceModifierUnitCombats>
+</GameData>

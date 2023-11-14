@@ -1,0 +1,920 @@
+<?xml version="1.0" encoding="utf-8"?>
+<GameData>
+<!-- DLL-VMC - AllText_*.xml -->
+	<Language_en_US>
+	<!-- Espionage.xml -->
+		<Row Tag="TXT_KEY_SPY_STATE_TERMINATED">
+			<Text>Eliminated!</Text>
+		</Row>
+
+	<!-- GoodyHutMessages.xml -->
+		<Update>
+			<Where Tag="TXT_KEY_GOODY_GOLD"/>
+			<Set>
+				<Text>In the ruins you find the treasures of an ancient empire!</Text>
+			</Set>
+		</Update>
+		<Update>
+			<Where Tag="TXT_KEY_GOODY_PROPHET_FAITH"/>
+			<Set>
+				<Text>You have found a secret religious community. The preacher foretells the arrival of a Great Prophet.</Text>
+			</Set>
+		</Update>
+		<Update>
+			<Where Tag="TXT_KEY_GOODY_FAITH"/>
+			<Set>
+				<Text>You have found an ancient oracle. The priestess has blessed you with a divine revelation.</Text>
+			</Set>
+		</Update>
+		<Update>
+			<Where Tag="TXT_KEY_GOODY_CULTURE"/>
+			<Set>
+				<Text>You have found cultural artifacts which awe your citizens!</Text>
+			</Set>
+		</Update>
+		<Update>
+			<Where Tag="TXT_KEY_MISC_RECEIVED_GOLD"/>
+			<Set>
+				<Text>[SPACE]You have received {1_Num} [ICON_GOLD] Gold!</Text>
+			</Set>
+		</Update>
+		<Row Tag="TXT_KEY_MISC_RECEIVED_CULTURE">
+			<Text>[SPACE]You have received {1_Num} [ICON_CULTURE] Culture!</Text>
+		</Row>
+		<Row Tag="TXT_KEY_MISC_RECEIVED_FAITH">
+			<Text>[SPACE]You have received {1_Num} [ICON_PEACE] Faith!</Text>
+		</Row>
+
+	<!-- Religion.xml -->
+		<Row Tag="TXT_KEY_NOTIFICATION_PANTHEON_ENHANCED_ACTIVE_PLAYER">
+			<Text>You have enhanced your pantheon by adding a new belief.</Text>
+		</Row>
+		<Row Tag="TXT_KEY_NOTIFICATION_PANTHEON_ENHANCED">
+			<Text>{1_CivName} {1: plural 1?has; 2?have;} enhanced their pantheon by adding a new belief.</Text>
+		</Row>
+		<Row Tag="TXT_KEY_NOTIFICATION_PANTHEON_ENHANCED_UNKNOWN">
+			<Text>An unknown civilization has enhanced their pantheon by adding a new belief.</Text>
+		</Row>
+		<Row Tag="TXT_KEY_NOTIFICATION_PANTHEON_ENHANCED_S">
+			<Text>Pantheon Enhanced</Text>
+		</Row>
+
+	<!-- SpyNames.xml -->
+		<Row Tag="TXT_KEY_SPY_NAME_UNKNOWN">
+			<Text>Unknown</Text>
+		</Row>
+
+	<!-- UnifiedYieldsGoldenAge.xml -->
+		<Row Tag="TXT_KEY_YIELD_GOLDEN_AGE_POINTS">
+			<Text>Golden Age</Text>
+		</Row>
+		<Row Tag="TXT_KEY_TOP_PANEL_ITR_GOLDEN_AGE_POINTS_YIELD_TT">
+			<Text>{1_Num} [ICON_GOLDEN_AGE] Golden Age</Text>
+		</Row>
+		<Row Tag="TXT_KEY_GOLDEN_AGE_POINTS_FROM_TRADE_ROUTES">
+			<Text>{1_perTurn:number "#.##"} [ICON_GOLDEN_AGE] from Trade Routes established with this city</Text>
+		</Row>
+
+	<!-- UnifiedYieldsTourism.xml -->
+		<Row Tag="TXT_KEY_YIELD_TOURISM">
+			<Text>Tourism</Text>
+		</Row>
+		<Row Tag="TXT_KEY_TOP_PANEL_ITR_TOURISM_YIELD_TT">
+			<Text>{1_Num} [ICON_TOURISM] Tourism</Text>
+		</Row>
+		<Row Tag="TXT_KEY_TOURISM_FROM_TRADE_ROUTES">
+			<Text>{1_perTurn:number "#.##"} [ICON_TOURISM] from Trade Routes established with this city</Text>
+		</Row>
+
+	<!-- UnitclassNotUnit.xml -->
+		<Row Tag="TXT_KEY_TP_FAITH_NEXT_PROPHET_PARAM">
+			<Text>{1_Num} [ICON_PEACE] Faith is minimum required for your next chance at a {2_UNITCLASS_PROPHET}.</Text>
+		</Row>
+
+		<Row Tag="TXT_KEY_RO_FAITH_TOOLTIP_PARAM">
+			<Text>Need minimum of {1_MinFaith} [ICON_PEACE] Faith for next {2_UNITCLASS_PROPHET}</Text>
+		</Row>
+		<Row Tag="TXT_KEY_RO_AUTO_FAITH_PROPHET_PARAM">
+			<Text>Save for {1_UNITCLASS_PROPHET}</Text>
+		</Row>
+		<Row Tag="TXT_KEY_RO_AUTO_FAITH_PURCHASE_PROPHET_PARAM">
+			<Text>Purchase {1_UNITCLASS_PROPHET}</Text>
+		</Row>
+
+	<!-- UnitNaming.xml -->
+		<Row Tag="TXT_KEY_UNIT_INDONESIAN_KRIS_SWORDSMAN_INVULNERABIILITY">
+			<Text>Defensive Kris</Text>
+		</Row>
+		<Row Tag="TXT_KEY_UNIT_INDONESIAN_KRIS_SWORDSMAN_SNEAK_ATTACK">
+			<Text>Flanking Kris</Text>
+		</Row>
+		<Row Tag="TXT_KEY_UNIT_INDONESIAN_KRIS_SWORDSMAN_HEROISM">
+			<Text>Heroic Kris</Text>
+		</Row>
+		<Row Tag="TXT_KEY_UNIT_INDONESIAN_KRIS_SWORDSMAN_AMBITION">
+			<Text>Offensive Kris</Text>
+		</Row>
+		<Row Tag="TXT_KEY_UNIT_INDONESIAN_KRIS_SWORDSMAN_RESTLESSNESS">
+			<Text>Restless Kris</Text>
+		</Row>
+		<Row Tag="TXT_KEY_UNIT_INDONESIAN_KRIS_SWORDSMAN_RECRUITMENT">
+			<Text>Regenerating Kris</Text>
+		</Row>
+		<Row Tag="TXT_KEY_UNIT_INDONESIAN_KRIS_SWORDSMAN_ENEMY_BLADE">
+			<Text>Cursed Kris</Text>
+		</Row>
+		<Row Tag="TXT_KEY_UNIT_INDONESIAN_KRIS_SWORDSMAN_EVIL_SPIRITS">
+			<Text>Possessed Kris</Text>
+		</Row>
+
+	<!-- VariableRecon.xml -->
+		<Row Tag="TXT_KEY_PROMOTION_RECON_SHORT_RANGE">
+			<Text>Short Range Recon</Text>
+		</Row>
+		<Row Tag="TXT_KEY_PROMOTION_RECON_SHORT_RANGE_HELP">
+			<Text>Short Range Recon (-2 visibility).</Text>
+		</Row>
+		<Row Tag="TXT_KEY_PEDIA_PROMOTION_RECON_SHORT_RANGE">
+			<Text>Short Range Recon</Text>
+		</Row>
+		<Row Tag="TXT_KEY_PROMOTION_RECON_LONG_RANGE">
+			<Text>Long Range Recon</Text>
+		</Row>
+		<Row Tag="TXT_KEY_PROMOTION_RECON_LONG_RANGE_HELP">
+			<Text>Long Range Recon (+2 visibility).</Text>
+		</Row>
+		<Row Tag="TXT_KEY_PEDIA_PROMOTION_RECON_LONG_RANGE">
+			<Text>Long Range Recon</Text>
+		</Row>
+	
+	<!-- Quests.xml -->
+		<Row Tag="TXT_KEY_CITY_STATE_QUEST_GENERIC_FORMAL">
+			<Text>They want you to do something for them.</Text>
+		</Row>
+	</Language_en_US>
+	
+	
+	<Language_de_DE>
+	<!-- Espionage.xml -->
+		<Row Tag="TXT_KEY_SPY_STATE_TERMINATED">
+			<Text>Ausgel鰏cht!</Text>
+		</Row>
+
+	<!-- GoodyHutMessages.xml -->
+		<Update>
+			<Where Tag="TXT_KEY_GOODY_GOLD"/>
+			<Set>
+				<Text>In den Ruinen findet Ihr den Schatz eines vergangenen Reiches!</Text>
+			</Set>
+		</Update>
+		<Update>
+			<Where Tag="TXT_KEY_GOODY_PROPHET_FAITH"/>
+			<Set>
+				<Text>Ihr habt eine geheime Religionsgemeinschaft gefunden. Der Priester sagt die Ankunft eines gro遝n Propheten voraus!</Text>
+			</Set>
+		</Update>
+		<Update>
+			<Where Tag="TXT_KEY_GOODY_FAITH"/>
+			<Set>
+				<Text>Ihr habt ein altes Orakel gefunden. Die Priesterin segnet Euch mit einer g鰐tlichen Offenbarung.</Text>
+			</Set>
+		</Update>
+		<Update>
+			<Where Tag="TXT_KEY_GOODY_CULTURE"/>
+			<Set>
+				<Text>Ihr habt ein kulturelles Artefakt gefunden, welches Eure B黵ger beeindruckt!</Text>
+			</Set>
+		</Update>
+		<Update>
+			<Where Tag="TXT_KEY_MISC_RECEIVED_GOLD"/>
+			<Set>
+				<Text>[SPACE]Ihr habt {1_Num} [ICON_GOLD] Gold erhalten!</Text>
+			</Set>
+		</Update>
+		<Row Tag="TXT_KEY_MISC_RECEIVED_CULTURE">
+			<Text>[SPACE]Ihr erhaltet {1_Num} [ICON_CULTURE] Kultur!</Text>
+		</Row>
+		<Row Tag="TXT_KEY_MISC_RECEIVED_FAITH">
+			<Text>[SPACE]Ihr erhaltet {1_Num} [ICON_PEACE] Glauben!</Text>
+		</Row>
+
+	<!-- Religion.xml -->
+		<Row Tag="TXT_KEY_NOTIFICATION_PANTHEON_ENHANCED_ACTIVE_PLAYER">
+			<Text>Durch das Hinzuf黦en eines neuen Glaubenssatzes habt Ihr euer Pantheon verbessert.</Text>
+		</Row>
+		<Row Tag="TXT_KEY_NOTIFICATION_PANTHEON_ENHANCED">
+			<Text>{1_CivName} {1: plural 1?hat sein; 2?haben ihr;} Pantheon, durch Hinzuf黦en eines neuen Glaubenssatzes, verbessert.</Text>
+		</Row>
+		<Row Tag="TXT_KEY_NOTIFICATION_PANTHEON_ENHANCED_UNKNOWN">
+			<Text>Eine unbekannte Zivilisation hat ihr Pantheon, durch Hinzuf黦en eines neuen Glaubenssatzes, verbessert.</Text>
+		</Row>
+		<Row Tag="TXT_KEY_NOTIFICATION_PANTHEON_ENHANCED_S">
+			<Text>Pantheon verbessert</Text>
+		</Row>
+
+	<!-- SpyNames.xml -->
+		<Row Tag="TXT_KEY_SPY_NAME_UNKNOWN">
+			<Text>Unbekannt</Text>
+		</Row>
+
+	<!-- UnifiedYieldsGoldenAge.xml -->
+		<Row Tag="TXT_KEY_YIELD_GOLDEN_AGE_POINTS">
+			<Text>Goldenes Zeitalter</Text>
+		</Row>
+		<Row Tag="TXT_KEY_TOP_PANEL_ITR_GOLDEN_AGE_POINTS_YIELD_TT">
+			<Text>{1_Num} [ICON_GOLDEN_AGE] Goldenes Zeitalter</Text>
+		</Row>
+		<Row Tag="TXT_KEY_GOLDEN_AGE_POINTS_FROM_TRADE_ROUTES">
+			<Text>{1_perTurn:number "#.##"} [ICON_GOLDEN_AGE] von Handelsrouten dieser Stadt.</Text>
+		</Row>
+
+	<!-- UnifiedYieldsTourism.xml -->
+		<Row Tag="TXT_KEY_YIELD_TOURISM">
+			<Text>Tourismus</Text>
+		</Row>
+		<Row Tag="TXT_KEY_TOP_PANEL_ITR_TOURISM_YIELD_TT">
+			<Text>{1_Num} [ICON_TOURISM] Tourismus</Text>
+		</Row>
+		<Row Tag="TXT_KEY_TOURISM_FROM_TRADE_ROUTES">
+			<Text>{1_perTurn:number "#.##"} [ICON_TOURISM] von Handelsrouten dieser Stadt.</Text>
+		</Row>
+
+	<!-- UnitclassNotUnit.xml -->
+		<Row Tag="TXT_KEY_TP_FAITH_NEXT_PROPHET_PARAM">
+			<Text>{1_Num} [ICON_PEACE] Glaube wird mindestens ben鰐igt f黵 Eure n鋍hste Chance auf einen {2_UNITCLASS_PROPHET}.</Text>
+		</Row>
+
+		<Row Tag="TXT_KEY_RO_FAITH_TOOLTIP_PARAM">
+			<Text>Ihr braucht mindestens {1_MinFaith} [ICON_PEACE] Glauben f黵 den n鋍hsten {2_UNITCLASS_PROPHET}</Text>
+		</Row>
+		<Row Tag="TXT_KEY_RO_AUTO_FAITH_PROPHET_PARAM">
+			<Text>Spare f黵 {1_UNITCLASS_PROPHET}</Text>
+		</Row>
+		<Row Tag="TXT_KEY_RO_AUTO_FAITH_PURCHASE_PROPHET_PARAM">
+			<Text>Kaufe {1_UNITCLASS_PROPHET}</Text>
+		</Row>
+
+	<!-- UnitNaming.xml -- Require translation
+		<Row Tag="TXT_KEY_UNIT_INDONESIAN_KRIS_SWORDSMAN_INVULNERABIILITY">
+			<Text>Defensive Kris</Text>
+		</Row>
+		<Row Tag="TXT_KEY_UNIT_INDONESIAN_KRIS_SWORDSMAN_SNEAK_ATTACK">
+			<Text>Flanking Kris</Text>
+		</Row>
+		<Row Tag="TXT_KEY_UNIT_INDONESIAN_KRIS_SWORDSMAN_HEROISM">
+			<Text>Heroic Kris</Text>
+		</Row>
+		<Row Tag="TXT_KEY_UNIT_INDONESIAN_KRIS_SWORDSMAN_AMBITION">
+			<Text>Offensive Kris</Text>
+		</Row>
+		<Row Tag="TXT_KEY_UNIT_INDONESIAN_KRIS_SWORDSMAN_RESTLESSNESS">
+			<Text>Restless Kris</Text>
+		</Row>
+		<Row Tag="TXT_KEY_UNIT_INDONESIAN_KRIS_SWORDSMAN_RECRUITMENT">
+			<Text>Regenerating Kris</Text>
+		</Row>
+		<Row Tag="TXT_KEY_UNIT_INDONESIAN_KRIS_SWORDSMAN_ENEMY_BLADE">
+			<Text>Cursed Kris</Text>
+		</Row>
+		<Row Tag="TXT_KEY_UNIT_INDONESIAN_KRIS_SWORDSMAN_EVIL_SPIRITS">
+			<Text>Possessed Kris</Text>
+		</Row> -->
+
+	<!-- VariableRecon.xml -- Require translation
+		<Row Tag="TXT_KEY_PROMOTION_RECON_SHORT_RANGE">
+			<Text>Short Range Recon</Text>
+		</Row>
+		<Row Tag="TXT_KEY_PROMOTION_RECON_SHORT_RANGE_HELP">
+			<Text>Short Range Recon (-2 visibility).</Text>
+		</Row>
+		<Row Tag="TXT_KEY_PEDIA_PROMOTION_RECON_SHORT_RANGE">
+			<Text>Short Range Recon</Text>
+		</Row>
+		<Row Tag="TXT_KEY_PROMOTION_RECON_LONG_RANGE">
+			<Text>Long Range Recon</Text>
+		</Row>
+		<Row Tag="TXT_KEY_PROMOTION_RECON_LONG_RANGE_HELP">
+			<Text>Long Range Recon (+2 visibility).</Text>
+		</Row>
+		<Row Tag="TXT_KEY_PEDIA_PROMOTION_RECON_LONG_RANGE">
+			<Text>Long Range Recon</Text>
+		</Row> -->
+	
+	<!-- Quests.xml -- Require translation
+		<Row Tag="TXT_KEY_CITY_STATE_QUEST_GENERIC_FORMAL">
+			<Text>They want you to do something for them.</Text>
+		</Row> -->
+	</Language_de_DE>
+	
+	
+	<Language_JA_JP>
+	<!-- Espionage.xml -->
+		<Row Tag="TXT_KEY_SPY_STATE_TERMINATED">
+			<Text>死亡！</Text>
+		</Row>
+
+	<!-- GoodyHutMessages.xml -->
+		<Update>
+			<Where Tag="TXT_KEY_GOODY_GOLD"/>
+			<Set>
+				<Text>遺跡の中で、古代帝国の財宝を見つけた！</Text>
+			</Set>
+		</Update>
+		<Update>
+			<Where Tag="TXT_KEY_GOODY_PROPHET_FAITH"/>
+			<Set>
+				<Text>秘密の教団を発見した。説教師が大予言者の訪れを予言する。</Text>
+			</Set>
+		</Update>
+		<Update>
+			<Where Tag="TXT_KEY_GOODY_FAITH"/>
+			<Set>
+				<Text>古代神殿を発見した。司祭が神の信託を授ける。</Text>
+			</Set>
+		</Update>
+		<Update>
+			<Where Tag="TXT_KEY_GOODY_CULTURE"/>
+			<Set>
+				<Text>遺跡の中で文化遺物を見つけた！これを目にした民が感銘を受けている。</Text>
+			</Set>
+		</Update>
+		<Update>
+			<Where Tag="TXT_KEY_MISC_RECEIVED_GOLD"/>
+			<Set>
+				<Text>[SPACE]{1_Num}[ICON_GOLD]ゴールドを獲得した！</Text>
+			</Set>
+		</Update>
+		<Row Tag="TXT_KEY_MISC_RECEIVED_CULTURE">
+			<Text>[SPACE][ICON_CULTURE]文化力{1_Num}を獲得した！</Text>
+		</Row>
+		<Row Tag="TXT_KEY_MISC_RECEIVED_FAITH">
+			<Text>[SPACE][ICON_PEACE]信仰力{1_Num}を獲得した！</Text>
+		</Row>
+		
+	<!-- Religion.xml -->
+		<Row Tag="TXT_KEY_NOTIFICATION_PANTHEON_ENHANCED_ACTIVE_PLAYER">
+			<Text>新たな信仰の証を追加してパンテオン信仰を強化した。</Text>
+		</Row>
+		<Row Tag="TXT_KEY_NOTIFICATION_PANTHEON_ENHANCED">
+			<Text>{1_CivName}が新たな信仰の証を追加してパンテオン信仰を強化した。</Text>
+		</Row>
+		<Row Tag="TXT_KEY_NOTIFICATION_PANTHEON_ENHANCED_UNKNOWN">
+			<Text>未知の文明が新たな信仰の証を追加してパンテオン信仰を強化した。</Text>
+		</Row>
+		<Row Tag="TXT_KEY_NOTIFICATION_PANTHEON_ENHANCED_S">
+			<Text>パンテオンの強化</Text>
+		</Row>
+
+	<!-- SpyNames.xml -->
+		<Row Tag="TXT_KEY_SPY_NAME_UNKNOWN">
+			<Text>不明</Text>
+		</Row>
+    
+	<!-- UnifiedYieldsGoldenAge.xml -->
+		<Row Tag="TXT_KEY_YIELD_GOLDEN_AGE_POINTS">
+			<Text>黄金時代</Text>
+		</Row>
+		<Row Tag="TXT_KEY_TOP_PANEL_ITR_GOLDEN_AGE_POINTS_YIELD_TT">
+			<Text>{1_Num} [ICON_GOLDEN_AGE]黄金時代</Text>
+		</Row>
+		<Row Tag="TXT_KEY_GOLDEN_AGE_POINTS_FROM_TRADE_ROUTES">
+			<Text>{1_perTurn:number "#.##"} [ICON_GOLDEN_AGE]黄金時代ポイント (この都市に設立された交易路から)</Text>
+		</Row>
+    
+	<!-- UnifiedYieldsTourism.xml -->
+		<Row Tag="TXT_KEY_YIELD_TOURISM">
+			<Text>観光力</Text>
+		</Row>
+		<Row Tag="TXT_KEY_TOP_PANEL_ITR_TOURISM_YIELD_TT">
+			<Text>{1_Num} [ICON_TOURISM]観光力</Text>
+		</Row>
+		<Row Tag="TXT_KEY_TOURISM_FROM_TRADE_ROUTES">
+			<Text>{1_perTurn:number "#.##"} [ICON_TOURISM] (この都市に設立された交易路から)</Text>
+		</Row>
+    
+	<!-- UnitclassNotUnit.xml -->
+		<Row Tag="TXT_KEY_TP_FAITH_NEXT_PROPHET_PARAM">
+			<Text>次の{2_UNITCLASS_PROPHET}誕生には[ICON_PEACE]信仰力{1_Num}以上が必要。</Text>
+		</Row>
+
+		<Row Tag="TXT_KEY_RO_FAITH_TOOLTIP_PARAM">
+			<Text>次の{2_UNITCLASS_PROPHET}誕生には[ICON_PEACE]信仰力{1_MinFaith}以上が必要。</Text>
+		</Row>
+		<Row Tag="TXT_KEY_RO_AUTO_FAITH_PROPHET_PARAM">
+			<Text>{1_UNITCLASS_PROPHET}を購入するために貯めておく</Text>
+		</Row>
+		<Row Tag="TXT_KEY_RO_AUTO_FAITH_PURCHASE_PROPHET_PARAM">
+			<Text>{1_UNITCLASS_PROPHET}を購入する</Text>
+		</Row>
+
+	<!-- UnitNaming.xml -->
+		<Row Tag="TXT_KEY_UNIT_INDONESIAN_KRIS_SWORDSMAN_INVULNERABIILITY">
+			<Text>鉄人クリス</Text>
+		</Row>
+		<Row Tag="TXT_KEY_UNIT_INDONESIAN_KRIS_SWORDSMAN_SNEAK_ATTACK">
+			<Text>奇襲クリス</Text>
+		</Row>
+		<Row Tag="TXT_KEY_UNIT_INDONESIAN_KRIS_SWORDSMAN_HEROISM">
+			<Text>英雄クリス</Text>
+		</Row>
+		<Row Tag="TXT_KEY_UNIT_INDONESIAN_KRIS_SWORDSMAN_AMBITION">
+			<Text>野心クリス</Text>
+		</Row>
+		<Row Tag="TXT_KEY_UNIT_INDONESIAN_KRIS_SWORDSMAN_RESTLESSNESS">
+			<Text>執拗クリス</Text>
+		</Row>
+		<Row Tag="TXT_KEY_UNIT_INDONESIAN_KRIS_SWORDSMAN_RECRUITMENT">
+			<Text>回復クリス</Text>
+		</Row>
+		<Row Tag="TXT_KEY_UNIT_INDONESIAN_KRIS_SWORDSMAN_ENEMY_BLADE">
+			<Text>呪詛クリス</Text>
+		</Row>
+		<Row Tag="TXT_KEY_UNIT_INDONESIAN_KRIS_SWORDSMAN_EVIL_SPIRITS">
+			<Text>悪霊クリス</Text>
+		</Row>
+
+	<!-- VariableRecon.xml -->
+		<Row Tag="TXT_KEY_PROMOTION_RECON_SHORT_RANGE">
+			<Text>視程 (短)</Text>
+		</Row>
+		<Row Tag="TXT_KEY_PROMOTION_RECON_SHORT_RANGE_HELP">
+			<Text>視程-2。</Text>
+		</Row>
+		<Row Tag="TXT_KEY_PEDIA_PROMOTION_RECON_SHORT_RANGE">
+			<Text>視程 (短)</Text>
+		</Row>
+		<Row Tag="TXT_KEY_PROMOTION_RECON_LONG_RANGE">
+			<Text>視程 (長)</Text>
+		</Row>
+		<Row Tag="TXT_KEY_PROMOTION_RECON_LONG_RANGE_HELP">
+			<Text>視程+2。</Text>
+		</Row>
+		<Row Tag="TXT_KEY_PEDIA_PROMOTION_RECON_LONG_RANGE">
+			<Text>視程 (長)</Text>
+		</Row>
+	
+	<!-- Quests.xml -- Require translation
+		<Row Tag="TXT_KEY_CITY_STATE_QUEST_GENERIC_FORMAL">
+			<Text>They want you to do something for them.</Text>
+		</Row> -->
+	</Language_JA_JP>
+	
+	
+	<Language_RU_RU>
+	<!-- Espionage.xml -->
+		<Row Tag="TXT_KEY_SPY_STATE_TERMINATED">
+			<Text>Устранён!</Text>
+		</Row>
+
+	<!-- GoodyHutMessages.xml -->
+		<Update>
+			<Where Tag="TXT_KEY_GOODY_GOLD"/>
+			<Set>
+				<Text>В руинах вы находите сокровища древней империи!</Text>
+			</Set>
+		</Update>
+		<Update>
+			<Where Tag="TXT_KEY_GOODY_PROPHET_FAITH"/>
+			<Set>
+				<Text>Вы нашли тайное религиозное сообщество. Проповедник предсказывает приход Великого Пророка.</Text>
+			</Set>
+		</Update>
+		<Update>
+			<Where Tag="TXT_KEY_GOODY_FAITH"/>
+			<Set>
+				<Text>Вы нашли древний оракул. Жрица благословила вас божественным откровением.</Text>
+			</Set>
+		</Update>
+		<Update>
+			<Where Tag="TXT_KEY_GOODY_CULTURE"/>
+			<Set>
+				<Text>Вы нашли культурные артефакты, перед которыми трепещут ваши граждане!</Text>
+			</Set>
+		</Update>
+		<Update>
+			<Where Tag="TXT_KEY_MISC_RECEIVED_GOLD"/>
+			<Set>
+				<Text>[SPACE]Вы получили {1_Num} [ICON_GOLD] золота!</Text>
+			</Set>
+		</Update>
+		<Row Tag="TXT_KEY_MISC_RECEIVED_CULTURE">
+			<Text>[SPACE]Вы получили {1_Num} [ICON_CULTURE] культуры!</Text>
+		</Row>
+		<Row Tag="TXT_KEY_MISC_RECEIVED_FAITH">
+			<Text>[SPACE]Вы получили {1_Num} [ICON_PEACE] веры!</Text>
+		</Row>
+
+	<!-- Religion.xml -->
+		<Row Tag="TXT_KEY_NOTIFICATION_PANTHEON_ENHANCED_ACTIVE_PLAYER">
+			<Text>Вы расширили свой пантеон, добавив новое верование.</Text>
+		</Row>
+		<Row Tag="TXT_KEY_NOTIFICATION_PANTHEON_ENHANCED">
+			<Text>Цивилизация {1_CivName} расширила свой пантеон, добавив новое верование.</Text>
+		</Row>
+		<Row Tag="TXT_KEY_NOTIFICATION_PANTHEON_ENHANCED_UNKNOWN">
+			<Text>Неизвестная цивилизация расширила свой пантеон, добавив новое верование.</Text>
+		</Row>
+		<Row Tag="TXT_KEY_NOTIFICATION_PANTHEON_ENHANCED_S">
+			<Text>Расширение пантеона</Text>
+		</Row>
+
+	<!-- SpyNames.xml -->
+		<Row Tag="TXT_KEY_SPY_NAME_UNKNOWN">
+			<Text>Неизвестно</Text>
+		</Row>
+    
+	<!-- UnifiedYieldsGoldenAge.xml -->
+		<Row Tag="TXT_KEY_YIELD_GOLDEN_AGE_POINTS">
+			<Text>Золотой век</Text>
+		</Row>
+		<Row Tag="TXT_KEY_TOP_PANEL_ITR_GOLDEN_AGE_POINTS_YIELD_TT">
+			<Text>{1_Num} [ICON_GOLDEN_AGE] золотого века</Text>
+		</Row>
+		<Row Tag="TXT_KEY_GOLDEN_AGE_POINTS_FROM_TRADE_ROUTES">
+			<Text>{1_perTurn:number "#.##"} [ICON_GOLDEN_AGE] от торговых путей, проложенных в этот город</Text>
+		</Row>
+    
+	<!-- UnifiedYieldsTourism.xml -->
+		<Row Tag="TXT_KEY_YIELD_TOURISM">
+			<Text>Туризм</Text>
+		</Row>
+		<Row Tag="TXT_KEY_TOP_PANEL_ITR_TOURISM_YIELD_TT">
+			<Text>{1_Num} [ICON_TOURISM] туризма</Text>
+		</Row>
+		<Row Tag="TXT_KEY_TOURISM_FROM_TRADE_ROUTES">
+			<Text>{1_perTurn:number "#.##"} [ICON_TOURISM] от торговых путей, проложенных в этот город</Text>
+		</Row>
+    
+	<!-- UnitclassNotUnit.xml -->
+		<Row Tag="TXT_KEY_TP_FAITH_NEXT_PROPHET_PARAM">
+			<Text>{1_Num} [ICON_PEACE] веры минимум требуется для следующего шанса появления {2_UNITCLASS_PROPHET}.</Text>
+		</Row>
+
+		<Row Tag="TXT_KEY_RO_FAITH_TOOLTIP_PARAM">
+			<Text>Требутся минимум {1_MinFaith} [ICON_PEACE] веры для следующего {2_UNITCLASS_PROPHET}</Text>
+		</Row>
+		<Row Tag="TXT_KEY_RO_AUTO_FAITH_PROPHET_PARAM">
+			<Text>Отложить на {1_UNITCLASS_PROPHET}</Text>
+		</Row>
+		<Row Tag="TXT_KEY_RO_AUTO_FAITH_PURCHASE_PROPHET_PARAM">
+			<Text>Купить {1_UNITCLASS_PROPHET}</Text>
+		</Row>
+
+	<!-- UnitNaming.xml -->
+		<Row Tag="TXT_KEY_UNIT_INDONESIAN_KRIS_SWORDSMAN_INVULNERABIILITY">
+			<Text>Защитный крис</Text>
+		</Row>
+		<Row Tag="TXT_KEY_UNIT_INDONESIAN_KRIS_SWORDSMAN_SNEAK_ATTACK">
+			<Text>Фланговый крис</Text>
+		</Row>
+		<Row Tag="TXT_KEY_UNIT_INDONESIAN_KRIS_SWORDSMAN_HEROISM">
+			<Text>Героический крис</Text>
+		</Row>
+		<Row Tag="TXT_KEY_UNIT_INDONESIAN_KRIS_SWORDSMAN_AMBITION">
+			<Text>Атакующий крис</Text>
+		</Row>
+		<Row Tag="TXT_KEY_UNIT_INDONESIAN_KRIS_SWORDSMAN_RESTLESSNESS">
+			<Text>Неспокойный крис</Text>
+		</Row>
+		<Row Tag="TXT_KEY_UNIT_INDONESIAN_KRIS_SWORDSMAN_RECRUITMENT">
+			<Text>Регенерирующий крис</Text>
+		</Row>
+		<Row Tag="TXT_KEY_UNIT_INDONESIAN_KRIS_SWORDSMAN_ENEMY_BLADE">
+			<Text>Проклятый крис</Text>
+		</Row>
+		<Row Tag="TXT_KEY_UNIT_INDONESIAN_KRIS_SWORDSMAN_EVIL_SPIRITS">
+			<Text>Одержимый крис</Text>
+		</Row>
+
+	<!-- VariableRecon.xml -->
+		<Row Tag="TXT_KEY_PROMOTION_RECON_SHORT_RANGE">
+			<Text>Ближняя разведка</Text>
+		</Row>
+		<Row Tag="TXT_KEY_PROMOTION_RECON_SHORT_RANGE_HELP">
+			<Text>Ближняя разведка (-2 видимости).</Text>
+		</Row>
+		<Row Tag="TXT_KEY_PEDIA_PROMOTION_RECON_SHORT_RANGE">
+			<Text>Ближняя разведка</Text>
+		</Row>
+		<Row Tag="TXT_KEY_PROMOTION_RECON_LONG_RANGE">
+			<Text>Дальняя разведка</Text>
+		</Row>
+		<Row Tag="TXT_KEY_PROMOTION_RECON_LONG_RANGE_HELP">
+			<Text>Дальняя разведка (+2 видимости).</Text>
+		</Row>
+		<Row Tag="TXT_KEY_PEDIA_PROMOTION_RECON_LONG_RANGE">
+			<Text>Дальняя разведка</Text>
+		</Row>
+	
+	<!-- Quests.xml -- Require translation
+		<Row Tag="TXT_KEY_CITY_STATE_QUEST_GENERIC_FORMAL">
+			<Text>They want you to do something for them.</Text>
+		</Row> -->
+	</Language_RU_RU>
+	
+	
+	<Language_zh_CN>
+	<!-- Espionage.xml -->
+		<Row Tag="TXT_KEY_SPY_STATE_TERMINATED">
+			<Text>被消灭了！</Text>
+		</Row>
+
+	<!-- GoodyHutMessages.xml -->
+		<Update>
+			<Where Tag="TXT_KEY_GOODY_GOLD"/>
+			<Set>
+				<Text>您在该遗迹中找到了上古帝国的宝藏！</Text>
+			</Set>
+		</Update>
+		<Update>
+			<Where Tag="TXT_KEY_GOODY_PROPHET_FAITH"/>
+			<Set>
+				<Text>您发现了一处秘密的宗教社区。传教士预言了大预言家的降临。</Text>
+			</Set>
+		</Update>
+		<Update>
+			<Where Tag="TXT_KEY_GOODY_FAITH"/>
+			<Set>
+				<Text>您发现了一座古老的祭司神殿。祭司向您揭示了神的啟示，赐予您祝福。</Text>
+			</Set>
+		</Update>
+		<Update>
+			<Where Tag="TXT_KEY_GOODY_CULTURE"/>
+			<Set>
+				<Text>您找到了让人民敬畏的文化宝物！</Text>
+			</Set>
+		</Update>
+		<Update>
+			<Where Tag="TXT_KEY_MISC_RECEIVED_GOLD"/>
+			<Set>
+				<Text>[SPACE]您获得了{1_Num}[ICON_GOLD]枚金币！</Text>
+			</Set>
+		</Update>
+		<Row Tag="TXT_KEY_MISC_RECEIVED_CULTURE">
+			<Text>[SPACE]您获得了{1_Num}[ICON_CULTURE]文化值！</Text>
+		</Row>
+		<Row Tag="TXT_KEY_MISC_RECEIVED_FAITH">
+			<Text>[SPACE]您获得了{1_Num}[ICON_PEACE]信仰值！</Text>
+		</Row>
+
+	<!-- Religion.xml -->
+		<Row Tag="TXT_KEY_NOTIFICATION_PANTHEON_ENHANCED_ACTIVE_PLAYER">
+			<Text>您已纳入新的信条以强化您的神系。</Text>
+		</Row>
+		<Row Tag="TXT_KEY_NOTIFICATION_PANTHEON_ENHANCED">
+			<Text>{1_CivName}已纳入新的信条以强化他们的神系。</Text>
+		</Row>
+		<Row Tag="TXT_KEY_NOTIFICATION_PANTHEON_ENHANCED_UNKNOWN">
+			<Text>一个未曾谋面的文明已纳入新的信条以强化他们的神系。</Text>
+		</Row>
+		<Row Tag="TXT_KEY_NOTIFICATION_PANTHEON_ENHANCED_S">
+			<Text>神系强化</Text>
+		</Row>
+
+	<!-- SpyNames.xml -->
+		<Row Tag="TXT_KEY_SPY_NAME_UNKNOWN">
+			<Text>无名</Text>
+		</Row>
+    
+	<!-- UnifiedYieldsGoldenAge.xml -->
+		<Row Tag="TXT_KEY_YIELD_GOLDEN_AGE_POINTS">
+			<Text>黄金时代点</Text>
+		</Row>
+		<Row Tag="TXT_KEY_TOP_PANEL_ITR_GOLDEN_AGE_POINTS_YIELD_TT">
+			<Text>{1_Num}[ICON_GOLDEN_AGE]黄金时代点</Text>
+		</Row>
+		<Row Tag="TXT_KEY_GOLDEN_AGE_POINTS_FROM_TRADE_ROUTES">
+			<Text>通过与该城市建立贸易线路以每回合获取{1_perTurn:number "#.##"}点[ICON_GOLDEN_AGE]</Text>
+		</Row>
+    
+	<!-- UnifiedYieldsTourism.xml -->
+		<Row Tag="TXT_KEY_YIELD_TOURISM">
+			<Text>魅力</Text>
+		</Row>
+		<Row Tag="TXT_KEY_TOP_PANEL_ITR_TOURISM_YIELD_TT">
+			<Text>{1_Num}[ICON_TOURISM]魅力</Text>
+		</Row>
+		<Row Tag="TXT_KEY_TOURISM_FROM_TRADE_ROUTES">
+			<Text>通过与该城市建立贸易线路以每回合获取{1_perTurn:number "#.##"}点[ICON_TOURISM]</Text>
+		</Row>
+    
+	<!-- UnitclassNotUnit.xml -->
+		<Row Tag="TXT_KEY_TP_FAITH_NEXT_PROPHET_PARAM">
+			<Text>需要至少{1_Num}[ICON_PEACE]信仰值才可诞生下一个{2_UNITCLASS_PROPHET}</Text>
+		</Row>
+
+		<Row Tag="TXT_KEY_RO_FAITH_TOOLTIP_PARAM">
+			<Text>至少需要{1_MinFaith}[ICON_PEACE]信仰值才诞生下个{2_UNITCLASS_PROPHET}</Text>
+		</Row>
+		<Row Tag="TXT_KEY_RO_AUTO_FAITH_PROPHET_PARAM">
+			<Text>为{1_UNITCLASS_PROPHET}留存</Text>
+		</Row>
+		<Row Tag="TXT_KEY_RO_AUTO_FAITH_PURCHASE_PROPHET_PARAM">
+			<Text>购买{1_UNITCLASS_PROPHET}</Text>
+		</Row>
+
+	<!-- UnitNaming.xml -->
+		<Row Tag="TXT_KEY_UNIT_INDONESIAN_KRIS_SWORDSMAN_INVULNERABIILITY">
+			<Text>不朽的克里斯</Text>
+		</Row>
+		<Row Tag="TXT_KEY_UNIT_INDONESIAN_KRIS_SWORDSMAN_SNEAK_ATTACK">
+			<Text>奇袭的克里斯</Text>
+		</Row>
+		<Row Tag="TXT_KEY_UNIT_INDONESIAN_KRIS_SWORDSMAN_HEROISM">
+			<Text>英勇的克里斯</Text>
+		</Row>
+		<Row Tag="TXT_KEY_UNIT_INDONESIAN_KRIS_SWORDSMAN_AMBITION">
+			<Text>狂莽的克里斯</Text>
+		</Row>
+		<Row Tag="TXT_KEY_UNIT_INDONESIAN_KRIS_SWORDSMAN_RESTLESSNESS">
+			<Text>不懈的克里斯</Text>
+		</Row>
+		<Row Tag="TXT_KEY_UNIT_INDONESIAN_KRIS_SWORDSMAN_RECRUITMENT">
+			<Text>新锐的克里斯</Text>
+		</Row>
+		<Row Tag="TXT_KEY_UNIT_INDONESIAN_KRIS_SWORDSMAN_ENEMY_BLADE">
+			<Text>受诅咒的克里斯</Text>
+		</Row>
+		<Row Tag="TXT_KEY_UNIT_INDONESIAN_KRIS_SWORDSMAN_EVIL_SPIRITS">
+			<Text>着魔的克里斯</Text>
+		</Row>
+
+	<!-- VariableRecon.xml -->
+		<Row Tag="TXT_KEY_PROMOTION_RECON_SHORT_RANGE">
+			<Text>侦查受限</Text>
+		</Row>
+		<Row Tag="TXT_KEY_PROMOTION_RECON_SHORT_RANGE_HELP">
+			<Text>视野-2。</Text>
+		</Row>
+		<Row Tag="TXT_KEY_PEDIA_PROMOTION_RECON_SHORT_RANGE">
+			<Text>侦查受限</Text>
+		</Row>
+		<Row Tag="TXT_KEY_PROMOTION_RECON_LONG_RANGE">
+			<Text>侦查强化</Text>
+		</Row>
+		<Row Tag="TXT_KEY_PROMOTION_RECON_LONG_RANGE_HELP">
+			<Text>视野+2。</Text>
+		</Row>
+		<Row Tag="TXT_KEY_PEDIA_PROMOTION_RECON_LONG_RANGE">
+			<Text>侦查强化</Text>
+		</Row>
+
+	<!-- Quests.xml -->
+		<Row Tag="TXT_KEY_CITY_STATE_QUEST_GENERIC_FORMAL">
+			<Text>他们希望您能为城邦做点儿什么。</Text>
+		</Row>
+	</Language_zh_CN>
+	
+	
+	<Language_zh_Hant_HK>
+	<!-- Espionage.xml -->
+		<Row Tag="TXT_KEY_SPY_STATE_TERMINATED">
+			<Text>被消滅了！</Text>
+		</Row>
+
+	<!-- GoodyHutMessages.xml -->
+		<Update>
+			<Where Tag="TXT_KEY_GOODY_GOLD"/>
+			<Set>
+				<Text>您在該遺迹中找到了上古帝國的寶藏！</Text>
+			</Set>
+		</Update>
+		<Update>
+			<Where Tag="TXT_KEY_GOODY_PROPHET_FAITH"/>
+			<Set>
+				<Text>您發現了一處秘密的宗教社區。傳教士預言了大預言家的降臨。</Text>
+			</Set>
+		</Update>
+		<Update>
+			<Where Tag="TXT_KEY_GOODY_FAITH"/>
+			<Set>
+				<Text>您發現了一座古老的祭司神殿。祭司向您揭示了神的啟示，賜予您祝福。</Text>
+			</Set>
+		</Update>
+		<Update>
+			<Where Tag="TXT_KEY_GOODY_CULTURE"/>
+			<Set>
+				<Text>您找到了讓人民敬畏的文化寶物！</Text>
+			</Set>
+		</Update>
+		<Update>
+			<Where Tag="TXT_KEY_MISC_RECEIVED_GOLD"/>
+			<Set>
+				<Text>[SPACE]您獲得了{1_Num}[ICON_GOLD]枚金幣！</Text>
+			</Set>
+		</Update>
+		<Row Tag="TXT_KEY_MISC_RECEIVED_CULTURE">
+			<Text>[SPACE]您獲得了{1_Num}[ICON_CULTURE]文化值！</Text>
+		</Row>
+		<Row Tag="TXT_KEY_MISC_RECEIVED_FAITH">
+			<Text>[SPACE]您獲得了{1_Num}[ICON_PEACE]信仰值！</Text>
+		</Row>
+
+	<!-- Religion.xml -->
+		<Row Tag="TXT_KEY_NOTIFICATION_PANTHEON_ENHANCED_ACTIVE_PLAYER">
+			<Text>您已納入新的信條以強化您的神系。</Text>
+		</Row>
+		<Row Tag="TXT_KEY_NOTIFICATION_PANTHEON_ENHANCED">
+			<Text>{1_CivName}已納入新的信條以強化他們的神系。</Text>
+		</Row>
+		<Row Tag="TXT_KEY_NOTIFICATION_PANTHEON_ENHANCED_UNKNOWN">
+			<Text>一個未曾謀面的文明已納入新的信條以強化他們的神系。</Text>
+		</Row>
+		<Row Tag="TXT_KEY_NOTIFICATION_PANTHEON_ENHANCED_S">
+			<Text>神系強化</Text>
+		</Row>
+
+	<!-- SpyNames.xml -->
+		<Row Tag="TXT_KEY_SPY_NAME_UNKNOWN">
+			<Text>無名</Text>
+		</Row>
+    
+	<!-- UnifiedYieldsGoldenAge.xml -->
+		<Row Tag="TXT_KEY_YIELD_GOLDEN_AGE_POINTS">
+			<Text>黃金時代點</Text>
+		</Row>
+		<Row Tag="TXT_KEY_TOP_PANEL_ITR_GOLDEN_AGE_POINTS_YIELD_TT">
+			<Text>{1_Num}[ICON_GOLDEN_AGE]黃金時代點</Text>
+		</Row>
+		<Row Tag="TXT_KEY_GOLDEN_AGE_POINTS_FROM_TRADE_ROUTES">
+			<Text>通過與該城市建立貿易線路以每回合獲取{1_perTurn:number "#.##"}點[ICON_GOLDEN_AGE]</Text>
+		</Row>
+    
+	<!-- UnifiedYieldsTourism.xml -->
+		<Row Tag="TXT_KEY_YIELD_TOURISM">
+			<Text>旅遊業績</Text>
+		</Row>
+		<Row Tag="TXT_KEY_TOP_PANEL_ITR_TOURISM_YIELD_TT">
+			<Text>{1_Num}[ICON_TOURISM]旅遊業績</Text>
+		</Row>
+		<Row Tag="TXT_KEY_TOURISM_FROM_TRADE_ROUTES">
+			<Text>通過與該城市建立貿易線路以每回合獲取{1_perTurn:number "#.##"}點[ICON_TOURISM]</Text>
+		</Row>
+    
+	<!-- UnitclassNotUnit.xml -->
+		<Row Tag="TXT_KEY_TP_FAITH_NEXT_PROPHET_PARAM">
+			<Text>需要至少{1_Num}[ICON_PEACE]信仰值才可誕生下一個{2_UNITCLASS_PROPHET}</Text>
+		</Row>
+
+		<Row Tag="TXT_KEY_RO_FAITH_TOOLTIP_PARAM">
+			<Text>至少需要{1_MinFaith}[ICON_PEACE]信仰值才誕生下個{2_UNITCLASS_PROPHET}</Text>
+		</Row>
+		<Row Tag="TXT_KEY_RO_AUTO_FAITH_PROPHET_PARAM">
+			<Text>為{1_UNITCLASS_PROPHET}留存</Text>
+		</Row>
+		<Row Tag="TXT_KEY_RO_AUTO_FAITH_PURCHASE_PROPHET_PARAM">
+			<Text>購買{1_UNITCLASS_PROPHET}</Text>
+		</Row>
+
+	<!-- UnitNaming.xml -->
+		<Row Tag="TXT_KEY_UNIT_INDONESIAN_KRIS_SWORDSMAN_INVULNERABIILITY">
+			<Text>不朽的克里斯</Text>
+		</Row>
+		<Row Tag="TXT_KEY_UNIT_INDONESIAN_KRIS_SWORDSMAN_SNEAK_ATTACK">
+			<Text>奇襲的克里斯</Text>
+		</Row>
+		<Row Tag="TXT_KEY_UNIT_INDONESIAN_KRIS_SWORDSMAN_HEROISM">
+			<Text>英勇的克里斯</Text>
+		</Row>
+		<Row Tag="TXT_KEY_UNIT_INDONESIAN_KRIS_SWORDSMAN_AMBITION">
+			<Text>狂莽的克里斯</Text>
+		</Row>
+		<Row Tag="TXT_KEY_UNIT_INDONESIAN_KRIS_SWORDSMAN_RESTLESSNESS">
+			<Text>不懈的克里斯</Text>
+		</Row>
+		<Row Tag="TXT_KEY_UNIT_INDONESIAN_KRIS_SWORDSMAN_RECRUITMENT">
+			<Text>新銳的克里斯</Text>
+		</Row>
+		<Row Tag="TXT_KEY_UNIT_INDONESIAN_KRIS_SWORDSMAN_ENEMY_BLADE">
+			<Text>受詛咒的克里斯</Text>
+		</Row>
+		<Row Tag="TXT_KEY_UNIT_INDONESIAN_KRIS_SWORDSMAN_EVIL_SPIRITS">
+			<Text>著魔的克里斯</Text>
+		</Row>
+
+	<!-- VariableRecon.xml -->
+		<Row Tag="TXT_KEY_PROMOTION_RECON_SHORT_RANGE">
+			<Text>偵查受限</Text>
+		</Row>
+		<Row Tag="TXT_KEY_PROMOTION_RECON_SHORT_RANGE_HELP">
+			<Text>視野-2。</Text>
+		</Row>
+		<Row Tag="TXT_KEY_PEDIA_PROMOTION_RECON_SHORT_RANGE">
+			<Text>偵查受限</Text>
+		</Row>
+		<Row Tag="TXT_KEY_PROMOTION_RECON_LONG_RANGE">
+			<Text>偵查強化</Text>
+		</Row>
+		<Row Tag="TXT_KEY_PROMOTION_RECON_LONG_RANGE_HELP">
+			<Text>視野+2。</Text>
+		</Row>
+		<Row Tag="TXT_KEY_PEDIA_PROMOTION_RECON_LONG_RANGE">
+			<Text>偵查強化</Text>
+		</Row>
+	
+	<!-- Quests.xml -->
+		<Row Tag="TXT_KEY_CITY_STATE_QUEST_GENERIC_FORMAL">
+			<Text>他們希望您能爲城邦做點兒什麽。</Text>
+		</Row>
+	</Language_zh_Hant_HK>
+</GameData>

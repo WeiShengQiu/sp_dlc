@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Context ColorSet="Beige_Black_Alpha" Font="TwCenMT22" FontStyle="Shadow" Name="FrontEnd" >
+	<Button ID="Button" Size="Full,Full" Color="0,0,0,255">
+		<AlphaAnim ID="Timer" Speed="0.1" Pause="0" Cycle="Bounce" Stopped="1" />
+		<AlphaAnim ID="FadeIn" Size="Full,Full" AlphaStart="0.3" AlphaEnd="1" Pause="0" Cycle="Once" Speed="1" Stopped="1" >
+			<Image ID="AtlasLogo" Anchor="C,C" Sampler="Linear" />
+		</AlphaAnim>
+	</Button>
+	<Image Anchor="L,T" Offset="0,0" ID="SPLogo" Hidden="1" />
+	
+	<!-- SP Version Information -->
+	<Label Anchor="R,B" Offset="30,30" Font="TwCenMT16" ID="SPVersion"/>
+
+	<!-- Child Screens -->
+	<LuaContext FileName="Assets/UI/FrontEnd/LegalScreen" ID="LegalScreen" Hidden="1" />
+	<LuaContext FileName="Assets/UI/FrontEnd/MainMenu" ID="MainMenu" Hidden="1" />
+
+	<LuaContext FileName="Assets/UI/FrontEnd/FrontEndPopup" Hidden="1" />
+	<LuaContext FileName="Assets/UI/FrontEnd/ExitConfirm" Hidden="1" />
+	<LuaContext FileName="Assets/UI/FrontEnd/ContentSwitch" ID="ContentSwitch" Hidden="1" />
+</Context>

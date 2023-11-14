@@ -1,0 +1,60 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- edited with XMLSPY v2004 rel. 2 U (http://www.xmlspy.com) by Ed Beach (Firaxis Games) -->
+<GameData>
+	<!-- Table definition -->
+	<Table name="Builds">
+		<!-- Basic info -->
+		<Column name="ID" type="integer" primarykey="true" autoincrement="true"/>
+		<Column name="Type" type="text" notnull="true" unique="true"/>
+		<Column name="Description" type="text"/>
+		<Column name="Help" type="text" default=""/>
+		<Column name="DisabledHelp" type="text" default=""/>
+		<Column name="Recommendation" type="text" default=""/>
+		<!-- Hotkey info -->
+		<Column name="HotKey" type="text"/>
+		<Column name="HotKeyAlt" type="text"/>
+		<Column name="HotKeyPriority" type="integer" default="0"/>
+		<Column name="HotKeyPriorityAlt" type="integer" default="0"/>
+		<Column name="OrderPriority" type="integer" default="0"/>
+		<Column name="AltDown" type="boolean" default="false"/>
+		<Column name="AltDownAlt" type="boolean" default="false"/>
+		<Column name="ShiftDown" type="boolean" default="false"/>
+		<Column name="ShiftDownAlt" type="boolean" default="false"/>
+		<Column name="CtrlDown" type="boolean" default="false"/>
+		<Column name="CtrlDownAlt" type="boolean" default="false"/>
+		<!-- Build info -->
+		<Column name="Time" type="integer"/>
+		<Column name="Cost" type="integer" default="0"/>
+		<Column name="CostIncreasePerImprovement" type="integer" default="0"/>
+		<Column name="Kill" type="boolean" default="false"/>
+		<Column name="Repair" type="boolean" default="false"/>
+		<Column name="RemoveRoute" type="boolean" default="false"/>
+		<Column name="Water" type="boolean" default="false"/>
+		<Column name="CanBeEmbarked" type="boolean" default="false"/>
+		<Column name="PrereqTech" type="text" default="NULL"/>
+		<Column name="ImprovementType" type="text" default="NULL"/>
+		<Column name="RouteType" type="text" default="NULL"/>
+		<Column name="EntityEvent" type="text" default="NULL"/>
+		<Column name="IconIndex" type="integer" default="-1"/>
+		<Column name="IconAtlas" type="text" default="NULL" reference="IconTextureAtlases(Atlas)" />
+		<Column name="ShowInPedia" type="boolean" default="true" />
+		<Column name="ShowInTechTree" type="boolean" default="true" />
+	</Table>
+	<Table name="BuildFeatures">
+		<Column name="BuildType" type="text" reference="Builds(Type)"/>
+		<Column name="FeatureType" type="text"/>
+		<Column name="PrereqTech" type="text"/>
+		<Column name="Time" type="integer"/>
+		<Column name="Production" type="integer" default="0"/>
+		<Column name="Cost" type="integer" default="0"/>
+		<Column name="Remove" type="boolean" default="false"/>
+		<!-- VMC -->
+		<Column name="ObsoleteTech" type="text" default="NULL" reference="Technologies(Type)"/>
+		<Column name="RemoveOnly" type="integer" default="0"/>
+	</Table>
+	<Table name="Build_TechTimeChanges">
+		<Column name="BuildType" type="text" reference="Builds(Type)"/>
+		<Column name="TechType" type="text"/>
+		<Column name="TimeChange" type="integer" default="0"/>
+	</Table>
+</GameData>

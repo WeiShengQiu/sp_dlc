@@ -1,0 +1,61 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- edited with XMLSPY v2004 rel. 2 U (http://www.xmlspy.com) by Ed Beach (Firaxis Games) -->
+<GameData>
+	<!-- Table data -->
+	<GameOptions>
+		<Row>
+			<Type>GAMEOPTION_NO_RELIGION</Type>
+			<Description>TXT_KEY_GAME_OPTION_NO_RELIGION</Description>
+			<Help>TXT_KEY_GAME_OPTION_NO_RELIGION_HELP</Help>
+			<Visible>0</Visible>
+		</Row>
+		<Row>
+			<Type>GAMEOPTION_NO_ESPIONAGE</Type>
+			<Description>TXT_KEY_GAME_OPTION_NO_ESPIONAGE</Description>
+			<Help>TXT_KEY_GAME_OPTION_NO_ESPIONAGE_HELP</Help>
+		</Row>
+	
+	<!-- SP New Game Options -->
+		<Row>
+			<Type>GAMEOPTION_SP_CORRUPTION_OFF</Type>
+			<Description>TXT_KEY_GAME_OPTION_SP_CORRUPTION</Description>
+			<Help>TXT_KEY_GAME_OPTION_SP_CORRUPTION_HELP</Help>
+		</Row>
+		<Row>
+			<Type>GAMEOPTION_SP_IMMIGRATION_OFF</Type>
+			<Description>TXT_KEY_GAME_OPTION_SP_IMMIGRATION</Description>
+			<Help>TXT_KEY_GAME_OPTION_SP_IMMIGRATION_HELP</Help>
+		</Row>
+		<Row>
+			<Type>GAMEOPTION_SP_NEWATTACK_OFF</Type>
+			<Description>TXT_KEY_GAME_OPTION_SP_NEWATTACK</Description>
+			<Help>TXT_KEY_GAME_OPTION_SP_NEWATTACK_HELP</Help>
+		</Row>
+		<Row>
+			<Type>GAMEOPTION_SP_NUCLEARWINTER_OFF</Type>
+			<Description>TXT_KEY_GAME_OPTION_SP_NUCLEARWINTER</Description>
+			<Help>TXT_KEY_GAME_OPTION_SP_NUCLEARWINTER_HELP</Help>
+		</Row>
+		<Row>
+			<Type>GAMEOPTION_SP_RECORD_MODE</Type>
+			<Description>TXT_KEY_GAME_OPTION_SP_RECORD_MODE</Description>
+			<Help>TXT_KEY_GAME_OPTION_SP_RECORD_MODE_HELP</Help>
+			<SupportsMultiplayer>false</SupportsMultiplayer>
+		</Row>
+		<Row>
+			<Type>GAMEOPTION_SP_CORPS_MODE_HIGH</Type>
+			<Description>TXT_KEY_GAME_OPTION_SP_CORPS_MODE_HIGH</Description>
+			<Help>TXT_KEY_GAME_OPTION_SP_CORPS_MODE_HIGH_HELP</Help>
+		</Row>
+		<Row>
+			<Type>GAMEOPTION_SP_CORPS_MODE_MEDIUM</Type>
+			<Description>TXT_KEY_GAME_OPTION_SP_CORPS_MODE_MEDIUM</Description>
+			<Help>TXT_KEY_GAME_OPTION_SP_CORPS_MODE_MEDIUM_HELP</Help>
+		</Row>
+		<Row>
+			<Type>GAMEOPTION_SP_CORPS_MODE_LOW</Type>
+			<Description>TXT_KEY_GAME_OPTION_SP_CORPS_MODE_LOW</Description>
+			<Help>TXT_KEY_GAME_OPTION_SP_CORPS_MODE_LOW_HELP</Help>
+		</Row>
+	</GameOptions>
+</GameData>
