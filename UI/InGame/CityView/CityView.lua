@@ -2900,7 +2900,8 @@ function OnYes( )
 		then
 			print("City Hall sold! Set Puppet!")
 			
-			pCity:SetNumRealBuilding(GameInfoTypes["BUILDING_PUPPET_GOVERNEMENT"],1);
+			--pCity:SetNumRealBuilding(GameInfoTypes["BUILDING_PUPPET_GOVERNEMENT"],1);
+			pCity:SendAndExecuteLuaFunction(pCity.SetNumRealBuilding, GameInfoTypes["BUILDING_PUPPET_GOVERNEMENT"], 1)
 			
 			for building in GameInfo.Buildings() do
 				if pCity:IsHasBuilding(building.ID)
@@ -2914,17 +2915,21 @@ function OnYes( )
 				or  building.BuildingClass == "BUILDINGCLASS_ARSENAL"
 				or  building.BuildingClass == "BUILDINGCLASS_MILITARY_BASE")
 				then
-					pCity:SetNumRealBuilding(building.ID, 0);
+					--pCity:SetNumRealBuilding(building.ID, 0);
+					pCity:SendAndExecuteLuaFunction(pCity.SetNumRealBuilding, building.ID, 0)
 				end
 			end
 			
-			pCity:SetPuppet(true)
-			pCity:SetProductionAutomated(true)
+			--pCity:SetPuppet(true)
+			pCity:SendAndExecuteLuaFunction(pCity.SetPuppet, true)
+			--pCity:SetProductionAutomated(true)
+			pCity:SendAndExecuteLuaFunction(pCity.SetProductionAutomated, true)
 			
 --			if not Players[Game.GetActivePlayer()]:HasPolicy(GameInfo.Policies["POLICY_TREATY_ORGANIZATION"].ID)then
 				local CityPop = pCity:GetPopulation()
 				local CityResTime = CityPop * 0.5
-				pCity:ChangeResistanceTurns(CityResTime)
+				--pCity:ChangeResistanceTurns(CityResTime)
+				pCity:SendAndExecuteLuaFunction(pCity.ChangeResistanceTurns, CityResTime)
 --			end
 		end
 		-----------------------------------------------------------------------------------------SP Selling City Hall Create Puppet End---------------------------------------------
@@ -2987,7 +2992,8 @@ function OnCopyCapitalFocus()
 			print ("Current City Focus"..CapitalFocusType)
 			for city in player:Cities() do
 				if not city:IsPuppet() and not city:IsResistance() then
-					city:SetFocusType(CapitalFocusType)
+					--city:SetFocusType(CapitalFocusType)
+					city:SendAndExecuteLuaFunction(city.SetFocusType, CapitalFocusType)
 					print ("Current City Focus Copied!")
 				end
 			end
@@ -3025,18 +3031,21 @@ function OnCopyCapitalOrder()
 			
 					if CapitalUnitProduction ~= -1 then 
 						if city:CanTrain(CapitalUnitProduction) then
-							city:PushOrder (OrderTypes.ORDER_TRAIN, CapitalUnitProduction, -1, 0, false, false)
+							--city:PushOrder (OrderTypes.ORDER_TRAIN, CapitalUnitProduction, -1, 0, false, false)
+							city:SendAndExecuteLuaFunction(city.PushOrder, OrderTypes.ORDER_TRAIN, CapitalUnitProduction, -1, 0, false, false)
 							print ("Current Unit Copied!")
 						end	
 				
 					elseif CapitalBuildingProduction ~= -1 then
 						if city:CanConstruct(CapitalBuildingProduction) then
-							city:PushOrder (OrderTypes.ORDER_CONSTRUCT, CapitalBuildingProduction, -1, 0, false, false)
+							--city:PushOrder (OrderTypes.ORDER_CONSTRUCT, CapitalBuildingProduction, -1, 0, false, false)
+							city:SendAndExecuteLuaFunction(city.PushOrder, OrderTypes.ORDER_CONSTRUCT, CapitalBuildingProduction, -1, 0, false, false)
 							print ("Current Building Copied!")
 						end	
 						
 					elseif 	CapitalProcessProduction ~= -1 then
-						city:PushOrder (OrderTypes.ORDER_MAINTAIN, CapitalProcessProduction, -1, 0, false, false)
+						--city:PushOrder (OrderTypes.ORDER_MAINTAIN, CapitalProcessProduction, -1, 0, false, false)
+						city:SendAndExecuteLuaFunction(city.PushOrder, OrderTypes.ORDER_MAINTAIN, CapitalProcessProduction, -1, 0, false, false)
 						print ("Current Process Copied!") 
 					end					
 					
@@ -3069,7 +3078,8 @@ function OnClearAllOrder()
 		if not UI.IsCityScreenViewingMode() then
 			for city in player:Cities() do
 				if not city:IsPuppet() and not city:IsResistance() then
-					city:ClearOrderQueue()
+					--city:ClearOrderQueue()
+					city:SendAndExecuteLuaFunction(city.ClearOrderQueue)
 					print ("City Order Cleared!")
 				end
 			end
@@ -3091,17 +3101,21 @@ function OnCityAutomation(bIsChecked)
 	if(player:IsHuman()) and UI.IsCityScreenUp() then --Only Effective for Human Players	
 		local city = UI.GetHeadSelectedCity()
 		if not bIsChecked and city:IsProductionAutomated() then
-			city:SetProductionAutomated(false)
-			city:ClearOrderQueue()
+			--city:SetProductionAutomated(false)
+			city:SendAndExecuteLuaFunction(city.SetProductionAutomated, false)
+			--city:ClearOrderQueue()
+			city:SendAndExecuteLuaFunction(city.ClearOrderQueue)
 			print ("City Automation OFF!")
 		end
 		if bIsChecked and not UI.IsCityScreenViewingMode() then
-			city:SetProductionAutomated(true)
+			--city:SetProductionAutomated(true)
+			city:SendAndExecuteLuaFunction(city.SetProductionAutomated, true)
 			print ("City Automation On!")
 		end
 	end	
 end
-Controls.BTNCityAuto:RegisterCheckHandler(OnCityAutomation)
+Controls.BTNCityAuto:RegisterCheckHandler(OnCityAutomation)
+
 
 
 

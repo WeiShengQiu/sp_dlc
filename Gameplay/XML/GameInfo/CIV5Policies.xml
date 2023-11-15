@@ -6239,47 +6239,47 @@
 		<Row>
 			<PolicyType>POLICY_OPEN_SOCIETY</PolicyType>
 			<UnitClassType>UNITCLASS_WRITER</UnitClassType>
-			<Tourism>300</Tourism>
+			<Tourism>500</Tourism>
 		</Row>
 		<Row>
 			<PolicyType>POLICY_OPEN_SOCIETY</PolicyType>
 			<UnitClassType>UNITCLASS_ARTIST</UnitClassType>
-			<Tourism>300</Tourism>
+			<Tourism>500</Tourism>
 		</Row>
 		<Row>
 			<PolicyType>POLICY_OPEN_SOCIETY</PolicyType>
 			<UnitClassType>UNITCLASS_MUSICIAN</UnitClassType>
-			<Tourism>300</Tourism>
+			<Tourism>500</Tourism>
 		</Row>
 		<Row>
 			<PolicyType>POLICY_OPEN_SOCIETY</PolicyType>
 			<UnitClassType>UNITCLASS_ENGINEER</UnitClassType>
-			<Tourism>300</Tourism>
+			<Tourism>500</Tourism>
 		</Row>
 		<Row>
 			<PolicyType>POLICY_OPEN_SOCIETY</PolicyType>
 			<UnitClassType>UNITCLASS_SCIENTIST</UnitClassType>
-			<Tourism>300</Tourism>
+			<Tourism>500</Tourism>
 		</Row>
 		<Row>
 			<PolicyType>POLICY_OPEN_SOCIETY</PolicyType>
 			<UnitClassType>UNITCLASS_MERCHANT</UnitClassType>
-			<Tourism>300</Tourism>
+			<Tourism>500</Tourism>
 		</Row>
 		<Row>
 			<PolicyType>POLICY_OPEN_SOCIETY</PolicyType>
 			<UnitClassType>UNITCLASS_PROPHET</UnitClassType>
-			<Tourism>300</Tourism>
+			<Tourism>500</Tourism>
 		</Row>
 		<Row>
 			<PolicyType>POLICY_OPEN_SOCIETY</PolicyType>
 			<UnitClassType>UNITCLASS_GREAT_GENERAL</UnitClassType>
-			<Tourism>300</Tourism>
+			<Tourism>500</Tourism>
 		</Row>
 		<Row>
 			<PolicyType>POLICY_OPEN_SOCIETY</PolicyType>
 			<UnitClassType>UNITCLASS_GREAT_ADMIRAL</UnitClassType>
-			<Tourism>300</Tourism>
+			<Tourism>500</Tourism>
 		</Row>
 	
 

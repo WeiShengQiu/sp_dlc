@@ -26830,4 +26830,9 @@
 			<UniqueName>TXT_KEY_IJN_YUGUMO</UniqueName>
 		</Row>
 	</Unit_UniqueNames>
+
+
+	<UnitPromotions_PromotionModifiers>
+	
+	</UnitPromotions_PromotionModifiers>
 </GameData>

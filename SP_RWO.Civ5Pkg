@@ -3,6 +3,7 @@
   <GUID>{b5932ae4-0f4f-498f-9333-e2d31b20e095}</GUID>
   <Version>7</Version>
   <Priority>280</Priority>
+  
   <PTags>
 	<Tag>Version</Tag>
   </PTags>
@@ -10,7 +11,7 @@
 	<Value language="en_US">Super Power - Remaking of World Order</Value>
   </Name>
   <Description>
-	<Value language="en_US">Super Power - Remaking of World Order - Created by CaptainCWB</Value>
+	<Value language="en_US">Super Power - Remaking of World Order</Value>
   </Description>
   <UISkin name="Expansion2Primary" set="Expansion2" platform="Common">
 	<Skin>

@@ -54,6 +54,7 @@ function UnitDeathCounter(iKerPlayer, iKeePlayer, eUnitType)
 	
 	local defPlayer = Players[iKeePlayer];
 	local iCasualty = defPlayer:GetCapitalCity():GetNumBuilding(GameInfoTypes["BUILDING_WAR_CASUALTIES"]);
+	print(string.format("Defender city: %s, BUILDING_WAR_CASUALTIES: %d", defPlayer:GetCapitalCity():GetName(), iCasualty))
 	local sUnitType = GameInfo.Units[eUnitType].Type;
 	local iDCounter = 6;
 	
@@ -66,7 +67,7 @@ function UnitDeathCounter(iKerPlayer, iKeePlayer, eUnitType)
 	if defPlayer:HasPolicy(GameInfo.Policies["POLICY_CENTRALISATION"].ID) then
 		iDCounter = 2*iDCounter/3;
 	end
-	
+	print(string.format("Defender city: %s, iDCounter: %d", defPlayer:GetCapitalCity():GetName(), iDCounter))
 	print ("DeathCounter(Max-12): ".. iCasualty .. " + " .. iDCounter);
 	if iCasualty + iDCounter < 12 then
 		defPlayer:GetCapitalCity():SetNumRealBuilding(GameInfoTypes["BUILDING_WAR_CASUALTIES"], iCasualty + iDCounter);

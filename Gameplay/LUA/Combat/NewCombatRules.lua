@@ -1381,12 +1381,16 @@ function NewAttackEffect()
     			tlostHP = "[COLOR_NEGATIVE_TEXT]" .. -20 .. "[ENDCOLOR]";
     			Message = 5
     		elseif attUnit:IsHasPromotion(CitySiegeUnitID) and defUnit:IsCombatUnit() and defUnit:GetDomainType() == DomainTypes.DOMAIN_SEA and GameInfo.Units[defUnit:GetUnitType()].MoveRate == "WOODEN_BOAT" then
-		    if not defUnit:IsHasPromotion(Damage1ID) and math.random(1, 10) <= 5 then
+			--local randNum = math.random(1, 10)
+			local randNum = Game.Rand(10, "at NewCombatRules line 1385") + 1
+			local str = string.format("Calling random at UnitCombatRule line 1385, random number is %d:\n", randNum)
+			print(str)
+		    if not defUnit:IsHasPromotion(Damage1ID) and randNum <= 5 then
 			defUnit:SetHasPromotion(Damage1ID, true);
     			tdebuff = Locale.ConvertTextKey("TXT_KEY_PROMOTION_DAMAGE_1");
     			tlostHP = "[COLOR_NEGATIVE_TEXT]" .. -10 .. "[ENDCOLOR]";
 			Message = 5;
-		    elseif defUnit:IsHasPromotion(Damage1ID) and not defUnit:IsHasPromotion(Damage2ID) and math.random(1, 10) <= 8 then
+		    elseif defUnit:IsHasPromotion(Damage1ID) and not defUnit:IsHasPromotion(Damage2ID) and randNum <= 8 then
 			defUnit:SetHasPromotion(Damage2ID, true);
     			tdebuff = Locale.ConvertTextKey("TXT_KEY_PROMOTION_DAMAGE_2");
     			tlostHP = "[COLOR_NEGATIVE_TEXT]" .. -20 .. "[ENDCOLOR]";
@@ -1583,10 +1587,10 @@ function NewAttackEffect()
 		-- attUnit:PushMission(MissionTypes.MISSION_DIE_ANIMATION)
 		
 		------------Notifications
-		local text = nil;
+		local text = "";
 		local attUnitName = attUnit:GetName();
 		local defUnitName = defUnit:GetName();
-		
+		print ("Passed Air sweep mid")
 		if     attDamageInflicted >= attUnit:GetCurrHitPoints() then
 			attDamageInflicted = attUnit:GetCurrHitPoints();
 			local eUnitType = attUnit:GetUnitType();
@@ -1601,11 +1605,12 @@ function NewAttackEffect()
 		elseif attDamageInflicted > 0 then
 			attDamageInflicted = math.floor(attDamageInflicted);
 			attUnit:ChangeExperience(4)
+			print ("Passed Air sweep mid 2.0")
 			if     attPlayerID == Game.GetActivePlayer() then
 				text = Locale.ConvertTextKey( "TXT_KEY_SP_NOTIFICATION_AIRSWEEP_TO_ENEMY", attUnitName, defUnitName, tostring(attDamageInflicted));
 			end
 		end
-		
+		print ("Passed Air sweep mid 2")
 		if     defDamageInflicted >= defUnit:GetCurrHitPoints() then
 			defDamageInflicted = defUnit:GetCurrHitPoints();
 			local eUnitType = defUnit:GetUnitType();
@@ -1624,8 +1629,9 @@ function NewAttackEffect()
 				text = Locale.ConvertTextKey( "TXT_KEY_SP_NOTIFICATION_AIRSWEEP_BY_ENEMY", attUnitName, defUnitName, tostring(attDamageInflicted));
 			end
 		end
-		
+		print ("Passed Air sweep mid 3")
 		if attPlayer:IsHuman() or defPlayer:IsHuman() then
+			print ("Passed Air sweep mid 4")
 			Events.GameplayAlertMessage( text )
 		end
 		
@@ -1636,7 +1642,7 @@ function NewAttackEffect()
 		defUnit:ChangeDamage(defDamageInflicted,attPlayer);
 	    end
 	    
-	    
+	    print ("Passed Air sweep mid 5")
 	    --------------------------- Supply Damage AOE Effects
 	    if attUnit:IsHasPromotion(DestroySupply2ID) then
 		defUnit:SetHasPromotion(LoseSupplyID, true)
@@ -1657,85 +1663,87 @@ GameEvents.BattleFinished.Add(NewAttackEffect)
 
 -- fix Damage for 100+ HP
 function OnFixSetDamageSP( iPlayerID, iUnitID, iDamage, iPreviousDamage )
-	if Players[ iPlayerID ] == nil or not Players[ iPlayerID ]:IsAlive()
-	or Players[ iPlayerID ]:GetUnitByID( iUnitID ) == nil
-	or Players[ iPlayerID ]:GetUnitByID( iUnitID ):IsDead()
-	or Players[ iPlayerID ]:GetUnitByID( iUnitID ):IsDelayedDeath()
-	or Players[ iPlayerID ]:GetUnitByID( iUnitID ):GetMaxHitPoints() <= iDamage
-	or GameInfoTypes["PROMOTION_MAXHP_REDUCE_1"] == nil or GameInfoTypes["PROMOTION_MAXHP_REDUCE_2"] == nil
-	or GameInfoTypes["PROMOTION_MAXHP_REDUCE_3"] == nil or GameInfoTypes["PROMOTION_MAXHP_REDUCE_4"] == nil
-	then
-		return;
-	end
-	local pUnit = Players[ iPlayerID ]:GetUnitByID( iUnitID );
-	
-	if (iDamage >= 100 and pUnit:GetMaxHitPoints() > 100) or (iDamage == 0 
-	and(pUnit:IsHasPromotion(GameInfoTypes["PROMOTION_MAXHP_REDUCE_1"]) or pUnit:IsHasPromotion(GameInfoTypes["PROMOTION_MAXHP_REDUCE_2"])
-	or  pUnit:IsHasPromotion(GameInfoTypes["PROMOTION_MAXHP_REDUCE_3"]) or pUnit:IsHasPromotion(GameInfoTypes["PROMOTION_MAXHP_REDUCE_4"])))
-	then
-		-- -MaxHP
-		if iDamage >= 100 then
-			iDamage = SetRealFinalDamageAndDamageLevel( pUnit, iDamage );
-		-- +MaxHP
-		else	-- if iDamage == 0 then
-			iDamage = 95;
-			if         pUnit:IsHasPromotion(GameInfoTypes["PROMOTION_MAXHP_REDUCE_1"])
-			and        pUnit:IsHasPromotion(GameInfoTypes["PROMOTION_MAXHP_REDUCE_2"])
-			and        pUnit:IsHasPromotion(GameInfoTypes["PROMOTION_MAXHP_REDUCE_3"])
-			and        pUnit:IsHasPromotion(GameInfoTypes["PROMOTION_MAXHP_REDUCE_4"])
-			then
-				pUnit:SetHasPromotion(GameInfoTypes["PROMOTION_MAXHP_REDUCE_1"], false);
-			elseif     pUnit:IsHasPromotion(GameInfoTypes["PROMOTION_MAXHP_REDUCE_2"])
-			and        pUnit:IsHasPromotion(GameInfoTypes["PROMOTION_MAXHP_REDUCE_3"])
-			and        pUnit:IsHasPromotion(GameInfoTypes["PROMOTION_MAXHP_REDUCE_4"])
-			then
-				pUnit:SetHasPromotion(GameInfoTypes["PROMOTION_MAXHP_REDUCE_2"], false);
-				pUnit:SetHasPromotion(GameInfoTypes["PROMOTION_MAXHP_REDUCE_1"], true);
-			elseif     pUnit:IsHasPromotion(GameInfoTypes["PROMOTION_MAXHP_REDUCE_1"])
-			and        pUnit:IsHasPromotion(GameInfoTypes["PROMOTION_MAXHP_REDUCE_3"])
-			and        pUnit:IsHasPromotion(GameInfoTypes["PROMOTION_MAXHP_REDUCE_4"])
-			then
-				pUnit:SetHasPromotion(GameInfoTypes["PROMOTION_MAXHP_REDUCE_1"], false);
-			elseif     pUnit:IsHasPromotion(GameInfoTypes["PROMOTION_MAXHP_REDUCE_3"])
-			and        pUnit:IsHasPromotion(GameInfoTypes["PROMOTION_MAXHP_REDUCE_4"])
-			then
-				pUnit:SetHasPromotion(GameInfoTypes["PROMOTION_MAXHP_REDUCE_3"], false);
-				pUnit:SetHasPromotion(GameInfoTypes["PROMOTION_MAXHP_REDUCE_2"], true);
-			elseif     pUnit:IsHasPromotion(GameInfoTypes["PROMOTION_MAXHP_REDUCE_2"])
-			and        pUnit:IsHasPromotion(GameInfoTypes["PROMOTION_MAXHP_REDUCE_4"])
-			then
-				pUnit:SetHasPromotion(GameInfoTypes["PROMOTION_MAXHP_REDUCE_2"], false);
-				pUnit:SetHasPromotion(GameInfoTypes["PROMOTION_MAXHP_REDUCE_1"], true);
-			elseif     pUnit:IsHasPromotion(GameInfoTypes["PROMOTION_MAXHP_REDUCE_1"])
-			and        pUnit:IsHasPromotion(GameInfoTypes["PROMOTION_MAXHP_REDUCE_4"])
-			then
-				pUnit:SetHasPromotion(GameInfoTypes["PROMOTION_MAXHP_REDUCE_1"], false);
-			elseif     pUnit:IsHasPromotion(GameInfoTypes["PROMOTION_MAXHP_REDUCE_4"])
-			then
-				pUnit:SetHasPromotion(GameInfoTypes["PROMOTION_MAXHP_REDUCE_4"], false);
-				pUnit:SetHasPromotion(GameInfoTypes["PROMOTION_MAXHP_REDUCE_3"], true);
-			elseif     pUnit:IsHasPromotion(GameInfoTypes["PROMOTION_MAXHP_REDUCE_3"])
-			then
-				pUnit:SetHasPromotion(GameInfoTypes["PROMOTION_MAXHP_REDUCE_3"], false);
-				pUnit:SetHasPromotion(GameInfoTypes["PROMOTION_MAXHP_REDUCE_2"], true);
-			elseif     pUnit:IsHasPromotion(GameInfoTypes["PROMOTION_MAXHP_REDUCE_2"])
-			then
-				pUnit:SetHasPromotion(GameInfoTypes["PROMOTION_MAXHP_REDUCE_2"], false);
-				pUnit:SetHasPromotion(GameInfoTypes["PROMOTION_MAXHP_REDUCE_1"], true);
-			elseif     pUnit:IsHasPromotion(GameInfoTypes["PROMOTION_MAXHP_REDUCE_1"])
-			then
-				pUnit:SetHasPromotion(GameInfoTypes["PROMOTION_MAXHP_REDUCE_1"], false);
-			end
-			pUnit:SetDamage(iDamage);
-		end
-	end
+	--if Players[ iPlayerID ] == nil or not Players[ iPlayerID ]:IsAlive()
+	--or Players[ iPlayerID ]:GetUnitByID( iUnitID ) == nil
+	--or Players[ iPlayerID ]:GetUnitByID( iUnitID ):IsDead()
+	--or Players[ iPlayerID ]:GetUnitByID( iUnitID ):IsDelayedDeath()
+	--or GameInfoTypes["PROMOTION_MAXHP_REDUCE_1"] == nil or GameInfoTypes["PROMOTION_MAXHP_REDUCE_2"] == nil
+	--or GameInfoTypes["PROMOTION_MAXHP_REDUCE_3"] == nil or GameInfoTypes["PROMOTION_MAXHP_REDUCE_4"] == nil
+	--then
+	--	return;
+	--end
+	--local pUnit = Players[ iPlayerID ]:GetUnitByID( iUnitID );
+	--
+	--if (iDamage >= 100 and pUnit:GetMaxHitPoints() > 100) or (iDamage == 0 
+	--and(pUnit:IsHasPromotion(GameInfoTypes["PROMOTION_MAXHP_REDUCE_1"]) or pUnit:IsHasPromotion(GameInfoTypes["PROMOTION_MAXHP_REDUCE_2"])
+	--or  pUnit:IsHasPromotion(GameInfoTypes["PROMOTION_MAXHP_REDUCE_3"]) or pUnit:IsHasPromotion(GameInfoTypes["PROMOTION_MAXHP_REDUCE_4"])))
+	--then
+	--	-- -MaxHP
+	--	if iDamage >= 100 then
+	--		iDamage = SetRealFinalDamageAndDamageLevel( pUnit, iDamage );
+	--	-- +MaxHP
+	--	else	-- if iDamage == 0 then
+	--		iDamage = 95;
+	--		if         pUnit:IsHasPromotion(GameInfoTypes["PROMOTION_MAXHP_REDUCE_1"])
+	--		and        pUnit:IsHasPromotion(GameInfoTypes["PROMOTION_MAXHP_REDUCE_2"])
+	--		and        pUnit:IsHasPromotion(GameInfoTypes["PROMOTION_MAXHP_REDUCE_3"])
+	--		and        pUnit:IsHasPromotion(GameInfoTypes["PROMOTION_MAXHP_REDUCE_4"])
+	--		then
+	--			pUnit:SetHasPromotion(GameInfoTypes["PROMOTION_MAXHP_REDUCE_1"], false);
+	--		elseif     pUnit:IsHasPromotion(GameInfoTypes["PROMOTION_MAXHP_REDUCE_2"])
+	--		and        pUnit:IsHasPromotion(GameInfoTypes["PROMOTION_MAXHP_REDUCE_3"])
+	--		and        pUnit:IsHasPromotion(GameInfoTypes["PROMOTION_MAXHP_REDUCE_4"])
+	--		then
+	--			pUnit:SetHasPromotion(GameInfoTypes["PROMOTION_MAXHP_REDUCE_2"], false);
+	--			pUnit:SetHasPromotion(GameInfoTypes["PROMOTION_MAXHP_REDUCE_1"], true);
+	--		elseif     pUnit:IsHasPromotion(GameInfoTypes["PROMOTION_MAXHP_REDUCE_1"])
+	--		and        pUnit:IsHasPromotion(GameInfoTypes["PROMOTION_MAXHP_REDUCE_3"])
+	--		and        pUnit:IsHasPromotion(GameInfoTypes["PROMOTION_MAXHP_REDUCE_4"])
+	--		then
+	--			pUnit:SetHasPromotion(GameInfoTypes["PROMOTION_MAXHP_REDUCE_1"], false);
+	--		elseif     pUnit:IsHasPromotion(GameInfoTypes["PROMOTION_MAXHP_REDUCE_3"])
+	--		and        pUnit:IsHasPromotion(GameInfoTypes["PROMOTION_MAXHP_REDUCE_4"])
+	--		then
+	--			pUnit:SetHasPromotion(GameInfoTypes["PROMOTION_MAXHP_REDUCE_3"], false);
+	--			pUnit:SetHasPromotion(GameInfoTypes["PROMOTION_MAXHP_REDUCE_2"], true);
+	--		elseif     pUnit:IsHasPromotion(GameInfoTypes["PROMOTION_MAXHP_REDUCE_2"])
+	--		and        pUnit:IsHasPromotion(GameInfoTypes["PROMOTION_MAXHP_REDUCE_4"])
+	--		then
+	--			pUnit:SetHasPromotion(GameInfoTypes["PROMOTION_MAXHP_REDUCE_2"], false);
+	--			pUnit:SetHasPromotion(GameInfoTypes["PROMOTION_MAXHP_REDUCE_1"], true);
+	--		elseif     pUnit:IsHasPromotion(GameInfoTypes["PROMOTION_MAXHP_REDUCE_1"])
+	--		and        pUnit:IsHasPromotion(GameInfoTypes["PROMOTION_MAXHP_REDUCE_4"])
+	--		then
+	--			pUnit:SetHasPromotion(GameInfoTypes["PROMOTION_MAXHP_REDUCE_1"], false);
+	--		elseif     pUnit:IsHasPromotion(GameInfoTypes["PROMOTION_MAXHP_REDUCE_4"])
+	--		then
+	--			pUnit:SetHasPromotion(GameInfoTypes["PROMOTION_MAXHP_REDUCE_4"], false);
+	--			pUnit:SetHasPromotion(GameInfoTypes["PROMOTION_MAXHP_REDUCE_3"], true);
+	--		elseif     pUnit:IsHasPromotion(GameInfoTypes["PROMOTION_MAXHP_REDUCE_3"])
+	--		then
+	--			pUnit:SetHasPromotion(GameInfoTypes["PROMOTION_MAXHP_REDUCE_3"], false);
+	--			pUnit:SetHasPromotion(GameInfoTypes["PROMOTION_MAXHP_REDUCE_2"], true);
+	--		elseif     pUnit:IsHasPromotion(GameInfoTypes["PROMOTION_MAXHP_REDUCE_2"])
+	--		then
+	--			pUnit:SetHasPromotion(GameInfoTypes["PROMOTION_MAXHP_REDUCE_2"], false);
+	--			pUnit:SetHasPromotion(GameInfoTypes["PROMOTION_MAXHP_REDUCE_1"], true);
+	--		elseif     pUnit:IsHasPromotion(GameInfoTypes["PROMOTION_MAXHP_REDUCE_1"])
+	--		then
+	--			pUnit:SetHasPromotion(GameInfoTypes["PROMOTION_MAXHP_REDUCE_1"], false);
+	--		end
+	--		pUnit:SetDamage(iDamage);
+	--	end
+	--end
 end
 Events.SerialEventUnitSetDamage.Add( OnFixSetDamageSP );
 
 function SetRealFinalDamageAndDamageLevel(pUnit, iDamage)
-	if pUnit and iDamage >= 100 and iDamage < pUnit:GetMaxHitPoints() then
-		local iDamageLevel = math.floor(iDamage/100);
-		iDamage = iDamage - 100*iDamageLevel;
+	if pUnit and iDamage >= 100 then
+		local iDamageLevel = 0;
+	--	while iDamage >= 100 do
+			iDamage = iDamage - 100;
+			iDamageLevel = iDamageLevel + 1;
+	--	end
 		if iDamage <= 0 then
 			iDamage = 5;
 		end
@@ -1759,7 +1767,7 @@ function SetRealFinalDamageAndDamageLevel(pUnit, iDamage)
 		pUnit:SetHasPromotion(GameInfoTypes["PROMOTION_MAXHP_REDUCE_3"], false);
 		pUnit:SetHasPromotion(GameInfoTypes["PROMOTION_MAXHP_REDUCE_4"], false);
 		
-		print("(X, Y) - MaxHitPoints - iDamageLevel - iDamage: (" .. pUnit:GetX() .. ", " .. pUnit:GetY() .. ") - " .. pUnit:GetMaxHitPoints() .. " - " .. iDamageLevel .. " - " .. iDamage);
+		print("X,Y - MaxHitPoints - iDamageLevel - iDamage: " .. pUnit:GetX() .. ", " .. pUnit:GetY() .. " - " .. pUnit:GetMaxHitPoints() .. " - " .. iDamageLevel .. " - " .. iDamage);
 		
 		if     iDamageLevel == 1 then
 			pUnit:SetHasPromotion(GameInfoTypes["PROMOTION_MAXHP_REDUCE_1"], true);
@@ -1990,7 +1998,7 @@ function CaptureSPDKP(iPlayerID, iUnitID)
 		return;
 	end
 	local pUnit = Players[iPlayerID]:GetUnitByID(iUnitID);
-	
+	print ("CaptureSPDKP!");
 	if  pUnit:GetUnitClassType() == tCaptureSPUnits[1]
 	and pUnit:GetPlot() == tCaptureSPUnits[2] and iPlayerID == tCaptureSPUnits[3]
 	and pUnit:GetOriginalOwner() == tCaptureSPUnits[4]
@@ -2004,11 +2012,21 @@ function CaptureSPDKP(iPlayerID, iUnitID)
 		local pMoves=pUnit:MaxMoves();
 		print("MaxMoves of captured unit is "..pMoves);
 		local qMoves = tCaptureSPUnits[8];
-		local rMoves = (pMoves*0.2+qMoves*0.4)*(math.random(1,100)*0.002+0.9);
+		--local randNum = math.random(1,100)
+		local randNum = Game.Rand(100, "at NewCombatRules line 2016") + 1
+		local str = string.format("Calling random at UnitCombatRule line 2013, random number is %d:\n", randNum)
+		print(str)
+		local rMoves = (pMoves*0.2+qMoves*0.4)*(randNum*0.002+0.9);
 		print("newly captured unit remains movements:"..rMoves);
 		pUnit:SetMoves(rMoves);
 		pUnit:SetHasPromotion(NewlyCapturedID, true);
-		local pDamage = math.random(1, 30)+69 - qMoves/GameDefines["MOVE_DENOMINATOR"] *4;
+
+		--randNum = math.random(1, 30)
+		randNum = Game.Rand(30, "at NewCombatRules line 2025") + 1
+		str = string.format("Calling random at UnitCombatRule line 2013, random number is %d:\n", randNum)
+		print(str)
+
+		local pDamage = randNum+69 - qMoves/GameDefines["MOVE_DENOMINATOR"] *4;
 		print("newly captured unit remains hit points:"..pDamage);
 		pUnit:SetDamage(pDamage);
 		tCaptureSPUnits = {};
@@ -2016,6 +2034,7 @@ function CaptureSPDKP(iPlayerID, iUnitID)
 	end
 end
 Events.SerialEventUnitCreated.Add(CaptureSPDKP);
+
 -- MOD End   - by CaptainCWB
 
 

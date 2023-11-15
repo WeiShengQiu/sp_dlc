@@ -28,20 +28,45 @@ function OnPopupMessageCA(popupInfo)
 	if popupType ~= ButtonPopupTypes.BUTTONPOPUP_CHOOSE_ARCHAEOLOGY then
 		return;
 	end
-	
-	local iUnit = popupInfo.Data2;
-	if (iUnit == nil or iUnit == -1) and Players[Game.GetActivePlayer()]:GetUnitClassCount(GameInfoTypes.UNITCLASS_ARCHAEOLOGIST) == 1 then
-		for pUnit in Players[Game.GetActivePlayer()]:Units() do
-			if  pUnit and pUnit:GetUnitClassType() == GameInfoTypes.UNITCLASS_ARCHAEOLOGIST
-			and pUnit:GetPlot():GetImprovementType() == GameInfoTypes["IMPROVEMENT_ARCHAEOLOGICAL_DIG"]
-			then
-				local iX, iY = pUnit:GetX(), pUnit:GetY();
-				pUnit:Kill();
-				Players[Game.GetActivePlayer()]:InitUnit(GameInfoTypes.UNIT_ARCHAEOLOGIST, iX, iY):SetMoves(0);
-				break;
+
+	local messageTargetPlayerType = popupInfo.Data1
+
+	if not Game.GetActivePlayer() == messageTargetPlayerType then
+		return
+	end
+	if(messageTargetPlayerType >= 0) then
+		local messageTargetPlayer = Players[messageTargetPlayerType]
+		if messageTargetPlayer then
+			for pUnit in messageTargetPlayer:Units() do
+				if  pUnit and pUnit:GetUnitClassType() == GameInfoTypes.UNITCLASS_ARCHAEOLOGIST
+				and pUnit:GetPlot():GetImprovementType() == GameInfoTypes["IMPROVEMENT_ARCHAEOLOGICAL_DIG"]
+				then
+					local iX, iY = pUnit:GetX(), pUnit:GetY();
+					--pUnit:Kill();
+					pUnit:SendAndExecuteLuaFunction(pUnit.kill)
+					--Players[Game.GetActivePlayer()]:InitUnit(GameInfoTypes.UNIT_ARCHAEOLOGIST, iX, iY):SetMoves(0);
+					messageTargetPlayer:SendAndExecuteLuaFunction("CvLuaPlayer::lInitUnit", GameInfoTypes.UNIT_ARCHAEOLOGIST, iX, iY):SendAndExecuteLuaFunction("CvLuaUnit::lSetMoves", 0)
+					break;
+				end
 			end
 		end
 	end
+	
+	--local iUnit = popupInfo.Data2;
+	--if (iUnit == nil or iUnit == -1) and Players[Game.GetActivePlayer()]:GetUnitClassCount(GameInfoTypes.UNITCLASS_ARCHAEOLOGIST) == 1 then
+	--	for pUnit in Players[Game.GetActivePlayer()]:Units() do
+	--		if  pUnit and pUnit:GetUnitClassType() == GameInfoTypes.UNITCLASS_ARCHAEOLOGIST
+	--		and pUnit:GetPlot():GetImprovementType() == GameInfoTypes["IMPROVEMENT_ARCHAEOLOGICAL_DIG"]
+	--		then
+	--			local iX, iY = pUnit:GetX(), pUnit:GetY();
+	--			--pUnit:Kill();
+	--			pUnit:SendAndExecuteLuaFunction(pUnit.kill)
+	--			--Players[Game.GetActivePlayer()]:InitUnit(GameInfoTypes.UNIT_ARCHAEOLOGIST, iX, iY):SetMoves(0);
+	--			Players[Game.GetActivePlayer()]:SendAndExecuteLuaFunction("CvLuaPlayer::lInitUnit", GameInfoTypes.UNIT_ARCHAEOLOGIST, iX, iY):SendAndExecuteLuaFunction("CvLuaUnit::lSetMoves", 0)
+	--			break;
+	--		end
+	--	end
+	--end
 end
 Events.SerialEventGameMessagePopup.Add( OnPopupMessageCA );
 
@@ -133,7 +158,11 @@ function JapanReligionEnhancedUA(iPlayer, eReligion, iBelief1, iBelief2)
 		
 		print("Nums of available Pantheon Beliefs: " .. #availableBeliefs);
 		if #availableBeliefs > 0 then
-			Game.EnhanceReligion(iPlayer, eReligion, availableBeliefs[math.random(1,#availableBeliefs)], -1);
+			--local randNum = math.random(1,#availableBeliefs)
+			local randNum = Game.Rand(#availableBeliefs, "at NewTraitEffects line 162") + 1
+			local str = string.format("Calling random at JapanReligionEnhancedUA line 163, random number is %d:\n", randNum)
+			print(str)
+			Game.EnhanceReligion(iPlayer, eReligion, availableBeliefs[randNum], -1);
 		end
 	end
 end

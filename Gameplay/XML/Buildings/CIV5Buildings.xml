@@ -369,7 +369,31 @@
 		<!-- VMC -->
 		<Column name="ConsecutiveEras" type="integer" default="0"/>
 	</Table>
+
+	<Table name="Building_EnableUnitPurchase">
+		<Column name="BuildingType" type="text" reference="Buildings(Type)"/>
+		<Column name="UnitClassType" type="text" reference="UnitClasses(Type)"/>
+		<Column name="YieldType" type="text" reference="Yields(Type)"/>
+		<Column name="CostModifier" type="integer" default = "-1"/>
+	</Table>
 	<!-- Table data -->
+
+	<Building_EnableUnitPurchase>
+		<Row>
+			<BuildingType>BUILDING_RELIGIOUS_COLONIZATION</BuildingType>
+			<UnitClassType>UNITCLASS_SETTLER</UnitClassType>
+			<YieldType>YIELD_FAITH</YieldType>
+			<CostModifier>360</CostModifier>
+		</Row>
+
+		<Row>
+			<BuildingType>BUILDING_RELIGIOUS_COLONIZATION_LIBERTY</BuildingType>
+			<UnitClassType>UNITCLASS_SETTLER</UnitClassType>
+			<YieldType>YIELD_FAITH</YieldType>
+			<CostModifier>220</CostModifier>
+		</Row>
+	</Building_EnableUnitPurchase-->
+
 	<Buildings>
 	<!-- ***************************Government Buildings***************************-->
 		<Row>
@@ -2181,6 +2205,8 @@
 			<Happiness>1</Happiness>
 			<ConquestProb>100</ConquestProb>
 		</Row>
+
+		
 	
 	<!-- ***************************Military Buildings***************************-->
 		<Row>
@@ -6333,6 +6359,7 @@
 			<IconAtlas>EXPANSION_BW_ATLAS_1</IconAtlas>
 			<NeverCapture>true</NeverCapture>
 			<PortraitIndex>12</PortraitIndex>
+			<PolicyCostModifier>-3</PolicyCostModifier>
 			<UnhappinessModifier>-2</UnhappinessModifier>
 		</Row>
 		<Row>
@@ -8814,6 +8841,34 @@
 			<PortraitIndex>8</PortraitIndex>
 			<GreatWorkCount>-1</GreatWorkCount>
 		</Row>
+
+
+		<Row>
+			<Type>BUILDING_RELIGIOUS_COLONIZATION</Type>
+			<BuildingClass>BUILDINGCLASS_RELIGIOUS_COLONIZATION</BuildingClass>
+			<Cost>-1</Cost>
+			<NukeImmune>true</NukeImmune>
+			<HurryCostModifier>-1</HurryCostModifier>
+			<MinAreaSize>-1</MinAreaSize>
+			<NeverCapture>true</NeverCapture>
+			<IconAtlas>EXPANSION2_WONDER_ATLAS</IconAtlas>
+			<PortraitIndex>8</PortraitIndex>
+			<GreatWorkCount>-1</GreatWorkCount>
+		</Row>
+
+		<Row>
+			<Type>BUILDING_RELIGIOUS_COLONIZATION_LIBERTY</Type>
+			<BuildingClass>BUILDINGCLASS_RELIGIOUS_COLONIZATION</BuildingClass>
+			<Cost>-1</Cost>
+			<NukeImmune>true</NukeImmune>
+			<HurryCostModifier>-1</HurryCostModifier>
+			<MinAreaSize>-1</MinAreaSize>
+			<NeverCapture>true</NeverCapture>
+			<IconAtlas>EXPANSION2_WONDER_ATLAS</IconAtlas>
+			<PortraitIndex>8</PortraitIndex>
+			<GreatWorkCount>-1</GreatWorkCount>
+		</Row>
+		
 		<!--
 		<Row>
 			<Type>BUILDING_CARRIER_FIGHTER</Type>
@@ -9363,7 +9418,7 @@
 			<BuildingType>BUILDING_COFFEE_HOUSE</BuildingType>
 			<BuildingClassType>BUILDINGCLASS_CITY_SIZE_LARGE</BuildingClassType>
 		</Row>
-		<!--<Row>
+		<!<Row>
 			<BuildingType>BUILDING_CELTS_IRISHPUB</BuildingType>
 			<BuildingClassType>BUILDINGCLASS_CITY_SIZE_LARGE</BuildingClassType>
 		</Row>-->
@@ -18004,7 +18059,7 @@
 		<Row>
 			<BuildingType>BUILDING_BAZAAR</BuildingType>
 			<YieldType>YIELD_FAITH</YieldType>
-			<Yield>2</Yield>
+			<Yield>12</Yield>
 		</Row>
 		<Row>
 			<BuildingType>BUILDING_BANK</BuildingType>
@@ -18181,18 +18236,18 @@
 		<Row>
 			<BuildingType>BUILDING_OPERA_HOUSE</BuildingType>
 			<YieldType>YIELD_CULTURE</YieldType>
-			<Yield>1</Yield>
+			<Yield>4</Yield>
 		</Row>
 		<Row>
 			<BuildingType>BUILDING_AUSTRIA_MUSIC_SCHOOL</BuildingType>
 			<YieldType>YIELD_CULTURE</YieldType>
-			<Yield>1</Yield>
+			<Yield>4</Yield>
 		</Row>
 		
 		<Row>
 			<BuildingType>BUILDING_RUSSIAN_BALLET_HALL</BuildingType>
 			<YieldType>YIELD_CULTURE</YieldType>
-			<Yield>1</Yield>
+			<Yield>4</Yield>
 		</Row>
 		<Row>
 			<BuildingType>BUILDING_MUSEUM</BuildingType>
@@ -18432,7 +18487,7 @@
 		<Row>
 			<BuildingType>BUILDING_AMPHITHEATER</BuildingType>
 			<YieldType>YIELD_CULTURE</YieldType>
-			<Yield>1</Yield>
+			<Yield>2</Yield>
 		</Row>
 		<Row>
 			<BuildingType>BUILDING_SHRINE</BuildingType>
@@ -18442,7 +18497,7 @@
 		<Row>
 			<BuildingType>BUILDING_ART_GALLERY</BuildingType>
 			<YieldType>YIELD_CULTURE</YieldType>
-			<Yield>1</Yield>
+			<Yield>3</Yield>
 		</Row>	
 		<Row>
 			<BuildingType>BUILDING_MOSQUE</BuildingType>

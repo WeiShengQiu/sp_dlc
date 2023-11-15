@@ -425,7 +425,8 @@ function LookAtOrRecall(instance, v)
 	if pUnit then
 ---------------SP end trade early will remove the unit
  		if pUnit:IsTrade() then
-		  pUnit:EndTrader()
+		  --pUnit:EndTrader()
+		  pUnit:SendAndExecuteLuaFunction(pUnit.EndTrader)
 --		  pUnit:Kill()
 		  print ("Trade Canceled!")
 		  instance.TurnsLeft:LocalizeAndSetText("[ICON_ARROW_LEFT]")

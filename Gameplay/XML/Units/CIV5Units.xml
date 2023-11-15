@@ -136,6 +136,14 @@
 		<Column name="BuildingType" type="text" reference="Buildings(Type)"/>
 		<Column name="ProductionModifier" type="integer"/>
 	</Table>
+
+	<Table name="UnitPromotions_PromotionModifiers">
+		<Column name="PromotionType" type="text" reference = "UnitPromotions(Type)"/>
+		<Column name="OtherPromotionType" type="text" reference = "UnitPromotions(Type)"/>
+		<Column name="Modifier" type="integer", default = "0"/>
+		<Column name="Attack" type="integer", default = "0"/>
+		<Column name="Defense" type="integer", default = "0"/>
+	</Table>
 	<!-- This Table has been Defined in Civ5EngineDatabaseSchema.sql!
 	<Table name="Unit_Builds">
 		<Column name="UnitType" type="text" reference="Units(Type)"/>

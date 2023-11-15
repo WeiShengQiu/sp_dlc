@@ -226,8 +226,123 @@ Events.NotificationAdded.Add(SPNotificationEvents);
 ]]
 
 
+function PlayerAquireBelief(iPlayer, iHolyCity, iReligion, iBelief1, iBelief2, iBelief3, iBelief4, iBelief5)
+	local pPlayer = Players[iPlayer]
+	if not pPlayer or not pPlayer:IsMajorCiv() then
+		return
+	end
+	print(string.format("City: %d", iHolyCity))
+	local colonizationBelief = GameInfoTypes["BELIEF_RELIGIOUS_COLONIZATION"]
+	if iBelief1 == colonizationBelief or iBelief2 == colonizationBelief or 
+	iBelief3 == colonizationBelief or iBelief4 == colonizationBelief then
+		local pHolyCity = pPlayer:GetCityByID(iHolyCity)
+		if pHolyCity then
+			if pPlayer:IsPolicyBranchUnlocked(GameInfoTypes["POLICY_BRANCH_LIBERTY"])  and not pPlayer:IsPolicyBranchBlocked(GameInfoTypes["POLICY_BRANCH_LIBERTY"]) then
+				pHolyCity:SetNumRealBuilding(GameInfoTypes["BUILDING_RELIGIOUS_COLONIZATION_LIBERTY"], 1)
+				pHolyCity:SetNumRealBuilding(GameInfoTypes["BUILDING_RELIGIOUS_COLONIZATION"], 0)
+			else
+				pHolyCity:SetNumRealBuilding(GameInfoTypes["BUILDING_RELIGIOUS_COLONIZATION"], 1)
+				pHolyCity:SetNumRealBuilding(GameInfoTypes["BUILDING_RELIGIOUS_COLONIZATION_LIBERTY"], 0)
+			end
+		end
+	end
+	
+end
+GameEvents.ReligionFounded.Add(PlayerAquireBelief)
+
+function PlayerAquirePolicyAffectingReligiousColonization(iPlayer, policyTypeID)
+	local pPlayer = Players[iPlayer]
+	if pPlayer and pPlayer:IsMajorCiv() then
+		local iThisReligion = pPlayer:GetReligionCreatedByPlayer()
+		if iThisReligion == -1 or iThisReligion == 0 then
+			print("No Religion!", iThisReligion == -1)
+		else
+			if not pPlayer:HasBelief(GameInfoTypes["BELIEF_RELIGIOUS_COLONIZATION"]) then
+				return
+			end
+			local pHolyCity = Game.GetHolyCityForReligion(iThisReligion, iPlayer)
+			if pHolyCity and pHolyCity:GetOwner() == iPlayer then
+				if policyTypeID == GameInfoTypes["POLICY_BRANCH_LIBERTY"] or (pPlayer:IsPolicyBranchUnlocked(GameInfoTypes["POLICY_BRANCH_LIBERTY"]) and not pPlayer:IsPolicyBranchBlocked(GameInfoTypes["POLICY_BRANCH_LIBERTY"])) then
+					pHolyCity:SetNumRealBuilding(GameInfoTypes["BUILDING_RELIGIOUS_COLONIZATION_LIBERTY"], 1)
+					pHolyCity:SetNumRealBuilding(GameInfoTypes["BUILDING_RELIGIOUS_COLONIZATION"], 0)
+				else
+					pHolyCity:SetNumRealBuilding(GameInfoTypes["BUILDING_RELIGIOUS_COLONIZATION"], 1)
+					pHolyCity:SetNumRealBuilding(GameInfoTypes["BUILDING_RELIGIOUS_COLONIZATION_LIBERTY"], 0)
+				end
+			else
+				print("No Holy City!")
+			end
+		end
+	end
+end
+GameEvents.PlayerAdoptPolicy.Add(PlayerAquirePolicyAffectingReligiousColonization)
+GameEvents.PlayerAdoptPolicyBranch.Add(PlayerAquirePolicyAffectingReligiousColonization)
+
+function PlayerBlockPolicyAffectingReligiousColonization(iPlayer, iPolicyTypeID, bIsBlocking)
+	local pPlayer = Players[iPlayer]
+	print("Blocking Policy!")
+	if pPlayer and pPlayer:IsMajorCiv() then
+		local iThisReligion = pPlayer:GetReligionCreatedByPlayer()
+		if iThisReligion == -1 or iThisReligion == 0 then
+			print("No Religion!", iThisReligion == -1)
+		else
+			if not pPlayer:HasBelief(GameInfoTypes["BELIEF_RELIGIOUS_COLONIZATION"]) then
+				return
+			end
+			local pHolyCity = Game.GetHolyCityForReligion(iThisReligion, iPlayer)
+			if pHolyCity and pHolyCity:GetOwner() == iPlayer then
+				if bIsBlocking and iPolicyTypeID == GameInfoTypes["POLICY_BRANCH_LIBERTY"] then
+					pHolyCity:SetNumRealBuilding(GameInfoTypes["BUILDING_RELIGIOUS_COLONIZATION_LIBERTY"], 0)
+					pHolyCity:SetNumRealBuilding(GameInfoTypes["BUILDING_RELIGIOUS_COLONIZATION"], 1)
+				end
+				if not bIsBlocking and iPolicyTypeID == GameInfoTypes["POLICY_BRANCH_LIBERTY"] then
+					pHolyCity:SetNumRealBuilding(GameInfoTypes["BUILDING_RELIGIOUS_COLONIZATION_LIBERTY"], 1)
+					pHolyCity:SetNumRealBuilding(GameInfoTypes["BUILDING_RELIGIOUS_COLONIZATION"], 0)
+				end
+			else
+				print("No Holy City!")
+			end
+		end
+	end
+end
+
+GameEvents.PlayerBlockPolicyBranch.Add(PlayerBlockPolicyAffectingReligiousColonization)
 
 
+function ReligiousColonizationCityCaptured(oldPlayerID, iCapital, iX, iY, 
+	newPlayerID, bConquest, iGreatWorksPresent, iGreatWorksXferred, cityID)
+	local pNewPlayer = Players[newPlayerID]
+	if pNewPlayer and pNewPlayer:IsMajorCiv() then
+		
+			local iThisReligion = pNewPlayer:GetReligionCreatedByPlayer()
+			if iThisReligion == -1 or iThisReligion == 0 then
+				print("No Religion!", iThisReligion == -1)
+			else
+				if pNewPlayer:HasBelief(GameInfoTypes["BELIEF_RELIGIOUS_COLONIZATION"]) then
+					local pHolyCity = Game.GetHolyCityForReligion(iThisReligion, newPlayerID)
+					if pHolyCity and pHolyCity:GetOwner() == newPlayerID and pHolyCity:GetID() == cityID  then
+						if pNewPlayer:IsPolicyBranchUnlocked(GameInfoTypes["POLICY_BRANCH_LIBERTY"]) and not pNewPlayer:IsPolicyBranchBlocked(GameInfoTypes["POLICY_BRANCH_LIBERTY"]) then
+							pHolyCity:SetNumRealBuilding(GameInfoTypes["BUILDING_RELIGIOUS_COLONIZATION_LIBERTY"], 1)
+							pHolyCity:SetNumRealBuilding(GameInfoTypes["BUILDING_RELIGIOUS_COLONIZATION"], 0)
+						else
+							pHolyCity:SetNumRealBuilding(GameInfoTypes["BUILDING_RELIGIOUS_COLONIZATION"], 1)
+							pHolyCity:SetNumRealBuilding(GameInfoTypes["BUILDING_RELIGIOUS_COLONIZATION_LIBERTY"], 0)
+						end
+					else
+						print("Not Capturing Holy City!")
+					end
+				else
+					local pNewCity = pNewPlayer:GetCityByID(cityID)
+					if pNewCity then
+						pNewCity:SetNumRealBuilding(GameInfoTypes["BUILDING_RELIGIOUS_COLONIZATION_LIBERTY"], 0)
+						pNewCity:SetNumRealBuilding(GameInfoTypes["BUILDING_RELIGIOUS_COLONIZATION"], 0)
+					end
+				end
+			end
+		
+	end
+end
+GameEvents.CityCaptureComplete.Add(ReligiousColonizationCityCaptured)
 
 
 -------Auto replacement for obsolete buildings, currently only for human player for stability issues
@@ -241,256 +356,263 @@ function AutoBuildingReplace(iTeam, iTech, bAdopted)
 --	print ("Only for human!")
 	 	return
 	end
-	
-	local player = Players[Game.GetActivePlayer()]
-	if player:IsMinorCiv() or player:IsBarbarian() or not player:IsHuman() then
-	 	return
-	end
-	
-	if player:GetNumCities() > 0 then
-		print ("Auto Buildings Replacement!")
-		
-		local text
-		
-		local iOldBuilding = -1;
-		local iNewBuilding = -1;
-		local overrideBuilding = nil;
-		local bIsDoAddNBuilding = false;
-		
-		if     iTech == GameInfoTypes["TECH_DYNAMITE"] then
-			print ("tech: DYNAMITE")
-			for city in player:Cities() do
-				bIsDoAddNBuilding = false;
-				iOldBuilding = GameInfoTypes["BUILDING_STONE_WORKS"];
-				overrideBuilding = GameInfo.Civilization_BuildingClassOverrides{ BuildingClassType = "BUILDINGCLASS_STONE_WORKS", CivilizationType = GameInfo.Civilizations[player:GetCivilizationType()].Type }();
-				if overrideBuilding ~= nil then
-					iOldBuilding = GameInfoTypes[overrideBuilding.BuildingType];
-				end
-				if city:IsHasBuilding(iOldBuilding) then
-					bIsDoAddNBuilding = true;
-				end
-				if not bIsDoAddNBuilding then
-				    iOldBuilding = GameInfoTypes["BUILDING_SAWMILL"];
-				    overrideBuilding = GameInfo.Civilization_BuildingClassOverrides{ BuildingClassType = "BUILDINGCLASS_SAWMILL", CivilizationType = GameInfo.Civilizations[player:GetCivilizationType()].Type }();
-				    if overrideBuilding ~= nil then
-					iOldBuilding = GameInfoTypes[overrideBuilding.BuildingType];
-				    end
-				    if city:IsHasBuilding(iOldBuilding) then
-					bIsDoAddNBuilding = true;
-				    end
-				end
-				
-				if bIsDoAddNBuilding then
-					iNewBuilding = GameInfoTypes["BUILDING_MINGING_FACTORY"];
-					overrideBuilding = GameInfo.Civilization_BuildingClassOverrides{ BuildingClassType = "BUILDINGCLASS_MINGING_FACTORY", CivilizationType = GameInfo.Civilizations[player:GetCivilizationType()].Type }();
-					if overrideBuilding ~= nil then
-						iNewBuilding = GameInfoTypes[overrideBuilding.BuildingType];
-					end
-					city:SetNumRealBuilding(iNewBuilding, 1);
-					
-					text = Locale.ConvertTextKey( "TXT_KEY_SP_NOTIFICATION_AUTO_BUILDING_REPLACEMENT", city:GetName(), GameInfo.Buildings[iOldBuilding].Description)
-					text = text .. Locale.ConvertTextKey(GameInfo.Buildings[iNewBuilding].Description)
-					
-					Events.GameplayAlertMessage( text )
-				end
-			end
-		elseif iTech == GameInfoTypes["TECH_INDUSTRIALIZATION"] then
-			print ("tech: INDUSTRIALIZATION")
-			for city in player:Cities() do
-				bIsDoAddNBuilding = false;
-				iOldBuilding = GameInfoTypes["BUILDING_WORKSHOP"];
-				overrideBuilding = GameInfo.Civilization_BuildingClassOverrides{ BuildingClassType = "BUILDINGCLASS_WORKSHOP", CivilizationType = GameInfo.Civilizations[player:GetCivilizationType()].Type }();
-				if overrideBuilding ~= nil then
-					iOldBuilding = GameInfoTypes[overrideBuilding.BuildingType];
-				end
-				if city:IsHasBuilding(iOldBuilding) then
-					bIsDoAddNBuilding = true;
-				end
-				
-				if bIsDoAddNBuilding then
-					iNewBuilding = GameInfoTypes["BUILDING_FACTORY"];
-					overrideBuilding = GameInfo.Civilization_BuildingClassOverrides{ BuildingClassType = "BUILDINGCLASS_FACTORY", CivilizationType = GameInfo.Civilizations[player:GetCivilizationType()].Type }();
-					if overrideBuilding ~= nil then
-						iNewBuilding = GameInfoTypes[overrideBuilding.BuildingType];
-					end
-					city:SetNumRealBuilding(iNewBuilding, 1);
-					
-					text = Locale.ConvertTextKey( "TXT_KEY_SP_NOTIFICATION_AUTO_BUILDING_REPLACEMENT", city:GetName(), GameInfo.Buildings[iOldBuilding].Description)
-					text = text .. Locale.ConvertTextKey(GameInfo.Buildings[iNewBuilding].Description)
-					
-					Events.GameplayAlertMessage( text )
-				end
-				
-				bIsDoAddNBuilding = false;
-				iOldBuilding = GameInfoTypes["BUILDING_GRAIN_MILL"];
-				overrideBuilding = GameInfo.Civilization_BuildingClassOverrides{ BuildingClassType = "BUILDINGCLASS_GRAIN_MILL", CivilizationType = GameInfo.Civilizations[player:GetCivilizationType()].Type }();
-				if overrideBuilding ~= nil then
-					iOldBuilding = GameInfoTypes[overrideBuilding.BuildingType];
-				end
-				if city:IsHasBuilding(iOldBuilding) then
-					bIsDoAddNBuilding = true;
-				end
-				if not bIsDoAddNBuilding then
-				    iOldBuilding = GameInfoTypes["BUILDING_WATERMILL"];
-				    overrideBuilding = GameInfo.Civilization_BuildingClassOverrides{ BuildingClassType = "BUILDINGCLASS_WATERMILL", CivilizationType = GameInfo.Civilizations[player:GetCivilizationType()].Type }();
-				    if overrideBuilding ~= nil then
-					iOldBuilding = GameInfoTypes[overrideBuilding.BuildingType];
-				    end
-				    if city:IsHasBuilding(iOldBuilding) then
-					bIsDoAddNBuilding = true;
-				    end
-				end
-				if not bIsDoAddNBuilding then
-				    iOldBuilding = GameInfoTypes["BUILDING_STABLE"];
-				    overrideBuilding = GameInfo.Civilization_BuildingClassOverrides{ BuildingClassType = "BUILDINGCLASS_STABLE", CivilizationType = GameInfo.Civilizations[player:GetCivilizationType()].Type }();
-				    if overrideBuilding ~= nil then
-					iOldBuilding = GameInfoTypes[overrideBuilding.BuildingType];
-				    end
-				    if city:IsHasBuilding(iOldBuilding) then
-					bIsDoAddNBuilding = true;
-				    end
-				end
-				if not bIsDoAddNBuilding then
-				    iOldBuilding = GameInfoTypes["BUILDING_WINDMILL"];
-				    overrideBuilding = GameInfo.Civilization_BuildingClassOverrides{ BuildingClassType = "BUILDINGCLASS_WINDMILL", CivilizationType = GameInfo.Civilizations[player:GetCivilizationType()].Type }();
-				    if overrideBuilding ~= nil then
-					iOldBuilding = GameInfoTypes[overrideBuilding.BuildingType];
-				    end
-				    if city:IsHasBuilding(iOldBuilding) then
-					bIsDoAddNBuilding = true;
-				    end
-				end
-				
-				if bIsDoAddNBuilding then
-					iNewBuilding = GameInfoTypes["BUILDING_MECHANIZED_FARM"];
-					overrideBuilding = GameInfo.Civilization_BuildingClassOverrides{ BuildingClassType = "BUILDINGCLASS_MECHANIZED_FARM", CivilizationType = GameInfo.Civilizations[player:GetCivilizationType()].Type }();
-					if overrideBuilding ~= nil then
-						iNewBuilding = GameInfoTypes[overrideBuilding.BuildingType];
-					end
-					city:SetNumRealBuilding(iNewBuilding, 1);
-					
-					text = Locale.ConvertTextKey( "TXT_KEY_SP_NOTIFICATION_AUTO_BUILDING_REPLACEMENT", city:GetName(), GameInfo.Buildings[iOldBuilding].Description)
-					text = text .. Locale.ConvertTextKey(GameInfo.Buildings[iNewBuilding].Description)
-					
-					Events.GameplayAlertMessage( text )
-				end
-			end
-		elseif iTech == GameInfoTypes["TECH_FERTILIZER"] then
-			print ("tech: FERTILIZER")
-			for city in player:Cities() do
-				bIsDoAddNBuilding = false;
-				iOldBuilding = GameInfoTypes["BUILDING_FISH_FARM"];
-				overrideBuilding = GameInfo.Civilization_BuildingClassOverrides{ BuildingClassType = "BUILDINGCLASS_FISH_FARM", CivilizationType = GameInfo.Civilizations[player:GetCivilizationType()].Type }();
-				if overrideBuilding ~= nil then
-					iOldBuilding = GameInfoTypes[overrideBuilding.BuildingType];
-				end
-				if city:IsHasBuilding(iOldBuilding) then
-					bIsDoAddNBuilding = true;
-				end
-				if not bIsDoAddNBuilding then
-				    iOldBuilding = GameInfoTypes["BUILDING_GRANARY"];
-				    overrideBuilding = GameInfo.Civilization_BuildingClassOverrides{ BuildingClassType = "BUILDINGCLASS_GRANARY", CivilizationType = GameInfo.Civilizations[player:GetCivilizationType()].Type }();
-				    if overrideBuilding ~= nil then
-					iOldBuilding = GameInfoTypes[overrideBuilding.BuildingType];
-				    end
-				    if city:IsHasBuilding(iOldBuilding) then
-					bIsDoAddNBuilding = true;
-				    end
-				end
-				
-				if bIsDoAddNBuilding then
-					iNewBuilding = GameInfoTypes["BUILDING_GRAIN_DEPOT"];
-					overrideBuilding = GameInfo.Civilization_BuildingClassOverrides{ BuildingClassType = "BUILDINGCLASS_GRAIN_DEPOT", CivilizationType = GameInfo.Civilizations[player:GetCivilizationType()].Type }();
-					if overrideBuilding ~= nil then
-						iNewBuilding = GameInfoTypes[overrideBuilding.BuildingType];
-					end
-					city:SetNumRealBuilding(iNewBuilding, 1);
-					
-					text = Locale.ConvertTextKey( "TXT_KEY_SP_NOTIFICATION_AUTO_BUILDING_REPLACEMENT", city:GetName(), GameInfo.Buildings[iOldBuilding].Description)
-					text = text .. Locale.ConvertTextKey(GameInfo.Buildings[iNewBuilding].Description)
-					
-					Events.GameplayAlertMessage( text )
-				end
-			end
-		elseif iTech == GameInfoTypes["TECH_URBANLIZATION"] then
-			print ("tech: URBANLIZATION")
-			for city in player:Cities() do
-				bIsDoAddNBuilding = false;
-				iOldBuilding = GameInfoTypes["BUILDING_AQUEDUCT"];
-				overrideBuilding = GameInfo.Civilization_BuildingClassOverrides{ BuildingClassType = "BUILDINGCLASS_AQUEDUCT", CivilizationType = GameInfo.Civilizations[player:GetCivilizationType()].Type }();
-				if overrideBuilding ~= nil then
-					iOldBuilding = GameInfoTypes[overrideBuilding.BuildingType];
-				end
-				if city:IsHasBuilding(iOldBuilding) then
-					bIsDoAddNBuilding = true;
-				end
-				
-				if bIsDoAddNBuilding then
-					iNewBuilding = GameInfoTypes["BUILDING_TAP_WATER_SUPPLY"];
-					overrideBuilding = GameInfo.Civilization_BuildingClassOverrides{ BuildingClassType = "BUILDINGCLASS_TAP_WATER_SUPPLY", CivilizationType = GameInfo.Civilizations[player:GetCivilizationType()].Type }();
-					if overrideBuilding ~= nil then
-						iNewBuilding = GameInfoTypes[overrideBuilding.BuildingType];
-					end
-					city:SetNumRealBuilding(iNewBuilding, 1);
-					
-					text = Locale.ConvertTextKey( "TXT_KEY_SP_NOTIFICATION_AUTO_BUILDING_REPLACEMENT", city:GetName(), GameInfo.Buildings[iOldBuilding].Description)
-					text = text .. Locale.ConvertTextKey(GameInfo.Buildings[iNewBuilding].Description)
-					
-					Events.GameplayAlertMessage( text )
-				end
-			end
-		elseif iTech == GameInfoTypes["TECH_COMBUSTION"] then
-			print ("tech: COMBUSTION")
-			for city in player:Cities() do
-				bIsDoAddNBuilding = false;
-				iOldBuilding = GameInfoTypes["BUILDING_STAGECOACH"];
-				overrideBuilding = GameInfo.Civilization_BuildingClassOverrides{ BuildingClassType = "BUILDINGCLASS_STAGECOACH", CivilizationType = GameInfo.Civilizations[player:GetCivilizationType()].Type }();
-				if overrideBuilding ~= nil then
-					iOldBuilding = GameInfoTypes[overrideBuilding.BuildingType];
-				end
-				if city:IsHasBuilding(iOldBuilding) then
-					bIsDoAddNBuilding = true;
-				end
-				
-				if bIsDoAddNBuilding then
-					iNewBuilding = GameInfoTypes["BUILDING_BUS_STATION"];
-					overrideBuilding = GameInfo.Civilization_BuildingClassOverrides{ BuildingClassType = "BUILDINGCLASS_BUS_STATION", CivilizationType = GameInfo.Civilizations[player:GetCivilizationType()].Type }();
-					if overrideBuilding ~= nil then
-						iNewBuilding = GameInfoTypes[overrideBuilding.BuildingType];
-					end
-					city:SetNumRealBuilding(iNewBuilding, 1);
-					
-					text = Locale.ConvertTextKey( "TXT_KEY_SP_NOTIFICATION_AUTO_BUILDING_REPLACEMENT", city:GetName(), GameInfo.Buildings[iOldBuilding].Description)
-					text = text .. Locale.ConvertTextKey(GameInfo.Buildings[iNewBuilding].Description)
-					
-					Events.GameplayAlertMessage( text )
-				end
-			end
-		elseif iTech == GameInfoTypes["TECH_RAILROAD"] then
-			print ("tech: RAILROAD")
-			
-			text = Locale.ConvertTextKey( "TXT_KEY_SP_NOTIFICATION_AUTO_RAILROAD_REPLACEMENT")
-			Events.GameplayAlertMessage( text )
 
-			for plotLoop = 0, Map.GetNumPlots() - 1, 1 do
-				local plot = Map.GetPlotByIndex(plotLoop)
---				local plotOwner = Players[plot:GetOwner()]
 
-			   if plot:GetRouteType() == GameInfo.Routes.ROUTE_ROAD.ID then
-				  plot:SetRouteType(GameInfo.Routes.ROUTE_RAILROAD.ID)
-			   end
---				if plotOwner ~= nil then
---					if plotOwner == player then
---		
---					end
---				end	
+	
+	--local player = Players[Game.GetActivePlayer()]
+	--if player:IsMinorCiv() or player:IsBarbarian() or not player:IsHuman() then
+	-- 	return
+	--end
+	for playerID, player in pairs(Players) do
+		if player and player:IsHuman() and player:GetTeam() == iTeam  then
+			if player:GetNumCities() > 0 then
+				print ("Auto Buildings Replacement!")
+				local text
+				local iOldBuilding = -1;
+				local iNewBuilding = -1;
+				local overrideBuilding = nil;
+				local bIsDoAddNBuilding = false;
+				
+				if     iTech == GameInfoTypes["TECH_DYNAMITE"] then
+					print ("tech: DYNAMITE")
+					for city in player:Cities() do
+						bIsDoAddNBuilding = false;
+						iOldBuilding = GameInfoTypes["BUILDING_STONE_WORKS"];
+						overrideBuilding = GameInfo.Civilization_BuildingClassOverrides{ BuildingClassType = "BUILDINGCLASS_STONE_WORKS", CivilizationType = GameInfo.Civilizations[player:GetCivilizationType()].Type }();
+						if overrideBuilding ~= nil then
+							iOldBuilding = GameInfoTypes[overrideBuilding.BuildingType];
+						end
+						if city:IsHasBuilding(iOldBuilding) then
+							bIsDoAddNBuilding = true;
+						end
+						if not bIsDoAddNBuilding then
+							iOldBuilding = GameInfoTypes["BUILDING_SAWMILL"];
+							overrideBuilding = GameInfo.Civilization_BuildingClassOverrides{ BuildingClassType = "BUILDINGCLASS_SAWMILL", CivilizationType = GameInfo.Civilizations[player:GetCivilizationType()].Type }();
+							if overrideBuilding ~= nil then
+							iOldBuilding = GameInfoTypes[overrideBuilding.BuildingType];
+							end
+							if city:IsHasBuilding(iOldBuilding) then
+							bIsDoAddNBuilding = true;
+							end
+						end
+						
+						if bIsDoAddNBuilding then
+							iNewBuilding = GameInfoTypes["BUILDING_MINGING_FACTORY"];
+							overrideBuilding = GameInfo.Civilization_BuildingClassOverrides{ BuildingClassType = "BUILDINGCLASS_MINGING_FACTORY", CivilizationType = GameInfo.Civilizations[player:GetCivilizationType()].Type }();
+							if overrideBuilding ~= nil then
+								iNewBuilding = GameInfoTypes[overrideBuilding.BuildingType];
+							end
+							city:SetNumRealBuilding(iNewBuilding, 1);
+							--city:SendAndExecuteLuaFunction(city.SetNumRealBuilding, iNewBuilding, 1)
+							text = Locale.ConvertTextKey( "TXT_KEY_SP_NOTIFICATION_AUTO_BUILDING_REPLACEMENT", city:GetName(), GameInfo.Buildings[iOldBuilding].Description)
+							text = text .. Locale.ConvertTextKey(GameInfo.Buildings[iNewBuilding].Description)
+							
+							Events.GameplayAlertMessage( text )
+						end
+					end
+				elseif iTech == GameInfoTypes["TECH_INDUSTRIALIZATION"] then
+					print ("tech: INDUSTRIALIZATION")
+					for city in player:Cities() do
+						bIsDoAddNBuilding = false;
+						iOldBuilding = GameInfoTypes["BUILDING_WORKSHOP"];
+						overrideBuilding = GameInfo.Civilization_BuildingClassOverrides{ BuildingClassType = "BUILDINGCLASS_WORKSHOP", CivilizationType = GameInfo.Civilizations[player:GetCivilizationType()].Type }();
+						if overrideBuilding ~= nil then
+							iOldBuilding = GameInfoTypes[overrideBuilding.BuildingType];
+						end
+						if city:IsHasBuilding(iOldBuilding) then
+							bIsDoAddNBuilding = true;
+						end
+						
+						if bIsDoAddNBuilding then
+							iNewBuilding = GameInfoTypes["BUILDING_FACTORY"];
+							overrideBuilding = GameInfo.Civilization_BuildingClassOverrides{ BuildingClassType = "BUILDINGCLASS_FACTORY", CivilizationType = GameInfo.Civilizations[player:GetCivilizationType()].Type }();
+							if overrideBuilding ~= nil then
+								iNewBuilding = GameInfoTypes[overrideBuilding.BuildingType];
+							end
+							city:SetNumRealBuilding(iNewBuilding, 1);
+							--city:SendAndExecuteLuaFunction(city.SetNumRealBuilding, iNewBuilding, 1)
+							text = Locale.ConvertTextKey( "TXT_KEY_SP_NOTIFICATION_AUTO_BUILDING_REPLACEMENT", city:GetName(), GameInfo.Buildings[iOldBuilding].Description)
+							text = text .. Locale.ConvertTextKey(GameInfo.Buildings[iNewBuilding].Description)
+							
+							Events.GameplayAlertMessage( text )
+						end
+						
+						bIsDoAddNBuilding = false;
+						iOldBuilding = GameInfoTypes["BUILDING_GRAIN_MILL"];
+						overrideBuilding = GameInfo.Civilization_BuildingClassOverrides{ BuildingClassType = "BUILDINGCLASS_GRAIN_MILL", CivilizationType = GameInfo.Civilizations[player:GetCivilizationType()].Type }();
+						if overrideBuilding ~= nil then
+							iOldBuilding = GameInfoTypes[overrideBuilding.BuildingType];
+						end
+						if city:IsHasBuilding(iOldBuilding) then
+							bIsDoAddNBuilding = true;
+						end
+						if not bIsDoAddNBuilding then
+							iOldBuilding = GameInfoTypes["BUILDING_WATERMILL"];
+							overrideBuilding = GameInfo.Civilization_BuildingClassOverrides{ BuildingClassType = "BUILDINGCLASS_WATERMILL", CivilizationType = GameInfo.Civilizations[player:GetCivilizationType()].Type }();
+							if overrideBuilding ~= nil then
+							iOldBuilding = GameInfoTypes[overrideBuilding.BuildingType];
+							end
+							if city:IsHasBuilding(iOldBuilding) then
+							bIsDoAddNBuilding = true;
+							end
+						end
+						if not bIsDoAddNBuilding then
+							iOldBuilding = GameInfoTypes["BUILDING_STABLE"];
+							overrideBuilding = GameInfo.Civilization_BuildingClassOverrides{ BuildingClassType = "BUILDINGCLASS_STABLE", CivilizationType = GameInfo.Civilizations[player:GetCivilizationType()].Type }();
+							if overrideBuilding ~= nil then
+							iOldBuilding = GameInfoTypes[overrideBuilding.BuildingType];
+							end
+							if city:IsHasBuilding(iOldBuilding) then
+							bIsDoAddNBuilding = true;
+							end
+						end
+						if not bIsDoAddNBuilding then
+							iOldBuilding = GameInfoTypes["BUILDING_WINDMILL"];
+							overrideBuilding = GameInfo.Civilization_BuildingClassOverrides{ BuildingClassType = "BUILDINGCLASS_WINDMILL", CivilizationType = GameInfo.Civilizations[player:GetCivilizationType()].Type }();
+							if overrideBuilding ~= nil then
+							iOldBuilding = GameInfoTypes[overrideBuilding.BuildingType];
+							end
+							if city:IsHasBuilding(iOldBuilding) then
+							bIsDoAddNBuilding = true;
+							end
+						end
+						
+						if bIsDoAddNBuilding then
+							iNewBuilding = GameInfoTypes["BUILDING_MECHANIZED_FARM"];
+							overrideBuilding = GameInfo.Civilization_BuildingClassOverrides{ BuildingClassType = "BUILDINGCLASS_MECHANIZED_FARM", CivilizationType = GameInfo.Civilizations[player:GetCivilizationType()].Type }();
+							if overrideBuilding ~= nil then
+								iNewBuilding = GameInfoTypes[overrideBuilding.BuildingType];
+							end
+							city:SetNumRealBuilding(iNewBuilding, 1);
+							--city:SendAndExecuteLuaFunction(city.SetNumRealBuilding, iNewBuilding, 1)
+							text = Locale.ConvertTextKey( "TXT_KEY_SP_NOTIFICATION_AUTO_BUILDING_REPLACEMENT", city:GetName(), GameInfo.Buildings[iOldBuilding].Description)
+							text = text .. Locale.ConvertTextKey(GameInfo.Buildings[iNewBuilding].Description)
+							
+							Events.GameplayAlertMessage( text )
+						end
+					end
+				elseif iTech == GameInfoTypes["TECH_FERTILIZER"] then
+					print ("tech: FERTILIZER")
+					for city in player:Cities() do
+						bIsDoAddNBuilding = false;
+						iOldBuilding = GameInfoTypes["BUILDING_FISH_FARM"];
+						overrideBuilding = GameInfo.Civilization_BuildingClassOverrides{ BuildingClassType = "BUILDINGCLASS_FISH_FARM", CivilizationType = GameInfo.Civilizations[player:GetCivilizationType()].Type }();
+						if overrideBuilding ~= nil then
+							iOldBuilding = GameInfoTypes[overrideBuilding.BuildingType];
+						end
+						if city:IsHasBuilding(iOldBuilding) then
+							bIsDoAddNBuilding = true;
+						end
+						if not bIsDoAddNBuilding then
+							iOldBuilding = GameInfoTypes["BUILDING_GRANARY"];
+							overrideBuilding = GameInfo.Civilization_BuildingClassOverrides{ BuildingClassType = "BUILDINGCLASS_GRANARY", CivilizationType = GameInfo.Civilizations[player:GetCivilizationType()].Type }();
+							if overrideBuilding ~= nil then
+							iOldBuilding = GameInfoTypes[overrideBuilding.BuildingType];
+							end
+							if city:IsHasBuilding(iOldBuilding) then
+							bIsDoAddNBuilding = true;
+							end
+						end
+						
+						if bIsDoAddNBuilding then
+							iNewBuilding = GameInfoTypes["BUILDING_GRAIN_DEPOT"];
+							overrideBuilding = GameInfo.Civilization_BuildingClassOverrides{ BuildingClassType = "BUILDINGCLASS_GRAIN_DEPOT", CivilizationType = GameInfo.Civilizations[player:GetCivilizationType()].Type }();
+							if overrideBuilding ~= nil then
+								iNewBuilding = GameInfoTypes[overrideBuilding.BuildingType];
+							end
+							city:SetNumRealBuilding(iNewBuilding, 1);
+							--city:SendAndExecuteLuaFunction(city.SetNumRealBuilding, iNewBuilding, 1)
+							text = Locale.ConvertTextKey( "TXT_KEY_SP_NOTIFICATION_AUTO_BUILDING_REPLACEMENT", city:GetName(), GameInfo.Buildings[iOldBuilding].Description)
+							text = text .. Locale.ConvertTextKey(GameInfo.Buildings[iNewBuilding].Description)
+							
+							Events.GameplayAlertMessage( text )
+						end
+					end
+				elseif iTech == GameInfoTypes["TECH_URBANLIZATION"] then
+					print ("tech: URBANLIZATION")
+					for city in player:Cities() do
+						bIsDoAddNBuilding = false;
+						iOldBuilding = GameInfoTypes["BUILDING_AQUEDUCT"];
+						overrideBuilding = GameInfo.Civilization_BuildingClassOverrides{ BuildingClassType = "BUILDINGCLASS_AQUEDUCT", CivilizationType = GameInfo.Civilizations[player:GetCivilizationType()].Type }();
+						if overrideBuilding ~= nil then
+							iOldBuilding = GameInfoTypes[overrideBuilding.BuildingType];
+						end
+						if city:IsHasBuilding(iOldBuilding) then
+							bIsDoAddNBuilding = true;
+						end
+						
+						if bIsDoAddNBuilding then
+							iNewBuilding = GameInfoTypes["BUILDING_TAP_WATER_SUPPLY"];
+							overrideBuilding = GameInfo.Civilization_BuildingClassOverrides{ BuildingClassType = "BUILDINGCLASS_TAP_WATER_SUPPLY", CivilizationType = GameInfo.Civilizations[player:GetCivilizationType()].Type }();
+							if overrideBuilding ~= nil then
+								iNewBuilding = GameInfoTypes[overrideBuilding.BuildingType];
+							end
+							city:SetNumRealBuilding(iNewBuilding, 1);
+							--city:SendAndExecuteLuaFunction(city.SetNumRealBuilding, iNewBuilding, 1)
+							text = Locale.ConvertTextKey( "TXT_KEY_SP_NOTIFICATION_AUTO_BUILDING_REPLACEMENT", city:GetName(), GameInfo.Buildings[iOldBuilding].Description)
+							text = text .. Locale.ConvertTextKey(GameInfo.Buildings[iNewBuilding].Description)
+							
+							Events.GameplayAlertMessage( text )
+						end
+					end
+				elseif iTech == GameInfoTypes["TECH_COMBUSTION"] then
+					print ("tech: COMBUSTION")
+					for city in player:Cities() do
+						bIsDoAddNBuilding = false;
+						iOldBuilding = GameInfoTypes["BUILDING_STAGECOACH"];
+						overrideBuilding = GameInfo.Civilization_BuildingClassOverrides{ BuildingClassType = "BUILDINGCLASS_STAGECOACH", CivilizationType = GameInfo.Civilizations[player:GetCivilizationType()].Type }();
+						if overrideBuilding ~= nil then
+							iOldBuilding = GameInfoTypes[overrideBuilding.BuildingType];
+						end
+						if city:IsHasBuilding(iOldBuilding) then
+							bIsDoAddNBuilding = true;
+						end
+						
+						if bIsDoAddNBuilding then
+							iNewBuilding = GameInfoTypes["BUILDING_BUS_STATION"];
+							overrideBuilding = GameInfo.Civilization_BuildingClassOverrides{ BuildingClassType = "BUILDINGCLASS_BUS_STATION", CivilizationType = GameInfo.Civilizations[player:GetCivilizationType()].Type }();
+							if overrideBuilding ~= nil then
+								iNewBuilding = GameInfoTypes[overrideBuilding.BuildingType];
+							end
+							city:SetNumRealBuilding(iNewBuilding, 1);
+							--city:SendAndExecuteLuaFunction(city.SetNumRealBuilding, iNewBuilding, 1)
+							text = Locale.ConvertTextKey( "TXT_KEY_SP_NOTIFICATION_AUTO_BUILDING_REPLACEMENT", city:GetName(), GameInfo.Buildings[iOldBuilding].Description)
+							text = text .. Locale.ConvertTextKey(GameInfo.Buildings[iNewBuilding].Description)
+							
+							Events.GameplayAlertMessage( text )
+						end
+					end
+				elseif iTech == GameInfoTypes["TECH_RAILROAD"] then
+					print ("tech: RAILROAD")
+					
+					text = Locale.ConvertTextKey( "TXT_KEY_SP_NOTIFICATION_AUTO_RAILROAD_REPLACEMENT")
+					Events.GameplayAlertMessage( text )
+		
+					for plotLoop = 0, Map.GetNumPlots() - 1, 1 do
+						local plot = Map.GetPlotByIndex(plotLoop)
+		--				local plotOwner = Players[plot:GetOwner()]
+		
+					   if plot:GetRouteType() == GameInfo.Routes.ROUTE_ROAD.ID then
+						  plot:SetRouteType(GameInfo.Routes.ROUTE_RAILROAD.ID)
+						  --plot:SendAndExecuteLuaFunction(plot.SetRouteType, GameInfo.Routes.ROUTE_RAILROAD.ID)
+					   end
+		--				if plotOwner ~= nil then
+		--					if plotOwner == player then
+		--					end
+		--				end	
+					end
+					
+				else
+					
+				end
+				
 			end
-			
 		else
-			
+
 		end
-		
 	end
+	
+	
 	
 	
 end------Function End
@@ -555,45 +677,60 @@ GameEvents.CityTrained.Add(AINotLosePop)
 function MinorProvideRes(iPlayerID)
 	local pMinor  = Players[iPlayerID]
 	local pPlayer = Players[Game.GetActivePlayer()]
-	
-	if pMinor  == nil or not pMinor:IsMinorCiv() or pMinor:GetCapitalCity() == nil
-	or pPlayer == nil or not pPlayer:IsHuman()
+
+	if pMinor == nil or not pMinor:IsMinorCiv() or pMinor:GetCapitalCity() == nil
+		or pPlayer == nil or not pPlayer:IsHuman()
 	then
 		return
 	end
+
+	local pCapital = pMinor:GetCapitalCity()
+	local ibRes_Man = GameInfoTypes["BUILDING_CIV_S_P_MAN_RESOURCES"]
+	local maxPlayerEra = pPlayer:GetCurrentEra()
+	print(string.format("%s providing resources for %s", pMinor:GetName(), pPlayer:GetName()))
 	
 	local pCapital = pMinor:GetCapitalCity()
 	local ibRes_Man = GameInfoTypes["BUILDING_CIV_S_P_MAN_RESOURCES"]
-	if     pPlayer:GetCurrentEra() >= 3 and pCapital:GetNumBuilding(ibRes_Man) < 10 then
-		pCapital:SetNumRealBuilding(ibRes_Man,10)
-	elseif pPlayer:GetCurrentEra() == 2 and pCapital:GetNumBuilding(ibRes_Man) <  6 then
-		pCapital:SetNumRealBuilding(ibRes_Man, 6)
-	elseif pPlayer:GetCurrentEra() == 1 and pCapital:GetNumBuilding(ibRes_Man) <  3 then
-		pCapital:SetNumRealBuilding(ibRes_Man, 3)
-	elseif pPlayer:GetCurrentEra() == 0 and pCapital:GetNumBuilding(ibRes_Man) <  2 then
-		pCapital:SetNumRealBuilding(ibRes_Man, 2)
+	if     maxPlayerEra >= 3 and pCapital:GetNumBuilding(ibRes_Man) < 10 then
+		--pCapital:SetNumRealBuilding(ibRes_Man,10)
+		pCapital:SendAndExecuteLuaFunction(pCapital.SetNumRealBuilding, ibRes_Man, 10)
+	elseif maxPlayerEra == 2 and pCapital:GetNumBuilding(ibRes_Man) < 6 then
+		--pCapital:SetNumRealBuilding(ibRes_Man, 6)
+		pCapital:SendAndExecuteLuaFunction(pCapital.SetNumRealBuilding, ibRes_Man, 6)
+	elseif maxPlayerEra == 1 and pCapital:GetNumBuilding(ibRes_Man) < 3 then
+		--pCapital:SetNumRealBuilding(ibRes_Man, 3)
+		pCapital:SendAndExecuteLuaFunction(pCapital.SetNumRealBuilding, ibRes_Man, 3)
+	elseif maxPlayerEra == 0 and pCapital:GetNumBuilding(ibRes_Man) < 2 then
+		--pCapital:SetNumRealBuilding(ibRes_Man, 2)
+		pCapital:SendAndExecuteLuaFunction(pCapital.SetNumRealBuilding, ibRes_Man, 2)
 	end
 	-------------Minor Has Res-ManPower----------------------
 	
 	local ibRes_Con = GameInfoTypes["BUILDING_CIV_S_P_CON_RESOURCES"]
-	if     pPlayer:GetCurrentEra() >= 4 and pCapital:GetNumBuilding(ibRes_Con) < 12 then
-		pCapital:SetNumRealBuilding(ibRes_Con,12)
-	elseif pPlayer:GetCurrentEra() == 3 and pCapital:GetNumBuilding(ibRes_Con) <  9 then
-		pCapital:SetNumRealBuilding(ibRes_Con, 9)
-	elseif pPlayer:GetCurrentEra() == 2 and pCapital:GetNumBuilding(ibRes_Con) <  6 then
-		pCapital:SetNumRealBuilding(ibRes_Con, 6)
-	elseif pPlayer:GetCurrentEra() == 1 and pCapital:GetNumBuilding(ibRes_Con) <  4 then
-		pCapital:SetNumRealBuilding(ibRes_Con, 4)
+	if     maxPlayerEra >= 4 and pCapital:GetNumBuilding(ibRes_Con) < 12 then
+		--pCapital:SetNumRealBuilding(ibRes_Con,12)
+		pCapital:SendAndExecuteLuaFunction(pCapital.SetNumRealBuilding, ibRes_Con, 12)
+	elseif maxPlayerEra == 3 and pCapital:GetNumBuilding(ibRes_Con) < 9 then
+		--pCapital:SetNumRealBuilding(ibRes_Con, 9)
+		pCapital:SendAndExecuteLuaFunction(pCapital.SetNumRealBuilding, ibRes_Con, 9)
+	elseif maxPlayerEra == 2 and pCapital:GetNumBuilding(ibRes_Con) < 6 then
+		--pCapital:SetNumRealBuilding(ibRes_Con, 6)
+		pCapital:SendAndExecuteLuaFunction(pCapital.SetNumRealBuilding, ibRes_Con, 6)
+	elseif maxPlayerEra == 1 and pCapital:GetNumBuilding(ibRes_Con) < 4 then
+		--pCapital:SetNumRealBuilding(ibRes_Con, 4)
+		pCapital:SendAndExecuteLuaFunction(pCapital.SetNumRealBuilding, ibRes_Con, 4)
 	end
 	----------------Minor Has Res-Consumer----------------------
 	
 	local ibRes_Ele = GameInfoTypes["BUILDING_CIV_S_P_ELE_RESOURCES"]
-	if not pPlayer:HasPolicy(GameInfoTypes["POLICY_MILITARY_AID"]) then
+	if not bestBlayerHasPolicy then
 		return;
-	elseif pPlayer:GetCurrentEra() >  6 and pCapital:GetNumBuilding(ibRes_Ele) <  8 then
-		pCapital:SetNumRealBuilding(ibRes_Ele, 6)
-	elseif pPlayer:GetCurrentEra() >  4 and pCapital:GetNumBuilding(ibRes_Ele) <  4 then
-		pCapital:SetNumRealBuilding(ibRes_Ele, 3)
+	elseif maxPlayerEra >  6 and pCapital:GetNumBuilding(ibRes_Ele) < 8 then
+		--pCapital:SetNumRealBuilding(ibRes_Ele, 6)
+		pCapital:SendAndExecuteLuaFunction(pCapital.SetNumRealBuilding, ibRes_Ele, 6)
+	elseif maxPlayerEra >  4 and pCapital:GetNumBuilding(ibRes_Ele) < 4 then
+		--pCapital:SetNumRealBuilding(ibRes_Ele, 3)
+		pCapital:SendAndExecuteLuaFunction(pCapital.SetNumRealBuilding, ibRes_Ele, 3)
 	end
 	----------------Minor Has Res-Electricity----------------------
 end

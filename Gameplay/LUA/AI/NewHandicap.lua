@@ -18,24 +18,45 @@ function CheckHumanResearch(iTeam)
 		print ("Human beings are not as clever as AI in Research, AI should take care of human beings.")
 		return
 	end
+	--In multiplayer game, AI player will gat bonus according to the average research  of all human players
 	
 	local pTeam = Teams[iTeam]
 	if not pTeam:IsHuman() then
 	 	return
 	end
-		
-	local player = Players[Game.GetActivePlayer()]
-	if player ~= nil and player:IsHuman() then
-		local HumanResearchPerTurn = player:GetScience()
-		local HumanCurrentEra = player:GetCurrentEra()
-		if HumanCurrentEra >= 4 and HumanResearchPerTurn > 0 then
-			for playerID,AIplayer in pairs(Players) do
-				if AIplayer ~= nil and AIplayer:GetNumCities() >= 1 and not AIplayer:IsMinorCiv() and not AIplayer:IsBarbarian() and not AIplayer:IsHuman() then
-					AIResearchCatchUp(HumanResearchPerTurn,HumanCurrentEra,AIplayer) 
-				end
+	local numHumanPlayer = 0
+	local humanResearchPerTurn = 0
+	local humanCurrentEra = 0
+	for playerID, player in pairs(Players) do
+		if player and player:IsAlive() and player:IsHuman() then
+			humanResearchPerTurn = humanResearchPerTurn + player:GetScience()
+			humanCurrentEra = humanCurrentEra + player:GetCurrentEra()
+			numHumanPlayer = numHumanPlayer + 1
+		end
+	end
+	humanResearchPerTurn = math.floor(humanResearchPerTurn / numHumanPlayer)
+	humanCurrentEra = math.floor(humanCurrentEra / numHumanPlayer)
+
+	if humanCurrentEra >= 4 and humanResearchPerTurn > 0 then
+		for playerID, AIplayer in pairs(Players) do
+			if AIplayer ~= nil and AIplayer:GetNumCities() >= 1 and AIplayer:IsMajorCiv() and not AIplayer:IsHuman() then
+				AIResearchCatchUp(humanResearchPerTurn,humanCurrentEra,AIplayer) 
 			end
 		end
 	end
+
+	--local player = Players[Game.GetActivePlayer()]
+	--if player ~= nil and player:IsHuman() then
+	--	local HumanResearchPerTurn = player:GetScience()
+	--	local HumanCurrentEra = player:GetCurrentEra()
+	--	if HumanCurrentEra >= 4 and HumanResearchPerTurn > 0 then
+	--		for playerID,AIplayer in pairs(Players) do
+	--			if AIplayer ~= nil and AIplayer:GetNumCities() >= 1 and not AIplayer:IsMinorCiv() and not AIplayer:IsBarbarian() and not AIplayer:IsHuman() then
+	--				AIResearchCatchUp(HumanResearchPerTurn,HumanCurrentEra,AIplayer) 
+	--			end
+	--		end
+	--	end
+	--end
 end
 GameEvents.TeamSetHasTech.Add(CheckHumanResearch)
 
@@ -51,12 +72,12 @@ function CheckHumanEconomy(playerID)
 	end
 	
 	local player = Players[playerID]
-	if player:IsHuman() then
+	if player and player:IsHuman() then
 		local HumanCityCount = player:GetNumCities()
 	    local HumanPopCount = player:GetTotalPopulation()	
 		if HumanCityCount > 2 and HumanPopCount > 6 then
 			for playerID,AIplayer in pairs(Players) do		
-				if AIplayer ~= nil and AIplayer:GetNumCities() >= 1 and not AIplayer:IsMinorCiv() and not AIplayer:IsBarbarian()
+				if AIplayer ~= nil and AIplayer:GetNumCities() >= 1 and AIplayer:IsMajorCiv()
 				and not AIplayer:IsHuman() then
 					AIEconomyCatchUp(HumanCityCount,HumanPopCount,AIplayer) 
 				end
@@ -84,25 +105,48 @@ function CheckHumanMilitary( iTeam1, iTeam2, bWar )
 	if not pTeam1:IsHuman() and not pTeam2:IsHuman() then
 	 	return
 	end
-	
-	local player = Players[Game.GetActivePlayer()]
-	if player ~= nil and player:IsHuman() then
-		local iNumCapitals = 0
-		for pCity in player:Cities() do
-			if pCity:IsOriginalCapital() then						
-				iNumCapitals = iNumCapitals + 1
-			end	
+
+	local numHumanPlayer = 0
+	local numHumanPlayerCapital = 0
+	for playerID, player in pairs(Players) do
+		if player and player:IsHuman() then
+			for pCity in player:Cities() do
+				if pCity and pCity:IsOriginalCapital() then						
+					numHumanPlayerCapital = numHumanPlayerCapital + 1
+				end	
+			end
+			numHumanPlayer = numHumanPlayer + 1
 		end
-		print ("Human Player owns Capitals:"..iNumCapitals)
-		if iNumCapitals >= 1 then
-			for playerID,AIplayer in pairs(Players) do		
-				if AIplayer ~= nil and AIplayer:GetNumCities() >= 1 and not AIplayer:IsMinorCiv() and not AIplayer:IsBarbarian()
-				and not AIplayer:IsHuman() then
-					AIMilitaryCatchUp(iNumCapitals,AIplayer) 
-				end
+	end
+	numHumanPlayerCapital = math.floor(numHumanPlayerCapital / numHumanPlayer)
+	print ("Human Player owns Capitals:"..numHumanPlayerCapital)
+
+	if numHumanPlayerCapital >= 1 then
+		for playerID,AIplayer in pairs(Players) do		
+			if AIplayer ~= nil and AIplayer:GetNumCities() >= 1 and AIplayer:IsMajorCiv()
+			and not AIplayer:IsHuman() then
+				AIMilitaryCatchUp(numHumanPlayerCapital, AIplayer) 
 			end
 		end
 	end
+	--local player = Players[Game.GetActivePlayer()]
+	--if player ~= nil and player:IsHuman() then
+	--	local iNumCapitals = 0
+	--	for pCity in player:Cities() do
+	--		if pCity:IsOriginalCapital() then						
+	--			iNumCapitals = iNumCapitals + 1
+	--		end	
+	--	end
+	--	print ("Human Player owns Capitals:"..iNumCapitals)
+	--	if iNumCapitals >= 1 then
+	--		for playerID,AIplayer in pairs(Players) do		
+	--			if AIplayer ~= nil and AIplayer:GetNumCities() >= 1 and not AIplayer:IsMinorCiv() and not AIplayer:IsBarbarian()
+	--			and not AIplayer:IsHuman() then
+	--				AIMilitaryCatchUp(iNumCapitals,AIplayer) 
+	--			end
+	--		end
+	--	end
+	--end
 end
 Events.WarStateChanged.Add(CheckHumanMilitary)
 
@@ -152,9 +196,9 @@ GameEvents.PlayerDoTurn.Add(CheckHumanScore)--]]
 
 function CheckHumanScore(playerID)
 	
-	if playerID ~= Game.GetActivePlayer() then
-		return;
-	end
+	--if playerID ~= Game.GetActivePlayer() then
+	--	return;
+	--end
 	if Game:GetHandicapType() < 3 then
 		print ("Human beings are not as clever as AI in Score, AI should take care of human beings.")
 		return
@@ -166,31 +210,49 @@ function CheckHumanScore(playerID)
 		print ("Check Human Score every 10 turns!");
 		return;
 	end
+
+
+	local numHumanPlayer = 0
+	local humanPlayerScore = 0
+	for pID, player in pairs(Players) do
+		if player and player:IsHuman() then
+			humanPlayerScore = humanPlayerScore + player:GetScore()
+			numHumanPlayer = numHumanPlayer + 1
+		end
+	end
+	humanPlayerScore = math.floor(humanPlayerScore / numHumanPlayer)
 	
-	local HumanPlayer = Players[Game.GetActivePlayer()]
-	if HumanPlayer:IsHuman() then
-		local HumanScore = HumanPlayer:GetScore()
-		if HumanScore > 0 then
+	--local HumanPlayer = Players[Game.GetActivePlayer()]
+	--if HumanPlayer:IsHuman() then
+		--local HumanScore = HumanPlayer:GetScore()
+		if humanPlayerScore > 0 then
 			local TotalScore = 0;
 			local TotalMajCiv = 0;
-			for iPlayerID = 0, GameDefines.MAX_MAJOR_CIVS - 1 do
-				if Players[iPlayerID] and Players[iPlayerID]:GetNumCities() > 0 then
-					TotalScore = TotalScore + Players[iPlayerID]:GetScore();
+			--for iPlayerID = 0, GameDefines.MAX_MAJOR_CIVS - 1 do
+			--	if Players[iPlayerID] and Players[iPlayerID]:GetNumCities() > 0 then
+			--		TotalScore = TotalScore + Players[iPlayerID]:GetScore();
+			--		TotalMajCiv = TotalMajCiv + 1;
+			--	end
+			--end
+
+			for pID, player in pairs(Players) do
+				if player and player:IsMajorCiv() and player:GetNumCities() > 0 then
+					TotalScore = TotalScore + player:GetScore();
 					TotalMajCiv = TotalMajCiv + 1;
 				end
 			end
 	
-			if HumanScore > 0 and TotalScore > HumanScore and TotalMajCiv > 1 then
+			if humanPlayerScore > 0 and TotalScore > humanPlayerScore and TotalMajCiv > 1 then
 				for _, AIplayer in pairs(Players) do
-					if  AIplayer ~= nil and not AIplayer:IsHuman() and not AIplayer:IsMinorCiv() and not AIplayer:IsBarbarian()
-					and AIplayer:GetNumCities() > 0 and (AIplayer:GetScore() > HumanScore / 0.75 or AICanBeBoss(AIplayer))
+					if  AIplayer ~= nil and not AIplayer:IsHuman() and AIplayer:IsMajorCiv()
+					and AIplayer:GetNumCities() > 0 and (AIplayer:GetScore() > humanPlayerScore / 0.75 or AICanBeBoss(AIplayer))
 					then
-						AIBossBonus(HumanScore,TotalScore,TotalMajCiv, AIplayer);
+						AIBossBonus(humanPlayerScore,TotalScore,TotalMajCiv, AIplayer);
 					end
 				end
 			end
 		end
-	end
+	--end
 end
 GameEvents.PlayerDoTurn.Add(CheckHumanScore)
 
@@ -226,13 +288,17 @@ function PlayerIntoNewEra(era, playerID) -- AI will get bonus when Human Player 
 	if player:IsBarbarian() then
 		return;
 	end
+
+	if not player:IsHuman() then
+		return
+	end
 	
 	-- Only effective when the difficulty from LV3 up
-	if playerID == Game.GetActivePlayer() and handicap > 3 then
+	if handicap > 3 then
 		-- Force AI to build improvemnts on resources since they always forget
 		ImproveTiles(false);	-- player:IsHuman()
 		for AIPlayerID, AIPlayer in pairs(Players) do
-			if AIPlayer == nil or not AIPlayer:IsAlive() or AIPlayer:IsMinorCiv() or AIPlayer:IsBarbarian() or AIPlayer:IsHuman() then
+			if AIPlayer == nil or not AIPlayer:IsAlive() or not AIPlayer:IsMajorCiv() or AIPlayer:IsHuman() then
 			else
 				-- AI will get bouns when Active Player entering new Eras
 				if (era >= 1 and not AIPlayer:HasPolicy(GameInfo.Policies["POLICY_AI_CLASSICAL"].ID)) then
@@ -406,7 +472,7 @@ function AIUnitsAssist(playerID)
 			if unit:IsHasPromotion(SPForceID) or unit:IsHasPromotion(StgBomberID) then
 				if PlayerAtWarWithHuman(player) then
 					for playerID,Humanplayer in pairs(Players) do
-						if Humanplayer:IsHuman() then
+						if Humanplayer and Humanplayer:IsHuman() then
 						
 							-------------Pick up random human city to attack
 							local TargetCities = {}
@@ -1421,7 +1487,7 @@ end
 
 ---------------------------------------------------------------------Limit Minor Civs build too many untis to make the system slow----------------------------------------------------
 
-function MinorLimitUnits(iPlayer, iUnit)
+function MinorLimitUnits(iPlayer, iUnit )
 	local player = Players[iPlayer];
 	if player == nil or not player:IsMinorCiv() or player:GetNumCities() < 1 then
 		return;
@@ -1444,9 +1510,7 @@ function MinorLimitUnits(iPlayer, iUnit)
 	end
 end
 
-
 Events.SerialEventUnitCreated.Add(MinorLimitUnits)
-
 
 function MinorLoseCity(oldPlayerID, bCapital, iX, iY, newPlayerID, conquest, conquest2)
 	local oldPlayer = Players[oldPlayerID]

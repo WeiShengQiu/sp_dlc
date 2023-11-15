@@ -5672,7 +5672,7 @@
 			<UnitCombatType>UNITCOMBAT_BOMBER</UnitCombatType>
 		</Row>
 
-<!----------only 2 extra sight for those who can see the stealth unit------------>
+<!--only 2 extra sight for those who can see the stealth unit-->
 		<Row>
 			<PromotionType>PROMOTION_EXTRA_SIGHT_II</PromotionType>
 			<UnitCombatType>UNITCOMBAT_RECON</UnitCombatType>
@@ -6777,7 +6777,7 @@
 			<Modifier>200</Modifier>
 		</Row>
 	
-	<!--*****************************Elite Units Promotions*******************************************-->
+	<!--Elite Units Promotions-->
 		<!--<Row>
 			<PromotionType>PROMOTION_ARM_MISSILE</PromotionType>
 			<UnitCombatType>UNITCOMBAT_SIEGE</UnitCombatType>
@@ -6789,7 +6789,7 @@
 			<Modifier>1050</Modifier>
 		</Row>-->
 	
-	<!--For Aircrafts*****************************---->
+	<!--For Aircrafts*****************************-->
 		<Row>
 			<PromotionType>PROMOTION_ANTI_AIR_II</PromotionType>
 			<UnitCombatType>UNITCOMBAT_ARCHER</UnitCombatType>

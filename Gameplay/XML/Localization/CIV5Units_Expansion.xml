@@ -12,7 +12,7 @@
 			<Text>[COLOR_YELLOW]Important Notes:[ENDCOLOR][NEWLINE]1. Check the saved file size. [NEWLINE]2. Check the Civilopedia before play (Hotkey [COLOR_POSITIVE_TEXT]F1[ENDCOLOR]). [NEWLINE]3. If always crash or saved files damaged, try Dx9.</Text>
 		</Row>
 		<Row Tag="TXT_KEY_SP_VERSION">
-			<Text>[COLOR_YELLOW]Version 7.0f[ENDCOLOR]</Text>
+			<Text>[COLOR_YELLOW]Version 7.0[ENDCOLOR]</Text>
 		</Row>
 
 		<Row Tag="TXT_KEY_SP_MOD_SETUP">
@@ -1447,6 +1447,13 @@
 				[COLOR_NEGATIVE_TEXT]No Immigration because we are at war![ENDCOLOR]
 			</Text>
 		</Row>
+
+		<Row Tag="TXT_KEY_CO_SP_MOVE_TEAMMATE_STOPPED">
+			<Text>
+				No Immigration because we are in the same team.
+			</Text>
+		</Row>
+
 		<Row Tag="TXT_KEY_CO_SP_MOVE_OTHER_STOPPED">
 			<Text>
 				[COLOR_NEGATIVE_TEXT]No Immigration for insufficient [ICON_RES_CONSUMER] Consumer Goods or [ICON_RES_ELECTRICITY] Electricity! [ENDCOLOR]
@@ -6983,7 +6990,16 @@
 			<Text>Troops determines the upper limit number of military units.</Text>
 		</Row>
 		<Row Tag="TXT_KEY_SP_TROOPS_TEXT">
-			<Text>WIP</Text>
+			<Text>Corps Mode:[NEWLINE][NEWLINE]
+			Allows players to establish corps, combining 2 units of same type at one tile into corps (fleet for naval combat units), [ICON_STRENGTH]Strengh +10%, Max HP+100%. This requires the nearest city to has arsenal. You can find the action's button in unit panel.[NEWLINE]
+			Corps units can absorb an extra unit of same type to establish Armee (Armada for naval combat units). [ICON_STRENGTH]Strengh +40%, Max HP+200%. This requires the nearest city to has military base.[NEWLINE]
+			Besides, you can use great general (great admiral for naval combat units) to "upgrade" normal units to corps, with no requirements of buildings in city. The great general will be consumed then.[NEWLINE]
+			Air forces are not able to establish corps or Armee. [NEWLINE]
+			"Troops" resource is introduced to limit the number of combat units. [NEWLINE]
+			Troop level high: Initially 24 troops provided for human players and 32 for AI. Cities with city size higher than "town" provide 4 extra troops per city size they acquire. [NEWLINE]
+			Troop level medium: Initially 12 troops provided for human players and 16 for AI. Cities with city size higher than "town" provide 2 extra troops per city size they acquire. [NEWLINE]
+			Troop level low: Initially 6 troops provided for human players and 8 for AI. Cities with city size higher than "town" provide 1 extra troops per city size they acquire. [NEWLINE]
+			</Text>
 		</Row>
 		<Row Tag="TXT_KEY_SP_TROOPS_USED">
 			<Text>Troops Used</Text>
@@ -7845,7 +7861,7 @@
 		</Replace>
 				
 		<Replace Tag="TXT_KEY_POLICY_OPEN_SOCIETY_HELP" >
-			<Text>[COLOR_POSITIVE_TEXT]Avant Garde[ENDCOLOR][NEWLINE]The rate at which [ICON_GREAT_PEOPLE] Great People are born is increased by 25%. +300 [ICON_TOURISM] Tourism to all Civilizations when any Great Person is born.</Text>
+			<Text>[COLOR_POSITIVE_TEXT]Avant Garde[ENDCOLOR][NEWLINE]The rate at which [ICON_GREAT_PEOPLE] Great People are born is increased by 25%. +500 [ICON_TOURISM] Tourism to all Civilizations when any Great Person is born.</Text>
 		</Replace>
 
 		<Replace Tag="TXT_KEY_POLICY_CREATIVE_EXPRESSION_HELP" >
@@ -8775,6 +8791,13 @@
 		</Row>
 		<Row Tag="TXT_KEY_BELIEF_FAITH_WITHOUT_BORDERS">
 			<Text>+1 [ICON_PEACE] Faith for every 7 followers of this religion in other civilizations.</Text>
+		</Row>
+
+		<Row Tag="TXT_KEY_BELIEF_RELIGIOUS_COLONIZATION">
+			<Text>Allows to purchase settlers in holy city with 360[ICON_PEACE] faith (At standard speed). If the liberty policy branch is adopted, the cost is 220[ICON_PEACE] faith instead.</Text>
+		</Row>
+		<Row Tag="TXT_KEY_BELIEF_RELIGIOUS_COLONIZATION_SHORT">
+			<Text>Religious Colonization</Text>
 		</Row>
 
 		<Row Tag="TXT_KEY_BELIEF_MARSH_BELIEF_SHORT">
@@ -9985,7 +10008,7 @@
 		</Replace>
 
 		<Replace Tag="TXT_KEY_TRAIT_PHOENICIAN_HERITAGE">
-			<Text>+1 [ICON_PRODUCTION] Production for every Specialists. +4 [ICON_GOLD] Base Gold for every Sea International Trade Route and +25% Range for Cargoships.</Text>
+			<Text>+2 [ICON_PRODUCTION] Production for every Specialists. +4 [ICON_GOLD] Base Gold for every Sea International Trade Route and +25% Range for Cargoships.</Text>
 		</Replace>
 
 		<Replace Tag="TXT_KEY_TRAIT_EXTRA_TRADE">

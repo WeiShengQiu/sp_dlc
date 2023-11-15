@@ -39,6 +39,7 @@
 		<Row Name="API_EXTENSIONS" Value="1"/>
 		<Row Name="API_PLOT_BASED_DAMAGE" Value="1"/>
 		<Row Name="API_PLOT_YIELDS" Value="1"/>
+
 		<Row Name="API_RELIGION" Value="1"/>
 		<Row Name="API_UNIFIED_YIELDS_GOLDEN_AGE" Value="1"/>
 		<Row Name="API_UNIFIED_YIELDS_TOURISM" Value="1"/>
@@ -678,7 +679,7 @@
 		<!--   GameEvents.PlayerCanHaveBelief.Add(function(iPlayer, iBelief) return true end) -->
 		<!--   GameEvents.ReligionCanHaveBelief.Add(function(iPlayer, iReligion, iBelief) return true end) -->
 		<!-- See also: "Religion - Civ Specific Religions" -->
-		<Row Class="3" Name="EVENTS_ACQUIRE_BELIEFS" Value="0"/>
+		<Row Class="3" Name="EVENTS_ACQUIRE_BELIEFS" Value="1"/>
 
 		<!-- Events sent to see if religion missions are valid (v46) -->
 		<!--   GameEvents.PlayerCanSpreadReligion.Add(function(iPlayer, iUnit, iPlotX, iPlotY) return true end) -->
@@ -790,7 +791,7 @@
 
 		<!-- Event sent when a unit is created (v46) -->
 		<!--   GameEvents.UnitCreated.Add(function(iPlayer, iUnit, iUnitType, iPlotX, iPlotY) end) -->
-		<Row Class="3" Name="EVENTS_UNIT_CREATED" Value="0"/>
+		<Row Class="3" Name="EVENTS_UNIT_CREATED" Value="1"/>
 
 		<!-- Event sent when a unit founds a city (v58) -->
 		<!--   GameEvents.UnitCityFounded.Add(function(iPlayer, iUnit, iUnitType, iPlotX, iPlotY) end) -->
@@ -904,6 +905,14 @@
 		<!-- See also: "Religion - Bonus Beliefs" -->
 		<Row Class="2" Name="API_PLOT_YIELDS" Value="1" DbUpdates="1"/>
 
+		<!-- Enables plot improvements to boost yields of adjacent improvements (from VP). -->
+		<Row Class="2" Name="API_VP_ADJACENT_YIELD_BOOST" Value="1"/>
+		
+		<!-- Enables buildings to unlock purchasing units from certain unit classes with gold or faith. -->
+		<Row Class="2" Name="API_BUILDING_ENABLE_PURCHASE_UNITS" Value="1"/>
+
+		<Row Class="5" Name="API_PROMOTION_TO_PROMOTION_MODIFIERS" Value="1"/>
+		
 		<!-- * Enables the Unified Yields extensions (v54) -->
 		<Row Class="2" Name="API_UNIFIED_YIELDS" Value="1" DbUpdates="1"/>
 		<!-- * Enables the Unified Yields (YIELD_TOURISM) extensions (v56) -->
@@ -935,6 +944,8 @@
 		<!-- * Enables the Extensions API (v19) -->
 		<!-- See also: "Unique Building - Cistern" -->
 		<Row Class="2" Name="API_EXTENSIONS" Value="1"/>
+
+
 		<!-- * Push various hard-coded values controlling the game out into XML - see DB/CONFIG/GameInXml.sql for specific values (v53) -->
 		<Row Class="2" Name="CONFIG_GAME_IN_XML" Value="1"/>
 		<!-- * Push various hard-coded values controlling the AI out into XML - see DB/CONFIG/AiInXml.sql for specific values (v19) -->

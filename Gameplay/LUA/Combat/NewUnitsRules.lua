@@ -245,6 +245,7 @@ function NewUnitCreationRules()   ------------------------Human Player's units r
 					-- Carriers & Cargos Setting System
 					local sSpecialCargo = GameInfo.Units[unit:GetUnitType()].SpecialCargo;
 					local sSpecial      = GameInfo.Units[unit:GetUnitType()].Special;
+					local cargoRandom = Game.Rand(100, "at NewUnitsRules line 248") + 1
 					if     unit:GetPlot() == nil or not unit:CanMove() then
 					-- Cargos Add for AI (Human use Button) & Missile for all
 					elseif unit:CargoSpace() > 0 and not unit:IsFull()
@@ -274,7 +275,7 @@ function NewUnitCreationRules()   ------------------------Human Player's units r
 					elseif unit:IsCargo() and unit:GetTransportUnit()
 					and GameInfo.Units[unit:GetUpgradeUnitType()] and GameInfo.Units[unit:GetUpgradeUnitType()].PrereqTech
 					and Teams[player:GetTeam()]:IsHasTech(GameInfoTypes[GameInfo.Units[unit:GetUpgradeUnitType()].PrereqTech])
-					and ( (unit:GetTransportUnit():GetUnitType() == GameInfoTypes["UNIT_HORNET"] and math.random(1, 100) < 34)
+					and ( (unit:GetTransportUnit():GetUnitType() == GameInfoTypes["UNIT_HORNET"] and cargoRandom < 34)
 					or sSpecial == "SPECIALUNIT_FIGHTER" or sSpecial == "SPECIALUNIT_MISSILE" )
 					and (  unit:GetPlot():IsFriendlyTerritory(playerID) or unit:GetTransportUnit():IsHasPromotion(CarrierSupply3ID) )
 					    -- not for AI
@@ -423,7 +424,7 @@ function NewUnitCreationRules()   ------------------------Human Player's units r
 			end
 		end	----------if player ~= nil END
 		
-			
+		--print(string.format("Player : %d, Total troop: %d", CapCity:GetOwner(), iTotalTroops))
 	end-------for playerID END
 end------function end
 Events.ActivePlayerTurnStart.Add(NewUnitCreationRules)
@@ -466,7 +467,11 @@ function OnCorpsArmeeSP(iPlayerID, iUnitID)
 			end
 		end
 		if #eUnitList > 0 then
-			pCUnit = eUnitList[math.random( 1, #eUnitList )];
+			--local randNum = math.random( 1, #eUnitList )
+			local randNum = Game.Rand(#eUnitList, "at NewUnitsRules line 473") + 1
+			pCUnit = eUnitList[randNum];
+			local str = string.format("Calling random at OnCorpsArmeeSP line 473, random number is %d:\n", randNum)
+			print(str)
 		end
 		if     pCUnit == nil then
 		elseif pCUnit:IsHasPromotion(CorpsID) then
@@ -503,13 +508,17 @@ function OnCorpsArmeeSP(iPlayerID, iUnitID)
 	local Heal1Unit = nil;
 	local Heal2Unit = nil;
 	local Heal3Unit = nil;
+	local randNum = Game.Rand(10, "at NewUnitsRules line 511") + 1
+	--local randNum = math.random(1, 10)
+	local str = string.format("Calling random at OnCorpsArmeeSP line 513, random number is %d:\n", randNum)
+	print(str)
 	if (Game:GetHandicapType() == 7)
-	or (Game:GetHandicapType() == 6 and math.random(1, 10) > 1)
-	or (Game:GetHandicapType() == 5 and math.random(1, 10) > 2)
-	or (Game:GetHandicapType() == 4 and math.random(1, 10) > 3)
-	or (Game:GetHandicapType() == 3 and math.random(1, 10) > 5)
-	or (Game:GetHandicapType() == 2 and math.random(1, 10) > 7)
-	or (Game:GetHandicapType() == 1 and math.random(1, 10) > 9)
+	or (Game:GetHandicapType() == 6 and randNum > 1)
+	or (Game:GetHandicapType() == 5 and randNum > 2)
+	or (Game:GetHandicapType() == 4 and randNum > 3)
+	or (Game:GetHandicapType() == 3 and randNum > 5)
+	or (Game:GetHandicapType() == 2 and randNum > 7)
+	or (Game:GetHandicapType() == 1 and randNum > 9)
 	then
 		DoCombine = true;
 	end
@@ -606,6 +615,8 @@ function OnCitadelCreatSP(iPlayerID, iUnitID)
 	end
 end
 Events.SerialEventUnitCreated.Add(OnCitadelCreatSP)
+
+
 function OnCitadelDestroyedSP(iPlayerID, iUnitID)
 	for loop, citadelUnit in pairs(CitadelList) do
 		if iPlayerID == citadelUnit[1] and iUnitID == citadelUnit[2] and citadelUnit[3] ~= nil then
@@ -908,7 +919,8 @@ function HeroicCarrierGenerate(playerID)
 		print("HeroicRoll Starts at the capital:"..CapitalCity:GetName())
 		for pUnit in pPlayer:Units() do
 			if pUnit:IsHasPromotion(GameInfoTypes["PROMOTION_CARRIER_UNIT"])then
-				local HeroicRoll = math.random(1, 100)
+				--local HeroicRoll = math.random(1, 100)
+				local HeroicRoll = Game.Rand(100, "at NewUnitsRules line 921") + 1
 				print("HeroicRoll:" .. HeroicRoll)
 				if HeroicRoll >= 75  then
 					local unitType = GameInfoTypes["UNIT_ENTERPRISE"]
@@ -954,7 +966,7 @@ function HeroicCarrierGenerate(playerID)
 end
 GameEvents.PlayerDoTurn.Add(HeroicCarrierGenerate)
 
-function NewUnitRemoveErrorPromotion( iPlayerID, iUnitID )
+function NewUnitRemoveErrorPromotion( iPlayerID, iUnitID)
 	if( Players[ iPlayerID ] == nil or not Players[ iPlayerID ]:IsAlive()
 	or  Players[ iPlayerID ]:GetUnitByID( iUnitID ) == nil
 	or  Players[ iPlayerID ]:GetUnitByID( iUnitID ):IsDead()
@@ -965,10 +977,11 @@ function NewUnitRemoveErrorPromotion( iPlayerID, iUnitID )
 	RemoveErrorPromotion(iPlayerID, iUnitID)
 end
 Events.SerialEventUnitCreated.Add(NewUnitRemoveErrorPromotion)
+
 -- MOD end by HMS
 
 -- MOD by CaptainCWB
-function SetEliteUnitsName( iPlayerID, iUnitID )
+function SetEliteUnitsName( iPlayerID, iUnitID)
 	if Players[ iPlayerID ] == nil or not Players[ iPlayerID ]:IsAlive()
 	or Players[ iPlayerID ]:GetUnitByID( iUnitID ) == nil
 	or Players[ iPlayerID ]:GetUnitByID( iUnitID ):IsDead()

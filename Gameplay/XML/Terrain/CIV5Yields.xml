@@ -175,6 +175,17 @@
 		<Column name="YieldType" type="text" reference="Yields(Type)"/>
 		<Column name="Yield" type="integer"/>
 	</Table>
+
+
+	<!-- Improvement: allows an improvement to boost the base yield of an adjacent improvement -->
+	<Table name="Improvement_AdjacentImprovementYieldChanges">
+		<Column name="ImprovementType" type="text" reference="Improvements(Type)"/>
+		<Column name="OtherImprovementType" type="text" reference="Improvements(Type)"/>
+		<Column name="YieldType" type="text" reference="Yields(Type)"/>
+		<Column name="Yield" type="integer"/>
+	</Table>
+
+
 	<Table name="Policy_CityYieldFromUnimprovedFeature">
 		<!-- Refer to Traits.FaithFromUnimprovedForest -->
 		<Column name="PolicyType" type="text" reference="Policies(Type)"/>
@@ -508,8 +519,26 @@
 			<MinCity>0</MinCity>
 			<AIWeightPercent>80</AIWeightPercent>
 		</Row>
+
+		
 	</Yields>
-	
+
+	<!--Improvement_AdjacentImprovementYieldChanges>
+		<Row>
+			<ImprovementType>IMPROVEMENT_FARM</ImprovementType>
+			<OtherImprovementType>IMPROVEMENT_MINE</OtherImprovementType>
+			<YieldType>YIELD_SCIENCE</YieldType>
+			<Yield>3</Yield>
+		</Row>
+
+		<Row>
+			<ImprovementType>IMPROVEMENT_PLANTATION</ImprovementType>
+			<OtherImprovementType>IMPROVEMENT_MINE</OtherImprovementType>
+			<YieldType>YIELD_CULTURE</YieldType>
+			<Yield>7</Yield>
+		</Row>
+	</Improvement_AdjacentImprovementYieldChanges-->
+
 	<Plots>
 		<Row>
 			<ID>0</ID>
@@ -596,4 +625,6 @@
 			<Class>UNITCLASS_PROPHET</Class>
 		</Row>
 	</GreatPersons>
+
+	
 </GameData>

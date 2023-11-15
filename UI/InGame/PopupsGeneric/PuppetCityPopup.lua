@@ -73,17 +73,14 @@ PopupLayouts[ButtonPopupTypes.BUTTONPOPUP_CITY_CAPTURED] = function(popupInfo)
 	
 
 	
-	
+		SetCityLevelbyDistance(newCity)
 		Network.SendDoTask(cityID, TaskTypes.TASK_ANNEX_PUPPET, -1, -1, false, false, false, false);
 --		newCity:ChooseProduction();
 
 		----------------------------------------------------------------------SP Annexing city build a City Hall Start--------------------------
-	    SetCityLevelbyDistance(newCity)
+	    
 	    print ("New City Hall built!")
 	 	----------------------------------------------------------------------SP Annexing city build a City Hall End--------------------------	
-		
-		
-		
 		
 	end
 	

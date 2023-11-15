@@ -1212,6 +1212,7 @@ function OnUnitActionClicked( action )
 			Events.AudioPlay2DSound("AS2D_INTERFACE_UNIT_PROMOTION");	
 		end
 		Game.HandleAction( action );
+		--Game.SendAndExecuteLuaFunction(Game.HandleAction, action)
     end
 end
 

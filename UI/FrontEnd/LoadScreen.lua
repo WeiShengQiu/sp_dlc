@@ -110,14 +110,17 @@ local function OnActivateButtonClicked ()
 				iOtherMODsCount = iOtherMODsCount + 1
 			end
 		end
-		local iOMs = Players[Game.GetActivePlayer()]:GetNumResourceTotal(GameInfoTypes["RESOURCE_OTHER_MODS"], false);
+		local pPlayer = Players[Game.GetActivePlayer()]
+		local iOMs = pPlayer:GetNumResourceTotal(GameInfoTypes["RESOURCE_OTHER_MODS"], false);
 		if iOtherMODsCount > - iOMs then
-			Players[Game.GetActivePlayer()]:ChangeNumResourceTotal(GameInfoTypes["RESOURCE_OTHER_MODS"], iOMs - iOtherMODsCount);
+			--Players[Game.GetActivePlayer()]:ChangeNumResourceTotal(GameInfoTypes["RESOURCE_OTHER_MODS"], iOMs - iOtherMODsCount);
+			pPlayer:SendAndExecuteLuaFunction("CvLuaPlayer::lChangeNumResourceTotal", GameInfoTypes["RESOURCE_OTHER_MODS"], iOMs - iOtherMODsCount)
 		end
 		
 		-- Count Game Load Times
 		if UI:IsLoadedGame() then
-			Players[Game.GetActivePlayer()]:ChangeNumResourceTotal(GameInfoTypes["RESOURCE_LOAD"], - 1);
+			--Players[Game.GetActivePlayer()]:ChangeNumResourceTotal(GameInfoTypes["RESOURCE_LOAD"], - 1);
+			pPlayer:SendAndExecuteLuaFunction("CvLuaPlayer::lChangeNumResourceTotal", GameInfoTypes["RESOURCE_LOAD"], -1)
 		end
 	end
 end

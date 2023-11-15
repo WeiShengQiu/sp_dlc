@@ -1767,6 +1767,11 @@
 			<Description>TXT_KEY_BUILDING_CARRIER_FIGHTER_HELP</Description>
 		</Row>
 		-->
+		<Row>
+			<Type>BUILDINGCLASS_RELIGIOUS_COLONIZATION</Type>
+			<DefaultBuilding>BUILDING_RELIGIOUS_COLONIZATION</DefaultBuilding>
+			<Description>TXT_KEY_PROJECT_HEROIC_CARRIER</Description>
+		</Row>
 	</BuildingClasses>
 	<!-- Remove UN Wonder-->
 	<DeleteMissingReferences table="BuildingClasses" column="Type"/>

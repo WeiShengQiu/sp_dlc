@@ -81,9 +81,9 @@ function PlayerEditCity()------------------------This will trigger when player e
 --
 --	SetCityPerTurnEffects(Game.GetActivePlayer())
 	
-	SetCitySpecialistResources(city)
+	SetCitySpecialistResourcesSync(city)
 	
-	SetCityAntiNegGoldBonus(city)
+	SetCityAntiNegGoldBonusSync(city)
 	
 	
 	print ("city's Specialist slot Updated in city screen!")
@@ -103,7 +103,7 @@ function ChinaGoldenAgeTrigger()
 	and player:IsGoldenAge() and player:GetCapitalCity()
 	then
 		local pCapital = player:GetCapitalCity();
-		SetGoldenAgeBonus(player, pCapital);
+		SetGoldenAgeBonusSync(player, pCapital);
 		print ("Chinese UA!")
 	end
 end	
@@ -739,6 +739,19 @@ function SetGoldenAgeBonus(player, capCity)
 	end
 end
 
+function SetGoldenAgeBonusSync(player, capCity)
+	if player and capCity then
+		if player:IsGoldenAge() then
+			--capCity:SetNumRealBuilding(GameInfoTypes["BUILDING_TB_ART_OF_WAR"],1);
+			capCity:SendAndExecuteLuaFunction(capCity.SetNumRealBuilding, GameInfoTypes["BUILDING_TB_ART_OF_WAR"], 1)
+			print("China in Pax Sinica!");
+		else
+			--capCity:SetNumRealBuilding(GameInfoTypes["BUILDING_TB_ART_OF_WAR"],0);
+			capCity:SendAndExecuteLuaFunction(capCity.SetNumRealBuilding, GameInfoTypes["BUILDING_TB_ART_OF_WAR"], 0)
+		end
+	end
+end
+
 
 
 function SetCityPerTurnEffects (playerID)
@@ -803,6 +816,29 @@ function SetCityAntiNegGoldBonus(city)
 
 end
 
+function SetCityAntiNegGoldBonusSync(city)
+
+	if city == nil then
+		print ("City does not exist!")
+		return
+	end
+	if city:IsHasBuilding(GameInfoTypes["BUILDING_BUGFIX_NEGATIVE_GOLD"]) then
+		--city:SetNumRealBuilding(GameInfoTypes["BUILDING_BUGFIX_NEGATIVE_GOLD"],0)
+		city:SendAndExecuteLuaFunction(city.SetNumRealBuilding, GameInfoTypes["BUILDING_BUGFIX_NEGATIVE_GOLD"], 0)
+	end
+	if not city:IsHasBuilding(GameInfoTypes["BUILDING_BANK_OF_ENGLAND"])then
+	return
+	end
+	print("Bank of england exists")
+	
+	if city:GetYieldRate(YieldTypes.YIELD_GOLD) < 0 then
+		print ("City Goldyield < 0!")
+		--city:SetNumRealBuilding(GameInfoTypes["BUILDING_BUGFIX_NEGATIVE_GOLD"],1)
+		city:SendAndExecuteLuaFunction(city.SetNumRealBuilding, GameInfoTypes["BUILDING_BUGFIX_NEGATIVE_GOLD"], 1)
+	end
+
+end
+
 
 
 function SetCitySpecialistResources(city)
@@ -845,6 +881,53 @@ function SetCitySpecialistResources(city)
 		print ("Merchant in the city producing Final:"..CityMerchantProducingFinal)
 		
 		city:SetNumRealBuilding(GameInfoTypes["BUILDING_SPECIALISTS_CONSUMER"],CityMerchantProducingFinal)
+	end
+end---------function end
+
+function SetCitySpecialistResourcesSync(city)
+
+	if city == nil then
+		print ("City does not exist!")
+		return
+	end
+	local player = Players[city:GetOwner()];
+	if player == nil then
+		print ("No players")
+		return
+	end
+	
+	--city:SetNumRealBuilding(GameInfoTypes["BUILDING_SPECIALISTS_MANPOWER"],0)
+	city:SendAndExecuteLuaFunction(city.SetNumRealBuilding, GameInfoTypes["BUILDING_SPECIALISTS_MANPOWER"], 0)
+	--city:SetNumRealBuilding(GameInfoTypes["BUILDING_SPECIALISTS_CONSUMER"],0)
+	city:SendAndExecuteLuaFunction(city.SetNumRealBuilding, GameInfoTypes["BUILDING_SPECIALISTS_CONSUMER"], 0)
+	
+	-------------------Set Manpower offered by Engineers
+	local CityEngineerCount = city:GetSpecialistCount(GameInfo.Specialists.SPECIALIST_ENGINEER.ID)	
+	if CityEngineerCount > 0 then
+		print ("Engineers in the city:"..CityEngineerCount)
+		--city:SetNumRealBuilding(GameInfoTypes["BUILDING_SPECIALISTS_MANPOWER"],CityEngineerCount)
+		city:SendAndExecuteLuaFunction(city.SetNumRealBuilding, GameInfoTypes["BUILDING_SPECIALISTS_MANPOWER"], CityEngineerCount)
+	end
+	
+	-------------------Set Comsumer Goods offered by Merchants
+	local CityMerchantCount = city:GetSpecialistCount(GameInfo.Specialists.SPECIALIST_MERCHANT.ID)
+	
+	if CityMerchantCount > 0 then
+		local ComsumerGoodsMultiplier = 2
+		print ("Merchant in the city Base:"..CityMerchantCount)
+		if player:HasPolicy(GameInfo.Policies["POLICY_MERCANTILISM"].ID) then
+			ComsumerGoodsMultiplier = ComsumerGoodsMultiplier + 1
+		end
+		if player:HasPolicy(GameInfo.Policies["POLICY_SPACE_PROCUREMENTS"].ID) then
+			ComsumerGoodsMultiplier = ComsumerGoodsMultiplier + 1
+		end
+		print ("Merchant Multiplier:"..ComsumerGoodsMultiplier)
+		
+		local CityMerchantProducingFinal = CityMerchantCount * ComsumerGoodsMultiplier
+		print ("Merchant in the city producing Final:"..CityMerchantProducingFinal)
+		
+		--city:SetNumRealBuilding(GameInfoTypes["BUILDING_SPECIALISTS_CONSUMER"],CityMerchantProducingFinal)
+		city:SendAndExecuteLuaFunction(city.SetNumRealBuilding, GameInfoTypes["BUILDING_SPECIALISTS_CONSUMER"], CityMerchantProducingFinal)
 	end
 end---------function end
 

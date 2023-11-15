@@ -390,6 +390,14 @@
 			<GoldPerFirstCityConversion>300</GoldPerFirstCityConversion>
 		</Row>
 		<Row>
+			<Type>BELIEF_RELIGIOUS_COLONIZATION</Type>
+			<Description>TXT_KEY_BELIEF_RELIGIOUS_COLONIZATION</Description>
+			<ShortDescription>TXT_KEY_BELIEF_RELIGIOUS_COLONIZATION_SHORT</ShortDescription>
+			<Founder>true</Founder>
+		</Row>
+
+
+		<Row>
 			<Type>BELIEF_JUST_WAR</Type>
 			<Description>TXT_KEY_BELIEF_JUST_WAR</Description>
 			<ShortDescription>TXT_KEY_BELIEF_JUST_WAR_SHORT</ShortDescription>
@@ -1195,7 +1203,7 @@
 		<Row>
 			<BeliefType>BELIEF_RELIGIOUS_COMMUNITY</BeliefType>
 			<YieldType>YIELD_PRODUCTION</YieldType>
-			<Max>15</Max>
+			<Max>25</Max>
 		</Row>
 		<Row>
 			<BeliefType>BELIEF_SCIENCE_RELIGION</BeliefType>

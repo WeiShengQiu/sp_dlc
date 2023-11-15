@@ -12,7 +12,7 @@
 			<Text>[COLOR_YELLOW]注意事項：[ENDCOLOR][NEWLINE]1、檢查存檔文件大小。[NEWLINE]2、查閱文明百科（快捷鍵[COLOR_POSITIVE_TEXT]F1[ENDCOLOR]）[NEWLINE]3、如果始終發生遊戲崩潰或存檔損壞，嘗試Dx9。</Text>
 		</Row>
 		<Row Tag="TXT_KEY_SP_VERSION">
-			<Text>[COLOR_YELLOW]版本號 7.0f[ENDCOLOR]</Text>
+			<Text>[COLOR_YELLOW]版本號 7.0[ENDCOLOR]</Text>
 		</Row>
 
 		<Row Tag="TXT_KEY_SP_MOD_SETUP">
@@ -4641,7 +4641,7 @@
 	<!-- New Cultural Influential Dialog -->
 		<Update>
 			<Where Tag="TXT_KEY_GENERIC_INFLUENTIAL_ON_AI_1"/>
-			<Set Text="現在，我們的人民皆服右衽、聞雅樂。我擔心世界其他地方，也會屈服於你文化的影響力之下。"/>
+			<Set Text="現在，我們的人民都穿你的漢服、唐裝，聽你的流行音樂。我擔心世界其他地方，也會屈服於你文化的影響力之下。"/>
 		</Update>
 		<Row Tag="TXT_KEY_CO_IMMIGRATION_COUNTER_HEADER">
 		<!--<Replace Tag="TXT_KEY_CO_VICTORY_EXCESS_HAPPINESS_HEADER">-->
@@ -4760,6 +4760,13 @@
 				[COLOR_NEGATIVE_TEXT]因戰爭原因，兩國間中止移民！[ENDCOLOR]
 			</Text>
 		</Row>
+
+		<Row Tag="TXT_KEY_CO_SP_MOVE_TEAMMATE_STOPPED">
+			<Text>
+				由於該國與你是隊友，兩國間沒有移民。
+			</Text>
+		</Row>
+
 		<Row Tag="TXT_KEY_CO_SP_MOVE_OTHER_STOPPED">
 			<Text>
 				[COLOR_NEGATIVE_TEXT]因[ICON_RES_CONSUMER]商品或[ICON_RES_ELECTRICITY]電力短缺，無法接收移民！[ENDCOLOR]
@@ -5461,7 +5468,7 @@
 		</Replace>
 
 		<Replace Tag="TXT_KEY_TRAIT_PHOENICIAN_HERITAGE">
-			<Text>每位專家+1[ICON_PRODUCTION]生產力。每條海上商路+4[ICON_GOLD]金幣並且+25%商路距離。</Text>
+			<Text>每位專家+2[ICON_PRODUCTION]生產力。每條海上商路+4[ICON_GOLD]金幣並且+25%商路距離。</Text>
 		</Replace>	
 
 		<Replace Tag="TXT_KEY_TRAIT_EXTRA_TRADE">
@@ -6425,7 +6432,7 @@
 		</Replace>
 		
 		<Replace Tag="TXT_KEY_POLICY_OPEN_SOCIETY_HELP" >
-			<Text>[COLOR_POSITIVE_TEXT]前衛藝術[ENDCOLOR][NEWLINE]獲得[ICON_GREAT_PEOPLE]偉人的速度加快25%，當有偉人誕生時，對所有文明+300[ICON_TOURISM]旅遊業績。</Text>
+			<Text>[COLOR_POSITIVE_TEXT]前衛藝術[ENDCOLOR][NEWLINE]獲得[ICON_GREAT_PEOPLE]偉人的速度加快25%，當有偉人誕生時，對所有文明+500[ICON_TOURISM]旅遊業績。</Text>
 		</Replace>
 
 		<Replace Tag="TXT_KEY_POLICY_CREATIVE_EXPRESSION_HELP" >
@@ -7276,6 +7283,13 @@
 		</Row>
 		<Row Tag="TXT_KEY_BELIEF_FAITH_WITHOUT_BORDERS">
 			<Text>其他文明的城市中每7個信徒+1 [ICON_PEACE]信仰值</Text>
+		</Row>
+
+		<Row Tag="TXT_KEY_BELIEF_RELIGIOUS_COLONIZATION">
+			<Text>允許在聖城中使用360[ICON_PEACE]信仰（標準速度下）購買移民，如果采用了自主政策樹，則購買價格下降為220[ICON_PEACE]信仰</Text>
+		</Row>
+		<Row Tag="TXT_KEY_BELIEF_RELIGIOUS_COLONIZATION_SHORT">
+			<Text>宗教殖民</Text>
 		</Row>
 		
 		<Row Tag="TXT_KEY_BELIEF_MARSH_BELIEF_SHORT">
